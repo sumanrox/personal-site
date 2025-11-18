@@ -1,0 +1,44 @@
+/* Skills Section Styles */
+
+/* Skill bar container */
+.skill-bar {
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, #000000 0%, #374151 100%);
+}
+
+/* Skill percentage counter */
+.skill-percentage {
+  font-variant-numeric: tabular-nums;
+  min-width: 3ch;
+}
+
+/* Tech tags */
+.tech-tag {
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* CVE Chart styles */
+.cve-chart-bar {
+  position: relative;
+}
+
+.cve-bar {
+  position: relative;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cve-count {
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+}
+
+.cve-bar-label {
+  transition: opacity 0.3s ease;
+}
+
+/* CVE severity colors already in HTML inline styles */

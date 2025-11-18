@@ -1,0 +1,26 @@
+/**
+ * Main CSS - Modular Architecture
+ * Imports all component-specific stylesheets
+ * 
+ * To customize:
+ * - Edit individual component CSS files in /components/
+ * - Add new component stylesheets as needed
+ * - Import order matters (base styles first)
+ */
+
+/* Base styles & reset */
+@import url('components/base.css');
+
+/* Component-specific styles */
+@import url('components/navigation.css');
+@import url('components/hero.css');
+@import url('components/timeline.css');
+@import url('components/skills.css');
+@import url('components/footer.css');
+@import url('components/animations.css');
+@import url('components/projects.css');
+@import url('components/pill-headers.css');
+@import url('components/logo-carousel.css');
+
+/* Legacy styles - will be migrated to components */
+/* These are temporary and should be moved to appropriate component files */

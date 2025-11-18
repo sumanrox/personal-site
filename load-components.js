@@ -1,0 +1,58 @@
+/**
+ * Component Loader
+ * Dynamically loads HTML components into placeholders
+ */
+
+async function loadComponent(placeholder, componentPath) {
+  try {
+    const response = await fetch(componentPath);
+    if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
+    const html = await response.text();
+    const element = document.querySelector(placeholder);
+    if (element) {
+      element.innerHTML = html;
+    }
+  } catch (error) {
+    console.error(`Error loading component ${componentPath}:`, error);
+  }
+}
+
+async function loadAllComponents() {
+  const components = [
+    { placeholder: '#nav-placeholder', path: 'components/navigation.html' },
+    { placeholder: '#hero-placeholder', path: 'components/hero.html' },
+    { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },
+    { placeholder: '#about-placeholder', path: 'components/about.html' },
+    { placeholder: '#work-placeholder', path: 'components/work.html' },
+    { placeholder: '#experience-placeholder', path: 'components/experience.html' },
+    { placeholder: '#skills-placeholder', path: 'components/skills.html' },
+    { placeholder: '#contact-placeholder', path: 'components/contact.html' },
+    { placeholder: '#footer-placeholder', path: 'components/footer.html' },
+    { placeholder: '#projects-placeholder', path: 'components/projects.html' }
+  ];
+
+  // Load all components in parallel
+  await Promise.all(
+    components.map(comp => loadComponent(comp.placeholder, comp.path))
+  );
+
+  // Initialize Lucide icons once after all components load
+  setTimeout(() => {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+      console.log('Lucide icons initialized after component loading');
+    }
+  }, 100);
+
+  // Initialize app after components are loaded
+  if (typeof window.initializeApp === 'function') {
+    window.initializeApp();
+  }
+}
+
+// Load components when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadAllComponents);
+} else {
+  loadAllComponents();
+}

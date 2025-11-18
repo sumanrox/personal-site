@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portfolio Redesign - About Section</title>
+    
+    <!-- Google Fonts - Funnel Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              funnel: ['Funnel Display', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+    
+    <!-- GSAP and ScrollTrigger for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- SplitType for text splitting -->
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Include the main modular CSS -->
+    <link rel="stylesheet" href="assets/css/main-modular.css" />
+    
+    <!-- Redesign-specific styles -->
+    <style>
+      .redesign-container {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+      }
+      
+      .redesign-header {
+        background: white;
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+        border-left: 4px solid #2563eb;
+      }
+      
+      .section-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+        overflow: hidden;
+      }
+      
+      .section-header {
+        background: #f8fafc;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      
+      .section-content {
+        padding: 2rem;
+      }
+      
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .version-container {
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      .version-header {
+        background: #f1f5f9;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .version-content {
+        padding: 1.5rem;
+        min-height: 400px;
+      }
+      
+      .original {
+        border-color: #94a3b8;
+      }
+      
+      .original .version-header {
+        background: #f1f5f9;
+        color: #475569;
+      }
+      
+      .redesign {
+        border-color: #3b82f6;
+      }
+      
+      .redesign .version-header {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      
+      @media (max-width: 768px) {
+        .comparison-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      /* Tab functionality styles */
+      .tab-button {
+        background: white;
+        color: #374151;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .tab-button:hover {
+        background: #f9fafb;
+        color: black;
+      }
+      
+      .tab-button.active {
+        background: black;
+        color: white;
+      }
+      
+      .tab-content {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+      }
+      
+      .tab-content.hidden {
+        display: none;
+        opacity: 0;
+      }
+      
+      /* Rainbow animation for experience section */
+      @keyframes rainbow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .animate-rainbow {
+        animation: rainbow 3s ease-in-out infinite;
+      }
+      
+      /* Rainbow underline slide animation */
+      .rainbow-underline {
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .rainbow-underline.animate-slide {
+        transform: scaleX(1);
+      }
+      
+      /* Rainbow pulse effect */
+      .rainbow-underline::before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -100%;
+        width: 150%;
+        height: calc(100% + 8px);
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.9) 10%,
+          rgba(255, 255, 255, 1) 50%,
+          rgba(255, 255, 255, 0.9) 90%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        filter: blur(2px);
+        border-radius: 4px;
+      }
+      
+      .rainbow-underline.pulse-active::before {
+        opacity: 1;
+        animation: rainbow-pulse 2s ease-in-out;
+      }
+      
+      @keyframes rainbow-pulse {
+        0% {
+          left: -150%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(239, 68, 68, 0.3) 5%,
+            rgba(239, 68, 68, 1) 30%,
+            rgba(239, 68, 68, 1) 70%,
+            rgba(239, 68, 68, 0.3) 95%,
+            transparent 100%
+          );
+        }
+        20% {
+          left: -100%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(245, 158, 11, 0.3) 5%,
+            rgba(245, 158, 11, 1) 30%,
+            rgba(245, 158, 11, 1) 70%,
+            rgba(245, 158, 11, 0.3) 95%,
+            transparent 100%
+          );
+        }
+        40% {
+          left: -50%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(34, 197, 94, 0.3) 5%,
+            rgba(34, 197, 94, 1) 30%,
+            rgba(34, 197, 94, 1) 70%,
+            rgba(34, 197, 94, 0.3) 95%,
+            transparent 100%
+          );
+        }
+        60% {
+          left: 0%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(59, 130, 246, 0.3) 5%,
+            rgba(59, 130, 246, 1) 30%,
+            rgba(59, 130, 246, 1) 70%,
+            rgba(59, 130, 246, 0.3) 95%,
+            transparent 100%
+          );
+        }
+        80% {
+          left: 50%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(99, 102, 241, 0.3) 5%,
+            rgba(99, 102, 241, 1) 30%,
+            rgba(99, 102, 241, 1) 70%,
+            rgba(99, 102, 241, 0.3) 95%,
+            transparent 100%
+          );
+        }
+        100% {
+          left: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(168, 85, 247, 0.3) 5%,
+            rgba(168, 85, 247, 1) 30%,
+            rgba(168, 85, 247, 1) 70%,
+            rgba(168, 85, 247, 0.3) 95%,
+            transparent 100%
+          );
+        }
+      }
+    </style>
+  </head>
+  
+  <body class="font-funnel bg-gray-50 text-black antialiased">
+    
+    <!-- Redesign Environment Header -->
+    <div class="redesign-container">
+      <div class="px-6 md:px-12 lg:px-20 xl:px-32 py-8">
+        
+        <!-- Header -->
+        <div class="redesign-header">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                <i data-lucide="palette" class="w-8 h-8 text-blue-600"></i>
+                Portfolio Redesign Lab
+              </h1>
+              <p class="text-gray-600 mt-2">Experiment with new designs before implementing them</p>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-gray-500">
+              <i data-lucide="eye" class="w-5 h-5"></i>
+              <span>Live Preview</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Section Variations -->
+        <div class="space-y-8">
+        
+          <!-- Variation 1: Current Grid Layout -->
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="layout-grid" class="w-6 h-6 text-black"></i>
+                Variation 1: Grid Layout
+              </h2>
+              <p class="text-gray-600 mt-1">3-column responsive grid with expertise cards</p>
+            </div>
+            
+            <div class="section-content">
+              <div class="bg-white p-8 rounded-lg border-2 border-gray-200">
+                  
+                  <!-- NEW ABOUT SECTION DESIGN STARTS HERE -->
+                  <section class="relative">
+                    
+                    <!-- Pill Header -->
+                    <div id="about-pill-container" class="mb-8">
+                      <div class="pill-component">
+                        <div class="pill-content">
+                          <span class="pill-element triangle" id="about-triangle">▲</span>
+                          <span class="pill-element bracket" id="about-open-bracket">[</span>
+                          <span class="pill-element text" id="about-pill-text">ABOUT</span>
+                          <span class="pill-element bracket" id="about-close-bracket">]</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Main Content Grid -->
+                    <div class="grid lg:grid-cols-3 gap-12 items-start">
+                      
+                      <!-- Left Column - Main Text -->
+                      <div class="lg:col-span-2 space-y-6">
+                        <div class="space-y-4">
+                          <h2 id="about-text" class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                            Security researcher with 6+ years of experience finding critical vulnerabilities
+                          </h2>
+                          
+                          <div class="prose prose-lg text-gray-600 leading-relaxed space-y-4">
+                            <p>
+                              I specialize in penetration testing and vulnerability research, with a track record of discovering 
+                              <strong class="text-black">12+ CVEs</strong> and earning <strong class="text-black">$50K+</strong> in bug bounties 
+                              from major platforms.
+                            </p>
+                            
+                            <p>
+                              My expertise spans web application security, network pentesting, and mobile security assessments. 
+                              I've helped organizations across fintech, healthcare, and e-commerce strengthen their security posture 
+                              through comprehensive testing and detailed remediation guidance.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <!-- Key Stats -->
+                        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
+                          <div class="text-center">
+                            <div class="text-3xl font-bold text-black mb-1">6+</div>
+                            <div class="text-sm text-gray-500 uppercase tracking-wider">Years Experience</div>
+                          </div>
+                          <div class="text-center">
+                            <div class="text-3xl font-bold text-black mb-1">12+</div>
+                            <div class="text-sm text-gray-500 uppercase tracking-wider">CVEs Found</div>
+                          </div>
+                          <div class="text-center">
+                            <div class="text-3xl font-bold text-black mb-1">$50K+</div>
+                            <div class="text-sm text-gray-500 uppercase tracking-wider">Bug Bounties</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Right Column - Expertise Areas -->
+                      <div class="space-y-6">
+                        <div>
+                          <h3 class="text-lg font-semibold text-black mb-4">Core Expertise</h3>
+                          <div class="space-y-3">
+                            
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 hover:border-black transition-colors">
+                              <div class="w-10 h-10 border border-gray-300 flex items-center justify-center">
+                                <i data-lucide="shield-x" class="w-5 h-5 text-black"></i>
+                              </div>
+                              <div>
+                                <div class="font-semibold text-black">Web App Penetration Testing</div>
+                                <div class="text-sm text-gray-600">OWASP Top 10, SQL Injection, XSS</div>
+                              </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 hover:border-black transition-colors">
+                              <div class="w-10 h-10 border border-gray-300 flex items-center justify-center">
+                                <i data-lucide="wifi" class="w-5 h-5 text-black"></i>
+                              </div>
+                              <div>
+                                <div class="font-semibold text-black">Network Security Testing</div>
+                                <div class="text-sm text-gray-600">Infrastructure, Services, Protocols</div>
+                              </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 hover:border-black transition-colors">
+                              <div class="w-10 h-10 border border-gray-300 flex items-center justify-center">
+                                <i data-lucide="smartphone" class="w-5 h-5 text-black"></i>
+                              </div>
+                              <div>
+                                <div class="font-semibold text-black">Mobile Security</div>
+                                <div class="text-sm text-gray-600">Android, iOS, API Testing</div>
+                              </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-3 p-3 border border-gray-200 hover:border-black transition-colors">
+                              <div class="w-10 h-10 border border-gray-300 flex items-center justify-center">
+                                <i data-lucide="search" class="w-5 h-5 text-black"></i>
+                              </div>
+                              <div>
+                                <div class="font-semibold text-black">Vulnerability Research</div>
+                                <div class="text-sm text-gray-600">0-day Discovery, CVE Analysis</div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        
+                        <!-- Certifications -->
+                        <div>
+                          <h3 class="text-lg font-semibold text-black mb-4">Certifications</h3>
+                          <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-sm">
+                              <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                              <span class="text-black">CISSP - Certified Information Systems Security Professional</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                              <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                              <span class="text-black">OSCP - Offensive Security Certified Professional</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                              <i data-lucide="award" class="w-4 h-4 text-black"></i>
+                              <span class="text-black">CEH - Certified Ethical Hacker</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    
+                  </section>
+                  <!-- VARIATION 1 ENDS HERE -->
+                  
+              </div>
+            </div>
+          </div>
+          
+          <!-- Variation 2: Minimal Single Column -->
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="align-left" class="w-6 h-6 text-black"></i>
+                Variation 2: Minimal Single Column
+              </h2>
+              <p class="text-gray-600 mt-1">Clean, focused single column layout</p>
+            </div>
+            
+            <div class="section-content">
+              <div class="bg-white p-8 rounded-lg border-2 border-gray-200">
+                
+                <section class="relative max-w-4xl">
+                  
+                  <!-- Pill Header -->
+                  <div class="mb-12">
+                    <div class="pill-component">
+                      <div class="pill-content">
+                        <span class="pill-element triangle">▲</span>
+                        <span class="pill-element bracket">[</span>
+                        <span class="pill-element text">ABOUT</span>
+                        <span class="pill-element bracket">]</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Main Content -->
+                  <div class="space-y-8">
+                    
+                    <!-- Large Headline -->
+                    <div>
+                      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Security researcher finding critical vulnerabilities for 6+ years
+                      </h2>
+                      
+                      <div class="prose prose-xl text-gray-600 leading-relaxed max-w-none">
+                        <p class="mb-6">
+                          I specialize in penetration testing and vulnerability research, with a track record of discovering 
+                          <strong class="text-black">12+ CVEs</strong> and earning <strong class="text-black">$50K+</strong> in bug bounties.
+                        </p>
+                        <p>
+                          My expertise spans web applications, network infrastructure, and mobile security. 
+                          I help organizations strengthen their security posture through comprehensive testing and detailed remediation guidance.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <!-- Inline Stats -->
+                    <div class="flex flex-wrap gap-8 py-8 border-t border-b border-gray-200">
+                      <div class="flex items-center gap-3">
+                        <span class="text-4xl font-bold text-black">6+</span>
+                        <span class="text-gray-600 uppercase text-sm tracking-wider">Years<br>Experience</span>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <span class="text-4xl font-bold text-black">12+</span>
+                        <span class="text-gray-600 uppercase text-sm tracking-wider">CVEs<br>Found</span>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <span class="text-4xl font-bold text-black">$50K+</span>
+                        <span class="text-gray-600 uppercase text-sm tracking-wider">Bug<br>Bounties</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Simple Expertise List -->
+                    <div>
+                      <h3 class="text-xl font-semibold text-black mb-4">Core Expertise</h3>
+                      <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                          <span class="text-black">•</span>
+                          <span>Web Application Penetration Testing</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="text-black">•</span>
+                          <span>Network Security Assessment</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="text-black">•</span>
+                          <span>Mobile Application Security</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="text-black">•</span>
+                          <span>Vulnerability Research & CVE Discovery</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </section>
+                
+              </div>
+            </div>
+          </div>
+          
+          <!-- Variation 3: Timeline Style -->
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="timeline" class="w-6 h-6 text-black"></i>
+                Variation 3: Timeline Style
+              </h2>
+              <p class="text-gray-600 mt-1">Story-driven timeline approach</p>
+            </div>
+            
+            <div class="section-content">
+              <div class="bg-white p-8 rounded-lg border-2 border-gray-200">
+                
+                <section class="relative">
+                  
+                  <!-- Pill Header -->
+                  <div class="mb-12">
+                    <div class="pill-component">
+                      <div class="pill-content">
+                        <span class="pill-element triangle">▲</span>
+                        <span class="pill-element bracket">[</span>
+                        <span class="pill-element text">ABOUT</span>
+                        <span class="pill-element bracket">]</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Timeline Content -->
+                  <div class="space-y-12">
+                    
+                    <!-- Intro -->
+                    <div class="text-center">
+                      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        My journey in cybersecurity
+                      </h2>
+                      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                        From curious beginner to security researcher - here's how I've been making systems safer
+                      </p>
+                    </div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="relative">
+                      
+                      <!-- Central Line -->
+                      <div class="absolute left-1/2 transform -translate-x-1/2 w-px bg-gray-300 h-full"></div>
+                      
+                      <!-- Timeline Item 1 -->
+                      <div class="relative flex items-center justify-between mb-12">
+                        <div class="w-5/12 text-right pr-8">
+                          <div class="bg-white border-2 border-gray-200 p-6">
+                            <h3 class="text-xl font-bold mb-2">6+ Years Experience</h3>
+                            <p class="text-gray-600">
+                              Started as a junior security analyst, evolved into a specialized penetration tester 
+                              with expertise across multiple domains.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-4 border-white rounded-full z-10"></div>
+                        
+                        <div class="w-5/12 pl-8">
+                          <div class="text-lg font-semibold text-black">2018 - Present</div>
+                        </div>
+                      </div>
+                      
+                      <!-- Timeline Item 2 -->
+                      <div class="relative flex items-center justify-between mb-12">
+                        <div class="w-5/12 text-right pr-8">
+                          <div class="text-lg font-semibold text-black">2020 - 2024</div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-4 border-white rounded-full z-10"></div>
+                        
+                        <div class="w-5/12 pl-8">
+                          <div class="bg-white border-2 border-gray-200 p-6">
+                            <h3 class="text-xl font-bold mb-2">12+ CVEs Discovered</h3>
+                            <p class="text-gray-600">
+                              Published critical vulnerabilities in major software, contributing to the security 
+                              of millions of users worldwide.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Timeline Item 3 -->
+                      <div class="relative flex items-center justify-between mb-12">
+                        <div class="w-5/12 text-right pr-8">
+                          <div class="bg-white border-2 border-gray-200 p-6">
+                            <h3 class="text-xl font-bold mb-2">$50K+ Bug Bounties</h3>
+                            <p class="text-gray-600">
+                              Earned significant rewards through responsible disclosure on platforms like 
+                              HackerOne, Bugcrowd, and direct vendor programs.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-4 border-white rounded-full z-10"></div>
+                        
+                        <div class="w-5/12 pl-8">
+                          <div class="text-lg font-semibold text-black">2019 - Present</div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                    <!-- Skills Summary -->
+                    <div class="text-center pt-8 border-t border-gray-200">
+                      <h3 class="text-lg font-semibold text-black mb-6">Current Focus Areas</h3>
+                      <div class="flex flex-wrap justify-center gap-4">
+                        <span class="px-4 py-2 border border-gray-300 text-black">Web Application Security</span>
+                        <span class="px-4 py-2 border border-gray-300 text-black">Network Penetration Testing</span>
+                        <span class="px-4 py-2 border border-gray-300 text-black">Mobile Security</span>
+                        <span class="px-4 py-2 border border-gray-300 text-black">Vulnerability Research</span>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </section>
+                
+              </div>
+            </div>
+          </div>
+          
+          <!-- Variation 4: Split Screen -->
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="columns" class="w-6 h-6 text-black"></i>
+                Variation 4: Split Screen
+              </h2>
+              <p class="text-gray-600 mt-1">Bold two-column split design</p>
+            </div>
+            
+            <div class="section-content">
+              <div class="bg-white rounded-lg border-2 border-gray-200 overflow-hidden">
+                
+                <section class="relative">
+                  
+                  <!-- Pill Header -->
+                  <div class="p-8 pb-0">
+                    <div class="pill-component">
+                      <div class="pill-content">
+                        <span class="pill-element triangle">▲</span>
+                        <span class="pill-element bracket">[</span>
+                        <span class="pill-element text">ABOUT</span>
+                        <span class="pill-element bracket">]</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Split Content -->
+                  <div class="grid lg:grid-cols-2 min-h-[500px]">
+                    
+                    <!-- Left Side: Dark -->
+                    <div class="bg-black text-white p-8 flex flex-col justify-center">
+                      <div class="space-y-6">
+                        <h2 class="text-3xl md:text-4xl font-bold leading-tight">
+                          Breaking systems to make them stronger
+                        </h2>
+                        
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                          Security researcher with 6+ years of experience in penetration testing 
+                          and vulnerability discovery. I help organizations identify and fix critical 
+                          security flaws before attackers can exploit them.
+                        </p>
+                        
+                        <div class="grid grid-cols-3 gap-4 pt-6">
+                          <div class="text-center">
+                            <div class="text-2xl font-bold">6+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">Years</div>
+                          </div>
+                          <div class="text-center">
+                            <div class="text-2xl font-bold">12+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">CVEs</div>
+                          </div>
+                          <div class="text-center">
+                            <div class="text-2xl font-bold">$50K+</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wider">Bounties</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Right Side: Light -->
+                    <div class="p-8 flex flex-col justify-center">
+                      <div class="space-y-6">
+                        <h3 class="text-xl font-semibold text-black">What I specialize in</h3>
+                        
+                        <div class="space-y-4">
+                          <div class="border-l-4 border-black pl-4">
+                            <div class="font-semibold text-black">Web Application Testing</div>
+                            <div class="text-sm text-gray-600">OWASP Top 10, injection flaws, authentication bypasses</div>
+                          </div>
+                          
+                          <div class="border-l-4 border-gray-300 pl-4">
+                            <div class="font-semibold text-black">Network Security</div>
+                            <div class="text-sm text-gray-600">Infrastructure testing, service enumeration, lateral movement</div>
+                          </div>
+                          
+                          <div class="border-l-4 border-gray-300 pl-4">
+                            <div class="font-semibold text-black">Mobile Security</div>
+                            <div class="text-sm text-gray-600">Android/iOS app testing, API security, device assessments</div>
+                          </div>
+                          
+                          <div class="border-l-4 border-gray-300 pl-4">
+                            <div class="font-semibold text-black">Vulnerability Research</div>
+                            <div class="text-sm text-gray-600">0-day discovery, CVE coordination, security advisories</div>
+                          </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-gray-200">
+                          <div class="text-sm text-gray-600 space-y-1">
+                            <div>• CISSP, OSCP, CEH Certified</div>
+                            <div>• Active on HackerOne & Bugcrowd</div>
+                            <div>• Published security researcher</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </section>
+                
+              </div>
+            </div>
+          </div>
+          
+          <!-- Variation 5: Masonry Grid Hybrid -->
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="layout-dashboard" class="w-6 h-6 text-black"></i>
+                Variation 5: Interactive Masonry Grid
+              </h2>
+              <p class="text-gray-600 mt-1">Switch between About and Experience in masonry layout</p>
+            </div>
+            
+            <div class="section-content">
+              <div class="bg-white p-8 rounded-lg border-2 border-gray-200">
+                
+                <section class="relative">
+                  
+                  <!-- Pill Header with Tabs -->
+                  <div class="mb-12">
+                    <div class="pill-component mb-8">
+                      <div class="pill-content">
+                        <span class="pill-element triangle">▲</span>
+                        <span class="pill-element bracket">[</span>
+                        <span class="pill-element text" id="pill-text-dynamic">ABOUT</span>
+                        <span class="pill-element bracket">]</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Tab Navigation -->
+                    <div class="flex items-center justify-center">
+                      <div class="inline-flex border-2 border-gray-300 rounded-lg overflow-hidden">
+                        <button 
+                          id="about-tab" 
+                          class="tab-button active px-8 py-3 text-sm font-bold transition-all duration-300"
+                          onclick="switchTab('about')"
+                        >
+                          ABOUT ME
+                        </button>
+                        <button 
+                          id="experience-tab" 
+                          class="tab-button px-8 py-3 text-sm font-bold transition-all duration-300"
+                          onclick="switchTab('experience')"
+                        >
+                          EXPERIENCE
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- About Content (Variation 2 Style) -->
+                  <div id="about-content" class="tab-content">
+                    <div class="space-y-8 max-w-4xl">
+                      
+                      <!-- Large Headline -->
+                      <div>
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                          Security researcher finding critical vulnerabilities for 6+ years
+                        </h2>
+                        
+                        <div class="prose prose-xl text-gray-600 leading-relaxed max-w-none">
+                          <p class="mb-6">
+                            I specialize in penetration testing and vulnerability research, with a track record of discovering 
+                            <strong class="text-black">12+ CVEs</strong> and earning <strong class="text-black">$50K+</strong> in bug bounties.
+                          </p>
+                          <p>
+                            My expertise spans web applications, network infrastructure, and mobile security. 
+                            I help organizations strengthen their security posture through comprehensive testing and detailed remediation guidance.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <!-- Inline Stats -->
+                      <div class="flex flex-wrap gap-8 py-8 border-t border-b border-gray-200">
+                        <div class="flex items-center gap-3">
+                          <span class="text-4xl font-bold text-black">6+</span>
+                          <span class="text-gray-600 uppercase text-sm tracking-wider">Years<br>Experience</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="text-4xl font-bold text-black">12+</span>
+                          <span class="text-gray-600 uppercase text-sm tracking-wider">CVEs<br>Found</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="text-4xl font-bold text-black">$50K+</span>
+                          <span class="text-gray-600 uppercase text-sm tracking-wider">Bug<br>Bounties</span>
+                        </div>
+                      </div>
+                      
+                      <!-- Simple Expertise List -->
+                      <div>
+                        <h3 class="text-xl font-semibold text-black mb-4">Core Expertise</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                          <div class="flex items-center gap-3">
+                            <span class="text-black">•</span>
+                            <span>Web Application Penetration Testing</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <span class="text-black">•</span>
+                            <span>Network Security Assessment</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <span class="text-black">•</span>
+                            <span>Mobile Application Security</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <span class="text-black">•</span>
+                            <span>Vulnerability Research & CVE Discovery</span>
+                          </div>
+                        </div>
+                      </div>
+                    
+                  </div>
+                  </div>
+                  
+                  <!-- Experience Content (Original Design) -->
+                  <div id="experience-content" class="tab-content hidden">
+                    <!-- Masonry Grid Layout -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      
+                      <!-- Current Role - Hero Card with gradient background -->
+                      <div class="lg:col-span-2 bg-gradient-to-br from-gray-900 to-black text-white p-10 relative overflow-hidden">
+                        <div class="relative z-10">
+                          <div class="flex items-center gap-3 mb-6">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="text-sm font-bold tracking-wider">CURRENT ROLE</span>
+                          </div>
+                          
+                          <h3 class="text-4xl font-bold mb-4 leading-tight relative pb-5">
+                            Independent Security Researcher
+                            <div class="rainbow-underline absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-[length:200%_100%] animate-rainbow"></div>
+                          </h3>
+                          <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                            Full-time vulnerability research focusing on critical security flaws in major platforms. 
+                            Achieved top rankings in bug bounty programs with significant financial rewards.
+                          </p>
+                          
+                          <!-- Stats Grid -->
+                          <div class="grid grid-cols-3 gap-6 mb-8">
+                            <div class="text-center">
+                              <div class="text-3xl font-bold">12+</div>
+                              <div class="text-sm text-gray-400">CVEs Discovered</div>
+                            </div>
+                            <div class="text-center">
+                              <div class="text-3xl font-bold">$50K+</div>
+                              <div class="text-sm text-gray-400">Bug Bounties</div>
+                            </div>
+                            <div class="text-center">
+                              <div class="text-3xl font-bold">Top 1%</div>
+                              <div class="text-sm text-gray-400">HackerOne Rank</div>
+                            </div>
+                          </div>
+                          
+                          <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-400">2023 - Present • 2+ Years</div>
+                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Previous Role 1 -->
+                      <div class="bg-white border border-gray-200 p-8 hover:shadow-xl hover:border-gray-300 transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="text-sm text-gray-500">2021 - 2023</div>
+                          <svg class="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                          </svg>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-black mb-3 group-hover:text-gray-700 transition-colors">
+                          Senior Penetration Tester
+                        </h3>
+                        <p class="text-gray-600 font-medium mb-4">SecureTech Solutions</p>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                          Led comprehensive security assessments for Fortune 500 companies. Specialized in web applications, network infrastructure, and cloud security testing.
+                        </p>
+                        
+                        <div class="space-y-2">
+                          <div class="flex items-center gap-2 text-sm">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span>50+ Enterprise Clients</span>
+                          </div>
+                          <div class="flex items-center gap-2 text-sm">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span>Red Team Operations</span>
+                          </div>
+                          <div class="flex items-center gap-2 text-sm">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i>
+                            <span>Cloud Security Specialist</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Previous Role 2 -->
+                      <div class="bg-gray-50 border border-gray-200 p-8 hover:shadow-lg transition-all duration-300 group">
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="text-sm text-gray-500">2018 - 2021</div>
+                          <svg class="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                          </svg>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-black mb-3 group-hover:text-gray-700 transition-colors">
+                          Security Analyst
+                        </h3>
+                        <p class="text-gray-600 font-medium mb-4">CyberGuard Inc.</p>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                          Foundation role building cybersecurity expertise through incident response, vulnerability assessments, and security monitoring.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2">
+                          <span class="px-3 py-1 bg-gray-200 text-xs font-medium rounded-full">CISSP</span>
+                          <span class="px-3 py-1 bg-gray-200 text-xs font-medium rounded-full">CEH</span>
+                          <span class="px-3 py-1 bg-gray-200 text-xs font-medium rounded-full">Python</span>
+                        </div>
+                      </div>
+
+                      <!-- Speaking & Community - Feature Card -->
+                      <div class="lg:col-span-2 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                          </svg>
+                          <h3 class="text-xl font-bold text-black">Speaking & Community Involvement</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 text-center">
+                          <div class="group">
+                            <div class="flex justify-center mb-4 group-hover:scale-110 transition-all duration-300">
+                              <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                              </svg>
+                            </div>
+                            <div class="font-bold text-black">DEF CON Speaker</div>
+                            <div class="text-sm text-gray-600">"JWT Implementation Vulnerabilities"</div>
+                          </div>
+                          <div class="group">
+                            <div class="flex justify-center mb-4 group-hover:scale-110 transition-all duration-300">
+                              <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                              </svg>
+                            </div>
+                            <div class="font-bold text-black">BSides Regular</div>
+                            <div class="text-sm text-gray-600">Austin, Dallas, Houston</div>
+                          </div>
+                          <div class="group">
+                            <div class="flex justify-center mb-4 group-hover:scale-110 transition-all duration-300">
+                              <svg class="w-12 h-12 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 01"/>
+                              </svg>
+                            </div>
+                            <div class="font-bold text-black">CTF Competitor</div>
+                            <div class="text-sm text-gray-600">Black Hat, Local Events</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                </section>
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+      
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Initialize pill animation for redesign
+      function initRedesignPillAnimation() {
+        const container = document.getElementById('about-pill-container');
+        const triangle = document.getElementById('about-triangle');
+        const openBracket = document.getElementById('about-open-bracket');
+        const closeBracket = document.getElementById('about-close-bracket');
+        const text = document.getElementById('about-pill-text');
+        
+        if (!container || !triangle || !openBracket || !closeBracket || !text) return;
+        
+        // Set initial state
+        gsap.set([triangle, openBracket, closeBracket, text], {
+          opacity: 0,
+          x: 0
+        });
+        
+        // Animate on load
+        const tl = gsap.timeline({ delay: 0.5 });
+        
+        tl.to([triangle, openBracket], {
+          opacity: 1,
+          duration: 0.3,
+          stagger: 0.1,
+          ease: "power2.out"
+        });
+        
+        const textWidth = text.offsetWidth;
+        tl.set(closeBracket, {
+          x: -(textWidth + 8),
+          opacity: 1
+        });
+        
+        tl.to(closeBracket, {
+          x: 0,
+          duration: 0.4,
+          ease: "power2.inOut"
+        });
+        
+        tl.to(text, {
+          opacity: 1,
+          duration: 0.06,
+          repeat: 5,
+          yoyo: true,
+          ease: "power2.inOut"
+        }, "-=0.2");
+        
+        tl.set(text, {
+          opacity: 1
+        });
+      }
+      
+      // Tab switching functionality
+      function switchTab(tabName) {
+        // Update pill text
+        const pillText = document.getElementById('pill-text-dynamic');
+        if (pillText) {
+          pillText.textContent = tabName.toUpperCase();
+        }
+        
+        // Update tab buttons
+        const aboutTab = document.getElementById('about-tab');
+        const experienceTab = document.getElementById('experience-tab');
+        const aboutContent = document.getElementById('about-content');
+        const experienceContent = document.getElementById('experience-content');
+        
+        if (tabName === 'about') {
+          aboutTab.classList.add('active');
+          experienceTab.classList.remove('active');
+          aboutContent.classList.remove('hidden');
+          experienceContent.classList.add('hidden');
+        } else {
+          experienceTab.classList.add('active');
+          aboutTab.classList.remove('active');
+          experienceContent.classList.remove('hidden');
+          aboutContent.classList.add('hidden');
+          
+          // Initialize rainbow underline animation when experience tab is shown
+          setTimeout(() => {
+            initRainbowUnderlineAnimation();
+          }, 200);
+        }
+        
+        // Re-initialize icons for new content
+        setTimeout(() => {
+          lucide.createIcons();
+        }, 100);
+        
+        console.log(`🎯 Switched to ${tabName} tab`);
+      }
+      
+      // Rainbow underline animation
+      function initRainbowUnderlineAnimation() {
+        // Clear any existing ScrollTriggers for this element
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.vars.trigger && trigger.vars.trigger.classList && trigger.vars.trigger.classList.contains('rainbow-underline')) {
+            trigger.kill();
+          }
+        });
+        
+        const underline = document.querySelector('.rainbow-underline');
+        if (!underline) {
+          console.log('❌ Rainbow underline element not found');
+          return;
+        }
+        
+        console.log('✅ Found rainbow underline element:', underline);
+        
+        // Refresh ScrollTrigger to recalculate positions
+        ScrollTrigger.refresh();
+        
+        // Create ScrollTrigger for the underline animation
+        ScrollTrigger.create({
+          trigger: underline,
+          start: "top 80%",
+          end: "bottom 20%",
+          onEnter: () => {
+            console.log('🎯 Underline entering view - adding animation');
+            underline.classList.add('animate-slide');
+            
+            // Start pulse effect after slide animation completes
+            setTimeout(() => {
+              underline.classList.add('pulse-active');
+              
+              // Remove pulse class after animation completes to allow re-triggering
+              setTimeout(() => {
+                underline.classList.remove('pulse-active');
+              }, 2000);
+            }, 1200); // Wait for slide animation to complete
+          },
+          onLeave: () => {
+            console.log('🎯 Underline leaving view - removing animation');
+            underline.classList.remove('animate-slide');
+          },
+          onEnterBack: () => {
+            console.log('🎯 Underline entering back - adding animation');
+            underline.classList.add('animate-slide');
+            
+            // Start pulse effect after slide animation completes
+            setTimeout(() => {
+              underline.classList.add('pulse-active');
+              
+              // Remove pulse class after animation completes to allow re-triggering
+              setTimeout(() => {
+                underline.classList.remove('pulse-active');
+              }, 2000);
+            }, 1200); // Wait for slide animation to complete
+          },
+          onLeaveBack: () => {
+            console.log('🎯 Underline leaving back - removing animation');
+            underline.classList.remove('animate-slide');
+          },
+          markers: false // Set to true for debugging
+        });
+        
+        console.log('🌈 Rainbow underline animation initialized with ScrollTrigger');
+      }
+      
+      // Initialize everything
+      document.addEventListener('DOMContentLoaded', () => {
+        initRedesignPillAnimation();
+        lucide.createIcons();
+        
+        // Initialize rainbow underline animation after a short delay
+        setTimeout(() => {
+          initRainbowUnderlineAnimation();
+        }, 500);
+      });
+      
+      console.log('🎨 Redesign environment ready!');
+    </script>
+  </body>
+</html>

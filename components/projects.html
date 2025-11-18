@@ -1,0 +1,69 @@
+<!-- Projects Section - Bento Grid of Cards -->
+<section id="projects" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-20">
+  <div class="max-w-7xl w-full mx-auto relative z-10">
+    <!-- Section header with pill -->
+    <div class="mb-16">
+      <div id="projects-pill-container" class="mb-6">
+        <div class="pill-section-header" data-text="PROJECTS">
+          <!-- Pill content -->
+          <div class="pill-content">
+            <span id="projects-triangle" class="pill-element triangle">▶</span>
+            <span id="projects-open-bracket" class="pill-element bracket">[</span>
+            <span id="projects-pill-text" class="pill-element text">PROJECTS</span>
+            <span id="projects-close-bracket" class="pill-element bracket">]</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-3xl md:text-4xl font-bold text-black max-w-3xl">Open Source & Contributions</p>
+    </div>
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Example Project Card -->
+      <div class="bento-card bg-white border border-gray-200 rounded-2xl shadow-lg p-8 flex flex-col gap-4 hover:border-black transition-all duration-300">
+        <div class="flex items-center gap-3 mb-2">
+          <i data-lucide="shield" class="w-6 h-6 text-black"></i>
+          <span class="font-bold text-lg">Red Team Toolkit</span>
+        </div>
+        <p class="text-gray-600 mb-2">A modular toolkit for automating common red team operations, including phishing, C2 setup, and privilege escalation. Used by 500+ security professionals.</p>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span class="px-3 py-1 bg-gray-100 text-xs font-semibold text-black">Python</span>
+          <span class="px-3 py-1 bg-gray-100 text-xs font-semibold text-black">Red Team</span>
+        </div>
+        <a href="https://github.com/sumanroy/red-team-toolkit" target="_blank" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-green-600">
+          View on GitHub <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <!-- Example Project Card -->
+      <div class="bento-card bg-white border border-gray-200 rounded-2xl shadow-lg p-8 flex flex-col gap-4 hover:border-black transition-all duration-300">
+        <div class="flex items-center gap-3 mb-2">
+          <i data-lucide="activity" class="w-6 h-6 text-blue-700"></i>
+          <span class="font-bold text-lg">Blue Team Dashboard</span>
+        </div>
+        <p class="text-gray-600 mb-2">SIEM dashboard for real-time threat detection and incident response. Integrates with ELK stack and supports custom alerting rules.</p>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span class="px-3 py-1 bg-gray-100 text-xs font-semibold text-black">JavaScript</span>
+          <span class="px-3 py-1 bg-gray-100 text-xs font-semibold text-black">Blue Team</span>
+        </div>
+        <a href="https://github.com/sumanroy/blue-team-dashboard" target="_blank" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-blue-700">
+          View on GitHub <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <!-- Example Project Card -->
+      <div class="bento-card bg-white border border-gray-200 rounded-2xl shadow-lg p-8 flex flex-col gap-4 hover:border-black transition-all duration-300">
+        <div class="flex items-center gap-3 mb-2">
+          <i data-lucide="git-branch" class="w-6 h-6 text-green-700"></i>
+          <span class="font-bold text-lg">Contributions: Nuclei</span>
+        </div>
+        <p class="text-gray-600 mb-2">Contributed custom templates and modules to Project Discovery's Nuclei scanner, improving detection for web vulnerabilities and misconfigurations.</p>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span class="px-3 py-1 bg-gray-100 text-xs font-semibold text-black">Go</span>
+          <span class="px-3 py-1 bg-gray-100 text-xs font-semibold text-black">Vulnerability Scanner</span>
+        </div>
+        <a href="https://github.com/projectdiscovery/nuclei/pulls?q=author:sumanroy" target="_blank" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-green-700">
+          View PRs <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+  </div>
+</section>

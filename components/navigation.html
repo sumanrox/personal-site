@@ -1,0 +1,78 @@
+<!-- Navigation - Clean & Minimalist -->
+<nav class="nav-container fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20 xl:px-32 py-4">
+  <div class="nav-wrapper max-w-7xl w-full mx-auto">
+    
+    <!-- Navigation Bar -->
+    <div class="nav-bar bg-white px-6 py-4 flex justify-between items-center">
+      
+      <!-- Logo -->
+      <div class="nav-logo group cursor-pointer">
+        <div class="flex items-center gap-3">
+          <div class="logo-icon w-8 h-8 bg-gray-900 flex items-center justify-center">
+            <i data-lucide="shield" class="w-4 h-4 text-white"></i>
+          </div>
+          <div class="logo-text">
+            <div class="text-gray-900 font-semibold text-lg tracking-tight">
+              Suman Roy
+            </div>
+            <div class="text-gray-500 text-xs font-medium">
+              Security Researcher
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-links hidden md:flex items-center gap-1">
+        <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
+          About
+        </a>
+        <a href="#work" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
+          Research
+        </a>
+        <a href="#projects" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
+          Projects
+        </a>
+        <a href="#experience" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
+          Experience
+        </a>
+        <a href="#contact" class="nav-cta ml-4 px-4 py-2 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-all duration-200 flex items-center gap-2">
+          Contact
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden w-10 h-10 flex items-center justify-center">
+        <div class="hamburger-container w-5 h-4 relative">
+          <span class="hamburger-line absolute top-0 left-0 w-full h-0.5 bg-gray-900 transition-all duration-300"></span>
+          <span class="hamburger-line absolute top-1/2 left-0 w-full h-0.5 bg-gray-900 transition-all duration-300 -translate-y-0.5"></span>
+          <span class="hamburger-line absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transition-all duration-300"></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white opacity-0 pointer-events-none transition-all duration-300">
+      <div class="mobile-menu-content h-full flex flex-col justify-center items-center text-center">
+        <div class="mobile-links space-y-6">
+          <a href="#about" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+            About
+          </a>
+          <a href="#work" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+            Research
+          </a>
+          <a href="#projects" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+            Projects
+          </a>
+          <a href="#experience" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+            Experience
+          </a>
+          <a href="#contact" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200 mt-8 pt-6 border-t border-gray-200">
+            Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

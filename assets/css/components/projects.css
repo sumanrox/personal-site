@@ -1,0 +1,58 @@
+/* Projects Section - Bento Card Styles */
+
+.bento-card {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  opacity: 1 !important;
+  color: #111;
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.bento-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border-color: #111;
+  transform: translateY(-4px) scale(1.03);
+  opacity: 1 !important;
+}
+
+.bento-card .text-base,
+.bento-card .text-lg,
+.bento-card .text-gray-600 {
+  color: #222 !important;
+  opacity: 1 !important;
+}
+
+.bento-card .text-gray-600 {
+  color: #444 !important;
+}
+
+.bento-card .font-bold {
+  color: #111 !important;
+}
+
+.bento-card [data-lucide] {
+  opacity: 1 !important;
+}
+
+.bento-card span {
+  opacity: 1 !important;
+}
+
+.bento-card .bg-red-100,
+.bento-card .bg-blue-100,
+.bento-card .bg-green-100,
+.bento-card .bg-purple-100,
+.bento-card .bg-teal-100,
+.bento-card .bg-gray-100,
+.bento-card .bg-gray-200 {
+  opacity: 1 !important;
+}
+
+.bento-card .rounded {
+  border-radius: 0.75rem !important;
+}
+
+.bento-card .rounded-2xl {
+  border-radius: 1rem !important;
+}

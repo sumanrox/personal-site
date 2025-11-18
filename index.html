@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Suman Roy — Security Researcher</title>
+    
+    <!-- Google Fonts - Funnel Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              funnel: ['Funnel Display', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+    
+    <!-- GSAP and ScrollTrigger for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- SplitType for text splitting -->
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="assets/css/main-modular.css" />
+  </head>
+  <body class="font-funnel bg-white text-black antialiased">
+    
+    <!-- Content wrapper -->
+    <div class="relative z-10">
+    
+      <!-- Navigation Component -->
+      <div id="nav-placeholder"></div>
+      
+      <!-- Hero Component -->
+      <div id="hero-placeholder"></div>
+      
+      <!-- Logo Carousel Component -->
+      <div id="logo-carousel-placeholder"></div>
+      
+      <!-- About Component -->
+      <div id="about-placeholder"></div>
+      
+      <!-- Projects Component -->
+      <div id="projects-placeholder"></div>
+      
+      <!-- Work Component -->
+      <div id="work-placeholder"></div>
+      
+      <!-- Experience Component -->
+      <div id="experience-placeholder"></div>
+      
+      <!-- Skills Component -->
+      <div id="skills-placeholder"></div>
+      
+      <!-- Contact Component -->
+      <div id="contact-placeholder"></div>
+      
+      <!-- Footer Component -->
+      <div id="footer-placeholder"></div>
+      
+    </div> <!-- Close content wrapper -->
+
+    <!-- Component Loader -->
+    <script src="load-components.js"></script>
+    
+    <!-- Main App Script -->
+    <script type="module">
+      // Wait for components to load before initializing app
+      window.initializeApp = async function() {
+        const { default: initApp } = await import('./assets/js/app.js');
+        
+        // Initialize Lucide Icons
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      };
+    </script>
+  </body>
+</html>

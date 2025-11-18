@@ -1,0 +1,68 @@
+/* Hero Section Styles */
+
+/* Hero text visibility and animation */
+#hero-text-1,
+#hero-text-2 {
+  opacity: 1;
+}
+
+/* Character span styling for animated text - SplitType creates .char class */
+.char {
+  color: #d4d4d4; /* default gray */
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: color;
+}
+
+.char.active {
+  color: #000000; /* black when activated */
+}
+
+/* Preserve word spacing */
+.word {
+  display: inline-block;
+  white-space: nowrap !important;
+}
+
+/* Prevent word breaks in titles */
+#hero-text-1,
+#hero-text-2 {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+
+/* Keep individual words together after SplitType */
+#hero-text-1 .word,
+#hero-text-2 .word {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  margin-right: 0;
+}
+
+#hero-text-1 .word:last-child,
+#hero-text-2 .word:last-child {
+  margin-right: 0;
+}
+
+/* Counter animation base styles */
+.counter {
+  display: inline-block;
+  min-width: 2ch;
+}
+
+/* Scroll Indicator Animation */
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0.6;
+  }
+}

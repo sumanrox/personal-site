@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Test Environment - Suman Roy Portfolio</title>
+    
+    <!-- Google Fonts - Funnel Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              funnel: ['Funnel Display', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+    
+    <!-- GSAP and ScrollTrigger for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- SplitType for text splitting -->
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="assets/css/main-modular.css" />
+    
+    <!-- Test-specific styles -->
+    <style>
+      /* Test environment specific styles */
+      .test-container {
+        min-height: 100vh;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .test-header {
+        background: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        border-left: 4px solid #3b82f6;
+      }
+      
+      .test-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+      
+      .test-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      
+      .code-preview {
+        background: #1f2937;
+        color: #f9fafb;
+        padding: 1rem;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin-top: 1rem;
+      }
+      
+      .preview-label {
+        background: #3b82f6;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px 6px 0 0;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0;
+        display: inline-block;
+      }
+      
+      .test-component {
+        border: 2px dashed #e5e7eb;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        position: relative;
+      }
+      
+      .test-component::before {
+        content: 'TEST COMPONENT';
+        position: absolute;
+        top: -12px;
+        left: 1rem;
+        background: #f9fafb;
+        padding: 0 0.5rem;
+        font-size: 0.75rem;
+        color: #6b7280;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  
+  <body class="font-funnel bg-gray-50 text-black antialiased">
+    
+    <!-- Test Environment Header -->
+    <div class="test-container">
+      <div class="test-header">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900 flex items-center gap-3">
+              <i data-lucide="flask-conical" class="w-6 h-6 text-blue-600"></i>
+              Test Environment
+            </h1>
+            <p class="text-gray-600 mt-1">Experiment with new components and designs before implementing them</p>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <i data-lucide="code" class="w-4 h-4"></i>
+            <span>Isolated Testing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Reference -->
+      <div class="test-section">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <i data-lucide="book-open" class="w-5 h-5 text-green-600"></i>
+          Quick Reference
+        </h2>
+        <div class="test-grid">
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Available Libraries</h3>
+            <ul class="space-y-1 text-sm text-gray-600">
+              <li>• Tailwind CSS (utility-first styling)</li>
+              <li>• GSAP 3.12.5 (animations)</li>
+              <li>• ScrollTrigger (scroll animations)</li>
+              <li>• SplitType (text splitting)</li>
+              <li>• Lucide Icons (icon set)</li>
+              <li>• Funnel Display font</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Portfolio Colors</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-black rounded"></div>
+                <span class="text-gray-600">Primary: Black (#000000)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-white border border-gray-300 rounded"></div>
+                <span class="text-gray-600">Background: White (#ffffff)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-gray-600 rounded"></div>
+                <span class="text-gray-600">Text: Gray-600 (#4b5563)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test Area -->
+      <div class="test-section">
+        <div class="preview-label">Your Test Component</div>
+        <div class="test-component">
+          
+          <!-- START: Logo Carousel Component -->
+          <div class="py-4">
+            
+            <!-- Logo Carousel Container -->
+            <div id="logo-carousel" class="logo-carousel-container">
+              <div class="logo-track" id="logo-track">
+                
+                <!-- Logo Set 1 -->
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="shield-check" class="w-16 h-16 text-green-500"></i>
+                    <span class="logo-text">HackerOne</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="bug" class="w-16 h-16 text-orange-500"></i>
+                    <span class="logo-text">Bugcrowd</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="github" class="w-16 h-16 text-purple-600"></i>
+                    <span class="logo-text">GitHub</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="cloud" class="w-16 h-16 text-blue-500"></i>
+                    <span class="logo-text">AWS</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="lock" class="w-16 h-16 text-red-500"></i>
+                    <span class="logo-text">OWASP</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="terminal" class="w-16 h-16 text-indigo-600"></i>
+                    <span class="logo-text">Kali Linux</span>
+                  </div>
+                </div>
+                
+                <!-- Logo Set 2 (Duplicate for seamless loop) -->
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="shield-check" class="w-16 h-16 text-green-500"></i>
+                    <span class="logo-text">HackerOne</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="bug" class="w-16 h-16 text-orange-500"></i>
+                    <span class="logo-text">Bugcrowd</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="github" class="w-16 h-16 text-purple-600"></i>
+                    <span class="logo-text">GitHub</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="cloud" class="w-16 h-16 text-blue-500"></i>
+                    <span class="logo-text">AWS</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="lock" class="w-16 h-16 text-red-500"></i>
+                    <span class="logo-text">OWASP</span>
+                  </div>
+                </div>
+                
+                <div class="logo-item">
+                  <div class="logo-content">
+                    <i data-lucide="terminal" class="w-16 h-16 text-indigo-600"></i>
+                    <span class="logo-text">Kali Linux</span>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex gap-4 justify-center mt-8">
+              <button id="pause-carousel" class="px-4 py-2 bg-gray-600 text-white font-semibold hover:bg-gray-700 transition-colors">
+                Pause
+              </button>
+              <button id="resume-carousel" class="px-4 py-2 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+                Resume
+              </button>
+              <button id="reverse-carousel" class="px-4 py-2 bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors">
+                Reverse
+              </button>
+            </div>
+
+          </div>
+
+          <style>
+            /* Logo Carousel Styles */
+            .logo-carousel-container {
+              overflow: hidden;
+              width: 100%;
+              padding: 1rem 0;
+              position: relative;
+              background: transparent;
+              mask: linear-gradient(90deg, transparent 0%, black 25%, black 75%, transparent 100%);
+              -webkit-mask: linear-gradient(90deg, transparent 0%, black 25%, black 75%, transparent 100%);
+            }
+
+            .logo-carousel-container::before,
+            .logo-carousel-container::after {
+              content: '';
+              position: absolute;
+              top: -20px;
+              bottom: -20px;
+              width: 350px;
+              z-index: 10;
+              pointer-events: none;
+            }
+
+            .logo-carousel-container::before {
+              left: 0;
+              background: 
+                linear-gradient(90deg, 
+                  rgba(245,247,250,1) 0%, 
+                  rgba(245,247,250,0.95) 15%, 
+                  rgba(245,247,250,0.85) 30%, 
+                  rgba(245,247,250,0.65) 45%, 
+                  rgba(245,247,250,0.4) 60%, 
+                  rgba(245,247,250,0.15) 75%, 
+                  rgba(245,247,250,0) 100%
+                ),
+                radial-gradient(ellipse 150% 120% at -10% 50%, 
+                  rgba(245,247,250,0.9) 0%, 
+                  rgba(245,247,250,0.6) 30%, 
+                  rgba(245,247,250,0.2) 60%, 
+                  rgba(245,247,250,0) 85%
+                ),
+                radial-gradient(ellipse 180% 100% at -20% 30%, 
+                  rgba(245,247,250,0.8) 0%, 
+                  rgba(245,247,250,0.4) 40%, 
+                  rgba(245,247,250,0) 70%
+                );
+              filter: blur(8px);
+            }
+
+            .logo-carousel-container::after {
+              right: 0;
+              background: 
+                linear-gradient(270deg, 
+                  rgba(245,247,250,1) 0%, 
+                  rgba(245,247,250,0.95) 15%, 
+                  rgba(245,247,250,0.85) 30%, 
+                  rgba(245,247,250,0.65) 45%, 
+                  rgba(245,247,250,0.4) 60%, 
+                  rgba(245,247,250,0.15) 75%, 
+                  rgba(245,247,250,0) 100%
+                ),
+                radial-gradient(ellipse 150% 120% at 110% 50%, 
+                  rgba(245,247,250,0.9) 0%, 
+                  rgba(245,247,250,0.6) 30%, 
+                  rgba(245,247,250,0.2) 60%, 
+                  rgba(245,247,250,0) 85%
+                ),
+                radial-gradient(ellipse 180% 100% at 120% 30%, 
+                  rgba(245,247,250,0.8) 0%, 
+                  rgba(245,247,250,0.4) 40%, 
+                  rgba(245,247,250,0) 70%
+                );
+              filter: blur(8px);
+            }
+
+            .logo-track {
+              display: flex;
+              gap: 0.75rem;
+              animation: scroll-left 20s linear infinite;
+              width: fit-content;
+            }
+
+            .logo-item {
+              flex: none;
+              width: 200px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              opacity: 0.6;
+              transition: all 0.3s ease;
+            }
+
+            .logo-item:hover {
+              opacity: 1;
+              transform: translateY(-2px);
+            }
+
+            .logo-content {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 1.5rem;
+              border-radius: 12px;
+              background: transparent;
+              width: 100%;
+              transition: all 0.3s ease;
+            }
+
+            .logo-content:hover {
+              transform: scale(1.05);
+            }
+
+            .logo-text {
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: #374151;
+              text-align: center;
+            }
+
+            /* Animation keyframes */
+            @keyframes scroll-left {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+
+            @keyframes scroll-right {
+              0% {
+                transform: translateX(-50%);
+              }
+              100% {
+                transform: translateX(0);
+              }
+            }
+
+            .scroll-reverse .logo-track {
+              animation: scroll-right 20s linear infinite;
+            }
+
+            .scroll-paused .logo-track {
+              animation-play-state: paused;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+              .logo-track {
+                gap: 2rem;
+              }
+              
+              .logo-item {
+                width: 150px;
+              }
+              
+              .logo-content {
+                padding: 0.75rem;
+              }
+              
+              .logo-text {
+                font-size: 0.75rem;
+              }
+            }
+
+            .pill-component {
+              position: relative;
+              background: linear-gradient(45deg, #f97316, #ea580c);
+              color: white;
+              font-family: 'Courier New', monospace;
+              font-weight: 600;
+              font-size: clamp(14px, 2.5vw, 16px);
+              padding: clamp(10px, 2vw, 12px) clamp(18px, 4vw, 24px);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              min-width: clamp(160px, 40vw, 200px);
+              max-width: 90vw;
+              height: clamp(40px, 8vw, 48px);
+              opacity: 1;
+              transform: translateX(0);
+              overflow: hidden;
+              clip-path: polygon(
+                0 20%,
+                10% 0,
+                100% 0,
+                100% 80%,
+                90% 100%,
+                0% 100%
+              );
+              box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.3);
+            }
+
+            /* Mobile responsiveness */
+            @media (max-width: 640px) {
+              .pill-component {
+                font-size: 14px;
+                padding: 10px 18px;
+                min-width: 140px;
+                height: 40px;
+              }
+              
+              .triangle {
+                font-size: 16px;
+              }
+              
+              .bracket {
+                font-size: 18px;
+              }
+            }
+
+            /* Large screens */
+            @media (min-width: 1024px) {
+              .pill-component {
+                font-size: 16px;
+                padding: 12px 24px;
+                min-width: 200px;
+                height: 48px;
+              }
+            }
+
+            .pill-content {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 4px;
+              position: relative;
+            }
+
+            .pill-element {
+              color: #1f2937; /* Dark gray/black for contrast */
+              display: inline-block;
+              opacity: 0;
+            }
+
+            .pill-element.text {
+              color: white;
+              letter-spacing: 1px;
+            }
+
+            .triangle {
+              font-size: 18px;
+              transform: rotate(-90deg);
+            }
+
+            .bracket {
+              font-size: 22px;
+              font-weight: 700;
+            }
+
+            /* Corner borders */
+            .pill-corner {
+              position: absolute;
+              border: 2px solid #f97316;
+            }
+
+            .pill-corner-tl {
+              top: -3px;
+              left: -3px;
+              width: 20px;
+              height: 20px;
+              border-right: none;
+              border-bottom: none;
+            }
+
+            .pill-corner-tr {
+              top: -3px;
+              right: -3px;
+              width: 20px;
+              height: 20px;
+              border-left: none;
+              border-bottom: none;
+            }
+
+            .pill-corner-bl {
+              bottom: -3px;
+              left: -3px;
+              width: 20px;
+              height: 20px;
+              border-right: none;
+              border-top: none;
+            }
+
+            .pill-corner-br {
+              bottom: -3px;
+              right: -3px;
+              width: 20px;
+              height: 20px;
+              border-left: none;
+              border-top: none;
+            }
+
+            /* Animation classes */
+            .blink {
+              animation: fastBlink 0.1s ease-in-out infinite;
+            }
+
+            .text-blink {
+              animation: textBlink 0.08s ease-in-out;
+            }
+
+            @keyframes fastBlink {
+              0%, 50% { opacity: 1; }
+              51%, 100% { opacity: 0; }
+            }
+
+            @keyframes textBlink {
+              0%, 25%, 50%, 75% { opacity: 0; }
+              12.5%, 37.5%, 62.5%, 87.5% { opacity: 1; }
+            }
+
+            /* Complementary Static Pills */
+            .pill-static {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+              font-family: 'Courier New', monospace;
+              font-weight: 600;
+              font-size: 14px;
+              padding: 10px 20px;
+              height: 40px;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            }
+
+            .pill-static:hover {
+              transform: translateY(-2px);
+            }
+
+            /* Outline Style */
+            .pill-outline {
+              background: transparent;
+              border: 2px solid #f97316;
+              color: #f97316;
+            }
+
+            .pill-outline:hover {
+              background: #f97316;
+              color: black;
+            }
+
+            /* Solid Style */
+            .pill-solid {
+              background: #f97316;
+              color: black;
+              border: 2px solid #f97316;
+            }
+
+            .pill-solid:hover {
+              background: black;
+              color: #f97316;
+              border-color: #f97316;
+            }
+
+            /* Minimal Style */
+            .pill-minimal {
+              background: transparent;
+              color: #6b7280;
+              border: 1px solid #e5e7eb;
+            }
+
+            .pill-minimal:hover {
+              color: black;
+              border-color: #f97316;
+            }
+
+            /* Gradient Style */
+            .pill-gradient {
+              background: linear-gradient(45deg, #f97316, #ea580c);
+              color: white;
+              border: none;
+              box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.3);
+            }
+
+            .pill-gradient:hover {
+              background: linear-gradient(45deg, #ea580c, #dc2626);
+              box-shadow: 0 6px 8px -1px rgba(249, 115, 22, 0.4);
+            }
+
+            /* Icons and text */
+            .pill-icon {
+              font-size: 12px;
+              opacity: 0.8;
+            }
+
+            .pill-divider {
+              font-size: 16px;
+              opacity: 0.6;
+              font-weight: 400;
+            }
+
+            .pill-text-static {
+              letter-spacing: 0.5px;
+            }
+          </style>
+          <!-- END: Animated Pill Component -->
+          
+        </div>
+      </div>
+
+      <!-- Example Code Templates -->
+      <div class="test-section">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <i data-lucide="code-2" class="w-5 h-5 text-purple-600"></i>
+          Code Templates
+        </h2>
+        
+        <div class="test-grid">
+          <!-- GSAP Animation Template -->
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">GSAP Animation</h3>
+            <div class="code-preview">
+// Basic GSAP animation
+gsap.from(".element", {
+  opacity: 0,
+  y: 50,
+  duration: 1,
+  ease: "power2.out"
+});
+
+// ScrollTrigger animation
+gsap.registerPlugin(ScrollTrigger);
+gsap.from(".scroll-element", {
+  opacity: 0,
+  y: 100,
+  duration: 1,
+  scrollTrigger: {
+    trigger: ".scroll-element",
+    start: "top 80%",
+    end: "bottom 20%",
+    toggleActions: "play none none reverse"
+  }
+});
+            </div>
+          </div>
+
+          <!-- Text Animation Template -->
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-2">Text Split Animation</h3>
+            <div class="code-preview">
+// Split text by characters
+const split = new SplitType('#text-element', { 
+  types: 'chars' 
+});
+
+// Animate characters
+gsap.from(split.chars, {
+  opacity: 0,
+  y: 50,
+  duration: 0.8,
+  stagger: 0.05,
+  ease: "power2.out"
+});
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Test Scripts -->
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+      
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Logo Carousel Controller
+      class LogoCarousel {
+        constructor() {
+          this.container = document.getElementById('logo-carousel');
+          this.track = document.getElementById('logo-track');
+          this.isPaused = false;
+          this.isReversed = false;
+          this.setupControls();
+        }
+
+        pause() {
+          this.isPaused = true;
+          this.container.classList.add('scroll-paused');
+        }
+
+        resume() {
+          this.isPaused = false;
+          this.container.classList.remove('scroll-paused');
+        }
+
+        reverse() {
+          this.isReversed = !this.isReversed;
+          this.container.classList.toggle('scroll-reverse', this.isReversed);
+        }
+
+        setupControls() {
+          document.getElementById('pause-carousel')?.addEventListener('click', () => {
+            this.pause();
+          });
+
+          document.getElementById('resume-carousel')?.addEventListener('click', () => {
+            this.resume();
+          });
+
+          document.getElementById('reverse-carousel')?.addEventListener('click', () => {
+            this.reverse();
+          });
+
+          // Pause on hover
+          this.container?.addEventListener('mouseenter', () => {
+            if (!this.isPaused) {
+              this.container.classList.add('scroll-paused');
+            }
+          });
+
+          this.container?.addEventListener('mouseleave', () => {
+            if (!this.isPaused) {
+              this.container.classList.remove('scroll-paused');
+            }
+          });
+        }
+      }
+
+      // Initialize carousel
+      const logoCarousel = new LogoCarousel();
+      
+      // Pill Animation Controller
+      class PillAnimator {
+        constructor() {
+          this.pill = document.getElementById('animated-pill');
+          this.triangle = document.getElementById('triangle');
+          this.openBracket = document.getElementById('open-bracket');
+          this.closeBracket = document.getElementById('close-bracket');
+          this.pillText = document.getElementById('pill-text');
+          this.isAnimating = false;
+          this.timeline = null;
+        }
+
+        async animatePill() {
+          if (this.isAnimating) return;
+          this.isAnimating = true;
+
+          // Kill any existing timeline
+          if (this.timeline) this.timeline.kill();
+
+          // Create master timeline
+          this.timeline = gsap.timeline({
+            onComplete: () => {
+              this.isAnimating = false;
+            }
+          });
+
+          // Step 1: Pill is already visible (no slide-in animation)
+          this.timeline.set(this.pill, {
+            opacity: 1
+          });
+
+          // Step 2: Fade in animation revealing triangle and brackets (0.4s after pill appears)
+          this.timeline.to([this.triangle, this.openBracket], {
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2,
+            ease: "power2.out"
+          }, "+=0.2");
+
+          // Step 4: Close bracket moves from left to right, revealing text
+          const originalCloseBracketPosition = this.closeBracket.getBoundingClientRect().left;
+          
+          // First, position close bracket at open bracket position
+          this.timeline.set(this.closeBracket, {
+            x: -this.getElementWidth(this.pillText) - 8, // Move it to where open bracket is
+            opacity: 1
+          });
+
+          // Animate close bracket sliding to final position
+          this.timeline.to(this.closeBracket, {
+            x: 0,
+            duration: 0.8,
+            ease: "power2.inOut"
+          });
+
+          // Step 5: Text appears with fast blinking animation (during bracket slide)
+          this.timeline.to(this.pillText, {
+            opacity: 1,
+            duration: 0.1,
+            repeat: 7,
+            yoyo: true,
+            ease: "power2.inOut"
+          }, "-=0.4"); // Start 0.4s before bracket finishes sliding
+
+          // Step 6: Ensure text stays visible
+          this.timeline.set(this.pillText, {
+            opacity: 1
+          });
+
+          return this.timeline;
+        }
+
+        getElementWidth(element) {
+          const clone = element.cloneNode(true);
+          clone.style.position = 'absolute';
+          clone.style.visibility = 'hidden';
+          clone.style.opacity = '1';
+          document.body.appendChild(clone);
+          const width = clone.offsetWidth;
+          document.body.removeChild(clone);
+          return width;
+        }
+
+        getTriangleOffset() {
+          // Triangle moves to the left side
+          const textWidth = this.getElementWidth(this.pillText);
+          const bracketWidth = this.getElementWidth(this.openBracket);
+          return -(textWidth/2 + bracketWidth + 8); // 8px for gap
+        }
+
+        getOpenBracketOffset() {
+          // Open bracket moves to just left of text
+          const textWidth = this.getElementWidth(this.pillText);
+          return -(textWidth/2 + 4); // 4px for gap
+        }
+
+        getCloseBracketOffset() {
+          // Close bracket moves to just right of text
+          const textWidth = this.getElementWidth(this.pillText);
+          return (textWidth/2 + 4); // 4px for gap
+        }
+
+        reset() {
+          if (this.timeline) this.timeline.kill();
+          
+          // Reset all elements to initial state
+          gsap.set(this.pill, {
+            opacity: 1,
+            x: 0
+          });
+          
+          gsap.set([this.triangle, this.openBracket, this.closeBracket, this.pillText], {
+            opacity: 0,
+            x: 0
+          });
+          
+          this.isAnimating = false;
+        }
+
+        changeText(newText) {
+          this.pillText.textContent = newText.toUpperCase();
+          // Recalculate pill width for centering
+          this.updatePillWidth();
+        }
+
+        updatePillWidth() {
+          // Calculate required width based on content
+          const content = this.pill.querySelector('.pill-content');
+          const tempDiv = document.createElement('div');
+          tempDiv.style.cssText = getComputedStyle(this.pill).cssText;
+          tempDiv.style.position = 'absolute';
+          tempDiv.style.visibility = 'hidden';
+          tempDiv.style.width = 'auto';
+          tempDiv.style.height = 'auto';
+          tempDiv.innerHTML = content.outerHTML;
+          
+          document.body.appendChild(tempDiv);
+          const requiredWidth = tempDiv.offsetWidth + 48; // Add padding
+          document.body.removeChild(tempDiv);
+          
+          this.pill.style.minWidth = Math.max(200, requiredWidth) + 'px';
+        }
+      }
+
+      // Initialize pill animator
+      const pillAnimator = new PillAnimator();
+
+      // Trigger animation on view (ScrollTrigger)
+      ScrollTrigger.create({
+        trigger: "#pill-container",
+        start: "top 80%",
+        onEnter: () => {
+          pillAnimator.animatePill();
+        },
+        once: true
+      });
+
+      // Control buttons
+      document.getElementById('trigger-animation')?.addEventListener('click', () => {
+        pillAnimator.reset();
+        setTimeout(() => pillAnimator.animatePill(), 100);
+      });
+
+      document.getElementById('reset-animation')?.addEventListener('click', () => {
+        pillAnimator.reset();
+      });
+
+      // Text changers
+      document.querySelectorAll('.text-changer').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const newText = btn.getAttribute('data-text');
+          pillAnimator.changeText(newText);
+          pillAnimator.reset();
+          setTimeout(() => pillAnimator.animatePill(), 100);
+        });
+      });
+      
+      console.log('🧪 Test environment ready!');
+      console.log('Available globals: gsap, ScrollTrigger, SplitType, lucide');
+    </script>
+  </body>
+</html>
