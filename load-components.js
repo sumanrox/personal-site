@@ -39,7 +39,6 @@ async function loadAllComponents() {
   setTimeout(() => {
     if (typeof lucide !== 'undefined') {
       lucide.createIcons();
-      console.log('Lucide icons initialized after component loading');
     }
   }, 200);
 
@@ -47,7 +46,6 @@ async function loadAllComponents() {
   setTimeout(() => {
     if (typeof lucide !== 'undefined') {
       lucide.createIcons();
-      console.log('Lucide icons re-initialized');
     }
   }, 500);
 

@@ -192,9 +192,10 @@ export class PillHeadersController {
         }
       },
       onLeave: () => {
-        if (!isWorkSection) {
+        // Don't reset contact pill when leaving
+        if (!isWorkSection && !isContactSection) {
           this.resetPill(pillData);
-        } else {
+        } else if (isWorkSection) {
           // Reset work pill only when contact section is entering
           this.checkAndResetForContact(pillData);
         }
@@ -209,7 +210,8 @@ export class PillHeadersController {
         }
       },
       onLeaveBack: () => {
-        if (!isWorkSection) {
+        // Don't reset contact pill when scrolling back up
+        if (!isWorkSection && !isContactSection) {
           this.resetPill(pillData);
         }
         // When contact leaves back (scrolling up), re-animate work pill

@@ -1,8 +1,8 @@
 <!-- Work Section - Split View with Sticky Sidebar -->
-    <section id="work" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-20 relative">
+    <section id="work" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-20 pt-42 md:pt-20 relative">
       <div class="max-w-7xl w-full mx-auto relative z-10">
         <!-- Section header with pill -->
-        <div class="mb-16 pt-6">
+        <div class="mb-16 pt-6 md:pt-6">
           <div id="work-pill-container" class="mb-4">
             <div class="pill-section-header" data-text="RESEARCH">
               <!-- Pill content -->
@@ -21,8 +21,8 @@
 
         <!-- Split View Layout -->
         <div class="grid lg:grid-cols-12 gap-12">
-          <!-- Sticky Sidebar -->
-          <div class="lg:col-span-4">
+          <!-- Sticky Sidebar - Hidden on mobile, visible on desktop -->
+          <div class="hidden lg:block lg:col-span-4">
             <div class="lg:sticky lg:top-28 space-y-6">
               <div>
                 <h3 class="text-3xl md:text-4xl font-bold mb-4">Research Findings</h3>
@@ -55,7 +55,7 @@
             </div>
           </div>
 
-          <!-- Scrolling Content -->
+          <!-- Scrolling Content - Full width on mobile, 8 cols on desktop -->
           <div class="lg:col-span-8 space-y-12">
             <!-- Finding 1 -->
             <div id="finding1" class="border-2 border-black p-8 work-card scroll-mt-24">

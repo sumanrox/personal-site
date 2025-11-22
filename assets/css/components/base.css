@@ -57,6 +57,11 @@ body::before {
   border-radius: 0 !important;
 }
 
+/* Exception: Footer arrow circle needs to be round */
+footer .rounded-full {
+  border-radius: 9999px !important;
+}
+
 /* Typography consistency */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;

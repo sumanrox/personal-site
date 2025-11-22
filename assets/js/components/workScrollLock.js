@@ -12,6 +12,50 @@ export function initWorkScrollLock() {
     return;
   }
 
+  let currentScrollTrigger = null;
+  let currentObserver = null;
+
+  function setupBehavior() {
+    // Clean up any existing instances
+    if (currentScrollTrigger) {
+      currentScrollTrigger.kill();
+      currentScrollTrigger = null;
+    }
+    if (currentObserver) {
+      currentObserver.disconnect();
+      currentObserver = null;
+    }
+
+    // Check if mobile/tablet - disable scroll lock on smaller screens
+    const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+    
+    if (isMobile) {
+      console.log('Mobile detected - NO scroll lock, standard behavior');
+      // On mobile, don't initialize anything - just let it scroll naturally
+      return;
+    }
+
+    console.log('Desktop detected - using scroll lock behavior');
+    currentScrollTrigger = initDesktopScrollLock(workSection);
+  }
+
+  // Initial setup
+  setupBehavior();
+
+  // Re-initialize on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      console.log('Window resized - reinitializing work section behavior');
+      setupBehavior();
+    }, 250);
+  });
+
+  console.log('Work section scroll lock initialized with resize listener');
+}
+
+function initDesktopScrollLock(workSection) {
   const findings = workSection.querySelectorAll('[id^="finding"]');
   const contentContainer = workSection.querySelector('.lg\\:col-span-8');
   const sectionHeader = workSection.querySelector('.mb-16');
@@ -201,5 +245,69 @@ export function initWorkScrollLock() {
     });
   });
 
-  console.log('Work section scroll lock initialized');
+  console.log('Desktop scroll lock initialized');
+  return pinnedScroll;
+}
+
+/**
+ * Mobile scroll behavior - simple intersection observer
+ * Highlights sidebar as cards scroll into view
+ */
+function initMobileScrollBehavior(workSection) {
+  const findings = workSection.querySelectorAll('[id^="finding"]');
+  const navLinks = workSection.querySelectorAll('.work-nav-link');
+  
+  if (findings.length === 0 || navLinks.length === 0) {
+    console.warn('No findings or nav links found for mobile scroll');
+    return;
+  }
+
+  // Intersection observer to track which card is visible
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const findingId = entry.target.id;
+        const index = Array.from(findings).findIndex(f => f.id === findingId);
+        
+        if (index !== -1) {
+          updateMobileSidebarActive(navLinks, index);
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all findings
+  findings.forEach(finding => observer.observe(finding));
+
+  // Smooth scroll on nav click
+  navLinks.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      findings[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  console.log('Mobile scroll behavior initialized');
+  return observer;
+}
+
+/**
+ * Update sidebar active state for mobile
+ */
+function updateMobileSidebarActive(navLinks, activeIndex) {
+  navLinks.forEach((link, i) => {
+    if (i === activeIndex) {
+      link.classList.remove('border-gray-300');
+      link.classList.add('border-black', 'bg-gray-50');
+    } else {
+      link.classList.remove('border-black', 'bg-gray-50');
+      link.classList.add('border-gray-300');
+    }
+  });
 }

@@ -146,6 +146,43 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  /* Reduce smoke/fade width on mobile */
+  .logo-carousel-container::before,
+  .logo-carousel-container::after {
+    width: 100px;
+  }
+  
+  /* Lighter fade mask for mobile */
+  .logo-carousel-container {
+    mask: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  
+  /* Reduce blur intensity */
+  .logo-carousel-container::before,
+  .logo-carousel-container::after {
+    filter: blur(4px);
+  }
+  
+  /* Lighter gradients */
+  .logo-carousel-container::before {
+    background: 
+      linear-gradient(90deg, 
+        rgba(255,255,255,0.6) 0%, 
+        rgba(255,255,255,0.3) 50%, 
+        rgba(255,255,255,0) 100%
+      );
+  }
+  
+  .logo-carousel-container::after {
+    background: 
+      linear-gradient(270deg, 
+        rgba(255,255,255,0.6) 0%, 
+        rgba(255,255,255,0.3) 50%, 
+        rgba(255,255,255,0) 100%
+      );
+  }
+  
   .logo-track {
     gap: 0.5rem;
   }

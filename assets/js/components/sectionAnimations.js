@@ -20,7 +20,7 @@ export function initSectionAnimations() {
       scrollTrigger: {
         trigger: section,
         start: 'top 95%',
-        toggleActions: 'play none none reset'
+        toggleActions: 'play none none none'
       }
     });
   });
@@ -36,7 +36,7 @@ export function initSectionAnimations() {
       scrollTrigger: {
         trigger: header,
         start: 'top 95%',
-        toggleActions: 'play none none reset'
+        toggleActions: 'play none none none'
       }
     });
   });
@@ -55,7 +55,7 @@ export function initSectionAnimations() {
       scrollTrigger: {
         trigger: text,
         start: 'top 95%',
-        toggleActions: 'play none none reset'
+        toggleActions: 'play none none none'
       }
     });
   });
@@ -74,7 +74,7 @@ export function initSectionAnimations() {
       scrollTrigger: {
         trigger: container,
         start: 'top 95%',
-        toggleActions: 'play none none reset'
+        toggleActions: 'play none none none'
       }
     });
   });
@@ -90,7 +90,7 @@ export function initSectionAnimations() {
       scrollTrigger: {
         trigger: card,
         start: 'top 95%',
-        toggleActions: 'play none none reset'
+        toggleActions: 'play none none none'
       }
     });
   });

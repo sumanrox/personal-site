@@ -34,7 +34,8 @@ export function initTextHighlight() {
       elements: [{ selector: '#contact-text' }],
       delay: -0.4,
       duration: 0.6,
-      stagger: 0.02
+      stagger: 0.02,
+      isContactSection: true // Special flag for contact (white text on black)
     }
   ];
 
@@ -60,8 +61,12 @@ export function initTextHighlight() {
 
     if (allChars.length === 0) return;
 
-    // Set initial state for all characters (light gray)
-    gsap.set(allChars, { color: '#d4d4d4' });
+    // Set initial state for all characters
+    // Contact section needs white text, others use light gray
+    const initialColor = section.isContactSection ? '#9ca3af' : '#d4d4d4'; // gray-400 for contact
+    const finalColor = section.isContactSection ? '#ffffff' : '#000000'; // white for contact, black for others
+    
+    gsap.set(allChars, { color: initialColor });
 
     // Store animation timeline for this section
     let fillAnimation = null;
@@ -73,7 +78,7 @@ export function initTextHighlight() {
       
       // Animate ALL characters in the section sequentially with fill effect
       fillAnimation = gsap.to(allChars, {
-        color: '#000000', // Black
+        color: finalColor, // White for contact, black for others
         duration: section.duration || 0.8, // Use section-specific duration
         stagger: {
           each: section.stagger || 0.025, // Use section-specific stagger
@@ -90,7 +95,7 @@ export function initTextHighlight() {
       // Kill fill animation and reset
       if (fillAnimation) fillAnimation.kill();
       gsap.to(allChars, {
-        color: '#d4d4d4',
+        color: initialColor, // Reset to appropriate initial color
         duration: 0.2,
         ease: 'power1.out',
         overwrite: 'auto'
