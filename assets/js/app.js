@@ -3,6 +3,7 @@
  * Initializes all components and animations
  */
 
+import { initializeContent } from './config.js';
 import { initScrollProgress } from './components/scrollProgress.js';
 import { initTextHighlight } from './components/textHighlight.js';
 import { initLinkAnimations } from './components/linkAnimations.js';
@@ -23,27 +24,30 @@ import './components/heroThree.js';
   // Register GSAP plugins
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-  // Initialize all components
-  initNavigation();
-  initScrollProgress();
-  initTextHighlight();
-  initLinkAnimations();
-  initSectionAnimations();
-  initWorkCardHover();
-  initTimelineAnimation();
-  initLogoCarousel();
-  initParallaxEffect();
-  initWorkScrollLock();
-  initMagazineAbout();
-  initFormSecurity();
-  
-  // Initialize counter animation after a delay to ensure DOM is ready
-  setTimeout(() => {
-    initCounterAnimation();
-  }, 100);
+  // Initialize portfolio content from config
+  initializeContent().then(() => {
+    // Initialize all components after content is loaded
+    initNavigation();
+    initScrollProgress();
+    initTextHighlight();
+    initLinkAnimations();
+    initSectionAnimations();
+    initWorkCardHover();
+    initTimelineAnimation();
+    initLogoCarousel();
+    initParallaxEffect();
+    initWorkScrollLock();
+    initMagazineAbout();
+    initFormSecurity();
+    
+    // Initialize counter animation after a delay to ensure DOM is ready
+    setTimeout(() => {
+      initCounterAnimation();
+    }, 100);
 
-  // Initialize pill headers
-  setTimeout(() => {
-    window.pillHeaders = new PillHeadersController();
-  }, 200);
+    // Initialize pill headers
+    setTimeout(() => {
+      window.pillHeaders = new PillHeadersController();
+    }, 200);
+  });
 })();
