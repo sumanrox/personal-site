@@ -18,8 +18,10 @@ export function initScrollProgress() {
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+    const percentage = Math.min(scrollPercent, 100);
     
-    progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+    progressBar.style.width = `${percentage}%`;
+    progressBar.setAttribute('aria-valuenow', Math.round(percentage));
   };
 
   // Update on scroll with throttling for performance

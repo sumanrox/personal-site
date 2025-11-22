@@ -13,6 +13,7 @@ export function initNavigation() {
   const navLinkItems = document.querySelectorAll('.nav-link-item');
   const navCta = document.querySelector('.nav-cta');
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
@@ -132,40 +133,79 @@ export function initNavigation() {
   const openMobileMenu = () => {
     mobileMenuOpen = true;
     mobileMenuBtn.classList.add('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
     
-    // Simple fade in
+    // Animate hamburger to X
+    const hamburgerLines = mobileMenuBtn.querySelectorAll('.hamburger-line');
+    gsap.to(hamburgerLines[0], {
+      rotation: 45,
+      y: 5.5,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+    gsap.to(hamburgerLines[1], {
+      rotation: -45,
+      y: -5.5,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+    
+    // Fade in menu
     gsap.to(mobileMenu, {
       opacity: 1,
       pointerEvents: 'auto',
-      duration: 0.3,
+      duration: 0.5,
       ease: "power2.out"
     });
 
     // Stagger mobile links
     gsap.fromTo(mobileLinks,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, stagger: 0.08, delay: 0.1, ease: "power2.out" }
+      { x: -30, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.5, stagger: 0.08, delay: 0.2, ease: "power2.out" }
     );
+    
+    // Focus trap: focus first link
+    if (mobileLinks.length > 0) {
+      setTimeout(() => mobileLinks[0].focus(), 300);
+    }
   };
 
   const closeMobileMenu = () => {
     mobileMenuOpen = false;
     mobileMenuBtn.classList.remove('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+
+    // Reset hamburger
+    const hamburgerLines = mobileMenuBtn.querySelectorAll('.hamburger-line');
+    gsap.to(hamburgerLines[0], {
+      rotation: 0,
+      y: 0,
+      duration: 0.3,
+      ease: "power2.in"
+    });
+    gsap.to(hamburgerLines[1], {
+      rotation: 0,
+      y: 0,
+      duration: 0.3,
+      ease: "power2.in"
+    });
 
     // Quick exit animation
     gsap.to(mobileLinks, {
-      y: -10,
+      x: -20,
       opacity: 0,
-      duration: 0.2,
-      stagger: 0.03,
+      duration: 0.3,
+      stagger: 0.04,
       ease: "power2.in"
     });
 
     gsap.to(mobileMenu, {
       opacity: 0,
       pointerEvents: 'none',
-      duration: 0.3,
-      delay: 0.1,
+      duration: 0.4,
+      delay: 0.2,
       ease: "power2.out"
     });
   };
@@ -176,6 +216,15 @@ export function initNavigation() {
     e.stopPropagation();
     toggleMobileMenu();
   });
+
+  // Close button
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileMenu();
+    });
+  }
 
   // Close mobile menu when clicking links
   mobileLinks.forEach(link => {

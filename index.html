@@ -3,7 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Suman Roy — Security Researcher</title>
+    <title>Suman Roy — Security Researcher | Penetration Testing & Bug Bounty Hunter</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Security researcher specializing in penetration testing, vulnerability research, and bug bounty hunting. 12+ CVEs discovered, Top 1% on HackerOne." />
+    <meta name="keywords" content="security researcher, penetration testing, bug bounty, vulnerability research, ethical hacking, CVE, HackerOne" />
+    <meta name="author" content="Suman Roy" />
+    <meta name="theme-color" content="#000000" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Suman Roy — Security Researcher" />
+    <meta property="og:description" content="Security researcher specializing in penetration testing, vulnerability research, and bug bounty hunting." />
+    <meta property="og:site_name" content="Suman Roy" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@sumanroy_sec" />
+    <meta name="twitter:title" content="Suman Roy — Security Researcher" />
+    <meta name="twitter:description" content="Security researcher specializing in penetration testing and vulnerability research." />
+    
+    <!-- Security Note: For production, configure these as HTTP headers in your server config:
+         - X-Content-Type-Options: nosniff
+         - X-Frame-Options: DENY
+         - X-XSS-Protection: 1; mode=block
+         - Strict-Transport-Security: max-age=31536000; includeSubDomains
+         - Content-Security-Policy: [full CSP]
+    -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- Performance: Preload critical CSS -->
+    <link rel="preload" href="assets/css/main-modular.css" as="style" />
     
     <!-- Google Fonts - Funnel Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,30 +54,40 @@
       }
     </script>
     
+    <!-- Resource Hints for CDNs -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    
     <!-- GSAP and ScrollTrigger for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     
     <!-- SplitType for text splitting -->
-    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://unpkg.com/split-type" defer></script>
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
     <!-- Modular CSS -->
     <link rel="stylesheet" href="assets/css/main-modular.css" />
   </head>
   <body class="font-funnel bg-white text-black antialiased overflow-x-hidden">
     
+    <!-- Skip to main content for keyboard navigation -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold focus:border-2 focus:border-black">Skip to main content</a>
+    
     <!-- Film grain overlay -->
-    <div class="film-grain"></div>
+    <div class="film-grain" aria-hidden="true"></div>
     
     <!-- Spacer for hero parallax effect -->
-    <div class="h-screen"></div>
+    <div class="h-screen" aria-hidden="true"></div>
     
     <!-- Content wrapper -->
-    <div class="relative z-10">
+    <main id="main-content" class="relative z-10">
     
   <!-- Navigation Component -->
   <div id="nav-placeholder"></div>
@@ -76,10 +116,10 @@
   <!-- Footer Component -->
   <div id="footer-placeholder"></div>
       
-    </div> <!-- Close content wrapper -->
+    </main> <!-- Close main content -->
 
     <!-- Component Loader -->
-    <script src="load-components.js"></script>
+    <script src="load-components.js" defer></script>
     
     <!-- Main App Script -->
     <script type="module">

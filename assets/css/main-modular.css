@@ -11,6 +11,9 @@
 /* Base styles & reset */
 @import url('components/base.css');
 
+/* Accessibility improvements */
+@import url('components/accessibility.css');
+
 /* Component-specific styles */
 @import url('components/navigation.css');
 @import url('components/hero.css');

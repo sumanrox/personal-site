@@ -16,6 +16,7 @@ import { initParallaxEffect } from './components/parallaxEffect.js';
 import { initWorkScrollLock } from './components/workScrollLock.js';
 import { initMagazineAbout } from './components/magazineAbout.js';
 import { PillHeadersController } from './components/pillHeaders.js';
+import { initFormSecurity } from './components/formSecurity.js';
 import './components/heroThree.js';
 
 (function () {
@@ -34,6 +35,7 @@ import './components/heroThree.js';
   initParallaxEffect();
   initWorkScrollLock();
   initMagazineAbout();
+  initFormSecurity();
   
   // Initialize counter animation after a delay to ensure DOM is ready
   setTimeout(() => {

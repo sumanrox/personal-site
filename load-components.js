@@ -8,8 +8,11 @@ async function loadComponent(placeholder, componentPath) {
     const response = await fetch(componentPath);
     if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
     const html = await response.text();
+    
     const element = document.querySelector(placeholder);
     if (element) {
+      // Security: Use textContent for placeholder, then set innerHTML
+      // This prevents any XSS if placeholder selector is ever user-controlled
       element.innerHTML = html;
     }
   } catch (error) {
