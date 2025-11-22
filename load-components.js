@@ -25,7 +25,6 @@ async function loadAllComponents() {
     { placeholder: '#about-placeholder', path: 'components/about.html' },
     { placeholder: '#work-placeholder', path: 'components/work.html' },
     { placeholder: '#experience-placeholder', path: 'components/experience.html' },
-    { placeholder: '#skills-placeholder', path: 'components/skills.html' },
     { placeholder: '#contact-placeholder', path: 'components/contact.html' },
     { placeholder: '#footer-placeholder', path: 'components/footer.html' },
     { placeholder: '#projects-placeholder', path: 'components/projects.html' }
@@ -42,7 +41,15 @@ async function loadAllComponents() {
       lucide.createIcons();
       console.log('Lucide icons initialized after component loading');
     }
-  }, 100);
+  }, 200);
+
+  // Re-initialize icons after a longer delay to catch any stragglers
+  setTimeout(() => {
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+      console.log('Lucide icons re-initialized');
+    }
+  }, 500);
 
   // Initialize app after components are loaded
   if (typeof window.initializeApp === 'function') {

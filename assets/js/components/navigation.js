@@ -1,16 +1,16 @@
 /**
- * Navigation Component - v4.0
- * Clean & minimalist navigation with subtle GSAP animations
+ * Navigation Component - v5.0
+ * Elegant & minimalist navigation with pill-style hover animations
  */
 
 export function initNavigation() {
-  console.log('🎯 Initializing minimalist navigation...');
+  console.log('🎯 Initializing elegant navigation with pill animations...');
 
   // Cache DOM elements
   const navContainer = document.querySelector('.nav-container');
   const navBar = document.querySelector('.nav-bar');
   const navLogo = document.querySelector('.nav-logo');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinkItems = document.querySelectorAll('.nav-link-item');
   const navCta = document.querySelector('.nav-cta');
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -21,16 +21,74 @@ export function initNavigation() {
     return;
   }
 
-  // Simple entrance animation (no logo animation)
+  // Elegant entrance animation
   gsap.fromTo(navBar, 
-    { y: -20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
+    { y: -30, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
   );
 
-  gsap.fromTo([...navLinks, navCta],
+  gsap.fromTo([...navLinkItems, navCta],
     { y: 10, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, delay: 0.2, ease: "power2.out" }
+    { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, delay: 0.3, ease: "power2.out" }
   );
+
+  // Pill-style hover animation for nav links
+  navLinkItems.forEach(link => {
+    const openBracket = link.querySelector('.nav-open-bracket');
+    const closeBracket = link.querySelector('.nav-close-bracket');
+    const text = link.querySelector('.nav-text');
+    
+    let hoverTimeline = null;
+
+    link.addEventListener('mouseenter', () => {
+      if (hoverTimeline) hoverTimeline.kill();
+      
+      hoverTimeline = gsap.timeline();
+      
+      // Step 1: Open bracket appears
+      hoverTimeline.to(openBracket, {
+        opacity: 1,
+        duration: 0.15,
+        ease: "power2.out"
+      });
+      
+      // Step 2: Close bracket slides from left
+      const textWidth = text.offsetWidth;
+      hoverTimeline.fromTo(closeBracket, 
+        { x: -(textWidth + 8), opacity: 1 },
+        { x: 0, duration: 0.2, ease: "power2.out" },
+        "-=0.1"
+      );
+      
+      // Step 3: Text blinks rapidly
+      hoverTimeline.to(text, {
+        opacity: 0,
+        duration: 0.03,
+        repeat: 3,
+        yoyo: true,
+        ease: "power2.inOut"
+      }, "-=0.15");
+      
+      // Ensure text stays visible
+      hoverTimeline.set(text, { opacity: 1 });
+    });
+
+    link.addEventListener('mouseleave', () => {
+      if (hoverTimeline) hoverTimeline.kill();
+      
+      hoverTimeline = gsap.timeline();
+      
+      // Reverse animation - fade out all elements
+      hoverTimeline.to([openBracket, closeBracket], {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power2.in"
+      });
+      
+      hoverTimeline.set(closeBracket, { x: 0 });
+      hoverTimeline.set(text, { opacity: 1 });
+    });
+  });
 
   // Scroll-based navbar transformations
   let lastScrollY = 0;

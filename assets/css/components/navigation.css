@@ -1,58 +1,84 @@
-/* Navigation Styles - Clean & Minimalist */
+/* Navigation Styles - Elegant & Minimalist */
 
 /* Navigation Container */
 .nav-container {
-  /* No backdrop blur - clean flat design */
+  transition: all 0.3s ease;
 }
 
 /* Navigation Bar */
 .nav-bar {
   transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.nav-scrolled .nav-bar {
+  background: rgba(0, 0, 0, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Logo */
 .nav-logo {
-  /* No animations for logo/branding */
+  transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover {
+  opacity: 0.8;
 }
 
 .logo-icon {
-  /* Keep logo static */
-}
-
-/* Navigation Links */
-.nav-link {
-  position: relative;
-  border-radius: 4px;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #1f2937;
   transition: all 0.3s ease;
-  transform: translateX(-50%);
 }
 
-.nav-link:hover::after {
-  width: 100%;
+/* Navigation Links with Pill Animation */
+.nav-link-item {
+  position: relative;
+  overflow: visible;
+  white-space: nowrap;
 }
 
-.nav-link:hover {
-  background: rgba(31, 41, 55, 0.05);
+.nav-link-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.nav-open-bracket,
+.nav-close-bracket {
+  transition: opacity 0.2s ease;
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav-text {
+  transition: all 0.2s ease;
+}
+
+.nav-link-item:hover .nav-text {
+  color: #fff;
 }
 
 /* CTA Button */
 .nav-cta {
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.nav-cta:hover {
-  /* No shadow, just color change */
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-cta:hover::before {
+  left: 100%;
 }
 
 /* Mobile Menu Button */
@@ -97,13 +123,8 @@
 }
 
 .mobile-link:hover {
-  background: rgba(31, 41, 55, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   transform: translateX(8px);
-}
-
-/* Scroll Effects */
-.nav-scrolled .nav-bar {
-  background: #ffffff;
 }
 
 /* Smooth scroll offset */

@@ -1,42 +1,64 @@
-<!-- Navigation - Clean & Minimalist -->
-<nav class="nav-container fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20 xl:px-32 py-4">
+<!-- Navigation - Elegant & Minimalist -->
+<nav class="nav-container fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20 xl:px-32 py-6">
   <div class="nav-wrapper max-w-7xl w-full mx-auto">
     
     <!-- Navigation Bar -->
-    <div class="nav-bar bg-white px-6 py-4 flex justify-between items-center">
+    <div class="nav-bar uppercase backdrop-blur-sm border-b border-white/10 px-8 py-4 flex justify-between items-center relative">
+      
+      <!-- Scroll Progress Bar -->
+      <div id="scroll-progress-bar" class="absolute bottom-[-2px] left-0 h-[4px] w-0 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-[length:200%_100%] transition-all duration-100 ease-out" style="animation: rainbow 3s ease-in-out infinite;"></div>
       
       <!-- Logo -->
-      <div class="nav-logo group cursor-pointer">
-        <div class="flex items-center gap-3">
-          <div class="logo-icon w-8 h-8 bg-gray-900 flex items-center justify-center">
-            <i data-lucide="shield" class="w-4 h-4 text-white"></i>
-          </div>
+      <a href="#hero-section" class="nav-logo group cursor-pointer">
+        <div class="flex items-center gap-2">
           <div class="logo-text">
-            <div class="text-gray-900 font-semibold text-lg tracking-tight">
+            <div class="text-white font-bold text-2xl tracking-tighter leading-none">
+              SR
+            </div>
+          </div>
+          <div class="h-8 w-px bg-white/20"></div>
+          <div class="flex flex-col justify-center">
+            <div class="text-white font-bold text-sm tracking-tight leading-tight">
               Suman Roy
             </div>
-            <div class="text-gray-500 text-xs font-medium">
+            <div class="text-white/60 text-[9px] font-medium uppercase tracking-widest leading-tight">
               Security Researcher
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Desktop Navigation -->
-      <div class="nav-links hidden md:flex items-center gap-1">
-        <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
-          About
+      <div class="nav-links hidden md:flex items-center gap-2">
+        <a href="#about" class="nav-link-item relative px-4 py-2 text-sm font-semibold text-white transition-all duration-300" data-text="About">
+          <span class="nav-link-content">
+            <span class="nav-open-bracket opacity-0">[</span>
+            <span class="nav-text">About</span>
+            <span class="nav-close-bracket opacity-0">]</span>
+          </span>
         </a>
-        <a href="#work" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
-          Research
+        <a href="#work" class="nav-link-item relative px-4 py-2 text-sm font-semibold text-white transition-all duration-300" data-text="Research">
+          <span class="nav-link-content">
+            <span class="nav-open-bracket opacity-0">[</span>
+            <span class="nav-text">Research</span>
+            <span class="nav-close-bracket opacity-0">]</span>
+          </span>
         </a>
-        <a href="#projects" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
-          Projects
+        <a href="#projects" class="nav-link-item relative px-4 py-2 text-sm font-semibold text-white transition-all duration-300" data-text="Projects">
+          <span class="nav-link-content">
+            <span class="nav-open-bracket opacity-0">[</span>
+            <span class="nav-text">Projects</span>
+            <span class="nav-close-bracket opacity-0">]</span>
+          </span>
         </a>
-        <a href="#experience" class="nav-link px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200">
-          Experience
+        <a href="#experience" class="nav-link-item relative px-4 py-2 text-sm font-semibold text-white transition-all duration-300" data-text="Experience">
+          <span class="nav-link-content">
+            <span class="nav-open-bracket opacity-0">[</span>
+            <span class="nav-text">Experience</span>
+            <span class="nav-close-bracket opacity-0">]</span>
+          </span>
         </a>
-        <a href="#contact" class="nav-cta ml-4 px-4 py-2 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-all duration-200 flex items-center gap-2">
+        <a href="#contact" class="nav-cta ml-4 px-5 py-2 bg-white text-black text-sm font-bold hover:bg-white/90 transition-all duration-300 flex items-center gap-2 border border-white hover:shadow-lg">
           Contact
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -45,30 +67,30 @@
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden w-10 h-10 flex items-center justify-center">
         <div class="hamburger-container w-5 h-4 relative">
-          <span class="hamburger-line absolute top-0 left-0 w-full h-0.5 bg-gray-900 transition-all duration-300"></span>
-          <span class="hamburger-line absolute top-1/2 left-0 w-full h-0.5 bg-gray-900 transition-all duration-300 -translate-y-0.5"></span>
-          <span class="hamburger-line absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transition-all duration-300"></span>
+          <span class="hamburger-line absolute top-0 left-0 w-full h-0.5 bg-white transition-all duration-300"></span>
+          <span class="hamburger-line absolute top-1/2 left-0 w-full h-0.5 bg-white transition-all duration-300 -translate-y-0.5"></span>
+          <span class="hamburger-line absolute bottom-0 left-0 w-full h-0.5 bg-white transition-all duration-300"></span>
         </div>
       </button>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white opacity-0 pointer-events-none transition-all duration-300">
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-black opacity-0 pointer-events-none transition-all duration-300">
       <div class="mobile-menu-content h-full flex flex-col justify-center items-center text-center">
         <div class="mobile-links space-y-6">
-          <a href="#about" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+          <a href="#about" class="mobile-link block text-2xl font-semibold text-white hover:text-white/60 transition-colors duration-200">
             About
           </a>
-          <a href="#work" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+          <a href="#work" class="mobile-link block text-2xl font-semibold text-white hover:text-white/60 transition-colors duration-200">
             Research
           </a>
-          <a href="#projects" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+          <a href="#projects" class="mobile-link block text-2xl font-semibold text-white hover:text-white/60 transition-colors duration-200">
             Projects
           </a>
-          <a href="#experience" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200">
+          <a href="#experience" class="mobile-link block text-2xl font-semibold text-white hover:text-white/60 transition-colors duration-200">
             Experience
           </a>
-          <a href="#contact" class="mobile-link block text-2xl font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200 mt-8 pt-6 border-t border-gray-200">
+          <a href="#contact" class="mobile-link block text-2xl font-semibold text-white hover:text-white/60 transition-colors duration-200 mt-8 pt-6 border-t border-white/20">
             Contact
           </a>
         </div>

@@ -14,11 +14,20 @@ export function initTimelineAnimation() {
 
   console.log(`Found ${experienceCards.length} experience cards`);
 
-  // Set initial states for masonry grid cards
-  gsap.set(experienceCards, {
-    opacity: 0,
-    y: 30,
-    scale: 0.95
+  // Set initial states for masonry grid cards ONLY if they're in viewport
+  // This prevents cards from being hidden if ScrollTrigger doesn't fire
+  experienceCards.forEach((card) => {
+    const rect = card.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    
+    // Only hide cards that are below viewport (will be animated in)
+    if (!inViewport && rect.top > window.innerHeight) {
+      gsap.set(card, {
+        opacity: 0,
+        y: 30,
+        scale: 0.95
+      });
+    }
   });
 
   // Animate experience cards - ULTRA FAST
@@ -40,7 +49,15 @@ export function initTimelineAnimation() {
         scrollTrigger: {
           trigger: card,
           start: 'top 90%',
-          once: true
+          once: true,
+          onEnter: () => {
+            // Ensure card is visible even if animation is interrupted
+            gsap.set(card, { opacity: 1, y: 0, scale: 1 });
+          }
+        },
+        // Fallback: ensure card becomes visible after animation completes
+        onComplete: () => {
+          gsap.set(card, { opacity: 1, y: 0, scale: 1 });
         }
       }
     );
@@ -114,6 +131,24 @@ export function initTimelineAnimation() {
     }
   });
 
+
+  // Safety fallback: ensure all cards are visible after 2 seconds
+  // This prevents cards from being permanently hidden due to any timing issues
+  setTimeout(() => {
+    experienceCards.forEach((card) => {
+      const currentOpacity = gsap.getProperty(card, 'opacity');
+      if (currentOpacity < 0.5) {
+        console.warn('Card was still hidden, forcing visibility:', card);
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+    });
+  }, 2000);
 
   console.log('Ultra-fast masonry grid animation initialized');
 }

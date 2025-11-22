@@ -1,9 +1,9 @@
-<!-- Work Section - F-pattern: Left labels, list format -->
-    <section id="work" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-20">
+<!-- Work Section - Split View with Sticky Sidebar -->
+    <section id="work" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-20 relative">
       <div class="max-w-7xl w-full mx-auto relative z-10">
         <!-- Section header with pill -->
-        <div class="mb-16">
-          <div id="work-pill-container" class="mb-6">
+        <div class="mb-16 pt-6">
+          <div id="work-pill-container" class="mb-4">
             <div class="pill-section-header" data-text="RESEARCH">
               <!-- Pill content -->
               <div class="pill-content">
@@ -19,163 +19,156 @@
           </p>
         </div>
 
-        <!-- F-pattern project list - scannable left-to-right -->
-        <div class="space-y-16 max-w-6xl">
-          <!-- Finding 1 -->
-          <div class="grid md:grid-cols-12 gap-6 border-b border-gray-200 pb-16 work-card">
-            <div class="md:col-span-2">
-              <p class="text-sm font-semibold text-black uppercase tracking-wider">01</p>
-              <p class="text-sm text-gray-500 mt-2">2024</p>
-            </div>
-            <div class="md:col-span-10">
-              <div class="mb-6">
-                <h3 class="text-2xl md:text-3xl font-bold mb-3 text-black hover:text-gray-600 transition-colors cursor-pointer group">
-                  CVE-2024-XXXXX - Remote Code Execution in Enterprise CMS
-                  <span class="inline-block transition-transform group-hover:translate-x-2">→</span>
-                </h3>
-                <p class="text-lg text-gray-600 leading-relaxed mb-4">
-                  Discovered critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection 
-                  with deserialization flaw to achieve remote code execution. Awarded $15,000 bounty and 
-                  CVE credit. Worked with vendor for responsible 90-day disclosure.
+        <!-- Split View Layout -->
+        <div class="grid lg:grid-cols-12 gap-12">
+          <!-- Sticky Sidebar -->
+          <div class="lg:col-span-4">
+            <div class="lg:sticky lg:top-28 space-y-6">
+              <div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">Research Findings</h3>
+                <p class="text-lg text-gray-600 mb-8">
+                  Security research and vulnerability disclosures
                 </p>
-                <div class="flex flex-wrap gap-3">
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">RCE</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">CVE Published</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">CVSS 9.8</span>
-                </div>
               </div>
-              <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <div class="space-y-4 text-sm">
+                <a href="#finding1" class="block p-4 border-l-4 border-black hover:bg-gray-50 transition-colors work-nav-link">
+                  <p class="font-bold mb-1">CVE-2024-XXXXX</p>
+                  <p class="text-gray-600">Remote Code Execution</p>
+                </a>
+                <a href="#finding2" class="block p-4 border-l-4 border-gray-300 hover:border-black hover:bg-gray-50 transition-all work-nav-link">
+                  <p class="font-bold mb-1">Auth Bypass</p>
+                  <p class="text-gray-600">Mobile Banking</p>
+                </a>
+                <a href="#finding3" class="block p-4 border-l-4 border-gray-300 hover:border-black hover:bg-gray-50 transition-all work-nav-link">
+                  <p class="font-bold mb-1">XSS Chain</p>
+                  <p class="text-gray-600">SaaS Platform</p>
+                </a>
+                <a href="#finding4" class="block p-4 border-l-4 border-gray-300 hover:border-black hover:bg-gray-50 transition-all work-nav-link">
+                  <p class="font-bold mb-1">AWS Research</p>
+                  <p class="text-gray-600">Cloud Security</p>
+                </a>
+              </div>
+              <div class="p-6 bg-black text-white">
+                <p class="text-sm mb-2">Total Bounties</p>
+                <p class="text-4xl font-bold">$43.5K</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scrolling Content -->
+          <div class="lg:col-span-8 space-y-12">
+            <!-- Finding 1 -->
+            <div id="finding1" class="border-2 border-black p-8 work-card scroll-mt-24">
+              <div class="flex items-start justify-between mb-6">
                 <div>
-                  <p class="font-semibold text-black mb-1">Severity</p>
-                  <p class="text-gray-600">Critical</p>
+                  <span class="text-xs font-bold bg-red-500 text-white px-3 py-1 mb-3 inline-block">CRITICAL</span>
+                  <h3 class="text-3xl font-bold mb-2">CVE-2024-XXXXX</h3>
+                  <p class="text-gray-600">Remote Code Execution in Enterprise CMS</p>
                 </div>
+                <span class="text-sm text-gray-500">2024</span>
+              </div>
+              <p class="text-lg text-gray-600 mb-6">
+                Discovered critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection with deserialization flaw to achieve remote code execution. Awarded $15,000 bounty and CVE credit. Worked with vendor for responsible 90-day disclosure.
+              </p>
+              <div class="grid grid-cols-3 gap-6 text-sm border-t border-gray-200 pt-6">
                 <div>
-                  <p class="font-semibold text-black mb-1">Bounty</p>
+                  <p class="font-bold mb-1">Bounty</p>
                   <p class="text-gray-600">$15,000</p>
                 </div>
                 <div>
-                  <p class="font-semibold text-black mb-1">Platform</p>
+                  <p class="font-bold mb-1">CVSS</p>
+                  <p class="text-gray-600">9.8</p>
+                </div>
+                <div>
+                  <p class="font-bold mb-1">Platform</p>
                   <p class="text-gray-600">HackerOne</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Finding 2 -->
-          <div class="grid md:grid-cols-12 gap-6 border-b border-gray-200 pb-16 work-card">
-            <div class="md:col-span-2">
-              <p class="text-sm font-semibold text-black uppercase tracking-wider">02</p>
-              <p class="text-sm text-gray-500 mt-2">2023</p>
-            </div>
-            <div class="md:col-span-10">
-              <div class="mb-6">
-                <h3 class="text-2xl md:text-3xl font-bold mb-3 text-black hover:text-gray-600 transition-colors cursor-pointer group">
-                  Authentication Bypass in Mobile Banking App
-                  <span class="inline-block transition-transform group-hover:translate-x-2">→</span>
-                </h3>
-                <p class="text-lg text-gray-600 leading-relaxed mb-4">
-                  Identified logic flaw in JWT implementation allowing full account takeover. Exploited 
-                  weak token validation to bypass MFA and access sensitive financial data. Patched within 
-                  48 hours affecting 2M+ users.
-                </p>
-                <div class="flex flex-wrap gap-3">
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">Auth Bypass</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">JWT Exploitation</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">Hall of Fame</span>
+            <!-- Finding 2 -->
+            <div id="finding2" class="border-2 border-black p-8 work-card scroll-mt-24">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <span class="text-xs font-bold bg-orange-500 text-white px-3 py-1 mb-3 inline-block">HIGH</span>
+                  <h3 class="text-3xl font-bold mb-2">Authentication Bypass</h3>
+                  <p class="text-gray-600">Mobile Banking Application</p>
                 </div>
+                <span class="text-sm text-gray-500">2023</span>
               </div>
-              <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <p class="text-lg text-gray-600 mb-6">
+                Identified logic flaw in JWT implementation allowing full account takeover. Exploited weak token validation to bypass MFA and access sensitive financial data. Patched within 48 hours affecting 2M+ users.
+              </p>
+              <div class="grid grid-cols-3 gap-6 text-sm border-t border-gray-200 pt-6">
                 <div>
-                  <p class="font-semibold text-black mb-1">Severity</p>
-                  <p class="text-gray-600">High</p>
-                </div>
-                <div>
-                  <p class="font-semibold text-black mb-1">Bounty</p>
+                  <p class="font-bold mb-1">Bounty</p>
                   <p class="text-gray-600">$10,000</p>
                 </div>
                 <div>
-                  <p class="font-semibold text-black mb-1">Platform</p>
+                  <p class="font-bold mb-1">Users</p>
+                  <p class="text-gray-600">2M+</p>
+                </div>
+                <div>
+                  <p class="font-bold mb-1">Platform</p>
                   <p class="text-gray-600">Bugcrowd</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Finding 3 -->
-          <div class="grid md:grid-cols-12 gap-6 border-b border-gray-200 pb-16 work-card">
-            <div class="md:col-span-2">
-              <p class="text-sm font-semibold text-black uppercase tracking-wider">03</p>
-              <p class="text-sm text-gray-500 mt-2">2023</p>
-            </div>
-            <div class="md:col-span-10">
-              <div class="mb-6">
-                <h3 class="text-2xl md:text-3xl font-bold mb-3 text-black hover:text-gray-600 transition-colors cursor-pointer group">
-                  XSS to Account Takeover Chain in SaaS Platform
-                  <span class="inline-block transition-transform group-hover:translate-x-2">→</span>
-                </h3>
-                <p class="text-lg text-gray-600 leading-relaxed mb-4">
-                  Chained stored XSS with CSRF to achieve full account takeover. Exploited DOM-based 
-                  vulnerability in admin panel to extract session tokens. Demonstrated impact on 
-                  enterprise customers with proof-of-concept.
-                </p>
-                <div class="flex flex-wrap gap-3">
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">XSS</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">CSRF Chain</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">Patched</span>
+            <!-- Finding 3 -->
+            <div id="finding3" class="border-2 border-black p-8 work-card scroll-mt-24">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <span class="text-xs font-bold bg-orange-500 text-white px-3 py-1 mb-3 inline-block">HIGH</span>
+                  <h3 class="text-3xl font-bold mb-2">XSS to Account Takeover</h3>
+                  <p class="text-gray-600">SaaS Platform Admin Panel</p>
                 </div>
+                <span class="text-sm text-gray-500">2023</span>
               </div>
-              <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <p class="text-lg text-gray-600 mb-6">
+                Chained stored XSS with CSRF to achieve full account takeover. Exploited DOM-based vulnerability in admin panel to extract session tokens. Demonstrated impact on enterprise customers with proof-of-concept.
+              </p>
+              <div class="grid grid-cols-3 gap-6 text-sm border-t border-gray-200 pt-6">
                 <div>
-                  <p class="font-semibold text-black mb-1">Severity</p>
-                  <p class="text-gray-600">High</p>
-                </div>
-                <div>
-                  <p class="font-semibold text-black mb-1">Bounty</p>
+                  <p class="font-bold mb-1">Bounty</p>
                   <p class="text-gray-600">$8,500</p>
                 </div>
                 <div>
-                  <p class="font-semibold text-black mb-1">Platform</p>
-                  <p class="text-gray-600">Private Program</p>
+                  <p class="font-bold mb-1">Type</p>
+                  <p class="text-gray-600">XSS Chain</p>
+                </div>
+                <div>
+                  <p class="font-bold mb-1">Platform</p>
+                  <p class="text-gray-600">Private</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Finding 4 -->
-          <div class="grid md:grid-cols-12 gap-6 pb-16 work-card">
-            <div class="md:col-span-2">
-              <p class="text-sm font-semibold text-black uppercase tracking-wider">04</p>
-              <p class="text-sm text-gray-500 mt-2">2022</p>
-            </div>
-            <div class="md:col-span-10">
-              <div class="mb-6">
-                <h3 class="text-2xl md:text-3xl font-bold mb-3 text-black hover:text-gray-600 transition-colors cursor-pointer group">
-                  AWS S3 Misconfiguration Research
-                  <span class="inline-block transition-transform group-hover:translate-x-2">→</span>
-                </h3>
-                <p class="text-lg text-gray-600 leading-relaxed mb-4">
-                  Conducted large-scale reconnaissance identifying 200+ misconfigured S3 buckets 
-                  exposing PII. Automated scanning framework detected open buckets, weak permissions, 
-                  and data exposure. Responsibly reported to affected organizations.
-                </p>
-                <div class="flex flex-wrap gap-3">
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">Cloud Security</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">Automation</span>
-                  <span class="text-sm px-3 py-1 bg-gray-100 text-gray-700 ">Data Exposure</span>
+            <!-- Finding 4 -->
+            <div id="finding4" class="border-2 border-black p-8 work-card scroll-mt-24">
+              <div class="flex items-start justify-between mb-6">
+                <div>
+                  <span class="text-xs font-bold bg-yellow-500 text-black px-3 py-1 mb-3 inline-block">RESEARCH</span>
+                  <h3 class="text-3xl font-bold mb-2">AWS S3 Misconfiguration</h3>
+                  <p class="text-gray-600">Cloud Security Research</p>
                 </div>
+                <span class="text-sm text-gray-500">2022</span>
               </div>
-              <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <p class="text-lg text-gray-600 mb-6">
+                Conducted large-scale reconnaissance identifying 200+ misconfigured S3 buckets exposing PII. Automated scanning framework detected open buckets, weak permissions, and data exposure. Responsibly reported to affected organizations.
+              </p>
+              <div class="grid grid-cols-3 gap-6 text-sm border-t border-gray-200 pt-6">
                 <div>
-                  <p class="font-semibold text-black mb-1">Severity</p>
-                  <p class="text-gray-600">Medium-High</p>
-                </div>
-                <div>
-                  <p class="font-semibold text-black mb-1">Findings</p>
+                  <p class="font-bold mb-1">Findings</p>
                   <p class="text-gray-600">200+ Buckets</p>
                 </div>
                 <div>
-                  <p class="font-semibold text-black mb-1">Type</p>
-                  <p class="text-gray-600">Research Project</p>
+                  <p class="font-bold mb-1">Type</p>
+                  <p class="text-gray-600">Research</p>
+                </div>
+                <div>
+                  <p class="font-bold mb-1">Method</p>
+                  <p class="text-gray-600">Automated</p>
                 </div>
               </div>
             </div>

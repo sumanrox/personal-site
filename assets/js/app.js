@@ -10,20 +10,22 @@ import { initSectionAnimations } from './components/sectionAnimations.js';
 import { initNavigation } from './components/navigation.js';
 import { initCounterAnimation } from './components/counterAnimation.js';
 import { initWorkCardHover } from './components/workCardHover.js';
-import { initSkillBars } from './components/skillBars.js';
 import { initTimelineAnimation } from './components/timelineAnimation.js';
 import { initTechTags } from './components/techTags.js';
-import { initCVECharts } from './components/cveCharts.js';
-import { PillHeadersController } from './components/pillHeaders.js';
 import { initLogoCarousel } from './components/logoCarousel.js';
+import { initParallaxEffect } from './components/parallaxEffect.js';
+import { initWorkScrollLock } from './components/workScrollLock.js';
+import { initMagazineAbout } from './components/magazineAbout.js';
+import { PillHeadersController } from './components/pillHeaders.js';
+import './components/heroThree.js';
 
 console.log('App.js loaded');
 
 (function () {
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
+  // Register GSAP plugins
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-  console.log('GSAP and ScrollTrigger registered');
+  console.log('GSAP, ScrollTrigger, and ScrollToPlugin registered');
 
   // Initialize all components
   initNavigation();
@@ -33,10 +35,11 @@ console.log('App.js loaded');
   initSectionAnimations();
   initWorkCardHover();
   initTimelineAnimation();
-  initSkillBars();
   initTechTags();
-  initCVECharts();
   initLogoCarousel();
+  initParallaxEffect();
+  initWorkScrollLock();
+  initMagazineAbout();
   
   // Initialize counter animation after a delay to ensure DOM is ready
   setTimeout(() => {

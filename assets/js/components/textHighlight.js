@@ -26,7 +26,8 @@ export function initTextHighlight() {
       elements: [{ selector: '#work-text' }],
       delay: -0.4,
       duration: 0.6,
-      stagger: 0.02
+      stagger: 0.02,
+      isPinned: true // Special flag for pinned sections
     },
     {
       trigger: '#contact',
@@ -36,6 +37,9 @@ export function initTextHighlight() {
       stagger: 0.02
     }
   ];
+
+  // Store section animations for manual triggering
+  const sectionAnimations = new Map();
 
   animatedSections.forEach(section => {
     // Collect all characters from all elements in this section
@@ -62,65 +66,77 @@ export function initTextHighlight() {
     // Store animation timeline for this section
     let fillAnimation = null;
 
+    // Function to start animation
+    const startAnimation = () => {
+      // Kill any existing animation first
+      if (fillAnimation) fillAnimation.kill();
+      
+      // Animate ALL characters in the section sequentially with fill effect
+      fillAnimation = gsap.to(allChars, {
+        color: '#000000', // Black
+        duration: section.duration || 0.8, // Use section-specific duration
+        stagger: {
+          each: section.stagger || 0.025, // Use section-specific stagger
+          from: 'start',
+          ease: 'none'
+        },
+        ease: 'none',
+        delay: section.delay
+      });
+    };
+
+    // Function to reset animation
+    const resetAnimation = () => {
+      // Kill fill animation and reset
+      if (fillAnimation) fillAnimation.kill();
+      gsap.to(allChars, {
+        color: '#d4d4d4',
+        duration: 0.2,
+        ease: 'power1.out',
+        overwrite: 'auto'
+      });
+    };
+
+    // Store for manual control
+    sectionAnimations.set(section.trigger, { startAnimation, resetAnimation, allChars });
+
+    // Special handling for pinned sections (like work section)
+    const startPoint = section.isPinned ? 'top 90%' : 'top 75%';
+    const endPoint = section.isPinned ? '300% 25%' : 'bottom 25%'; // Extended end for pinned sections
+
     // When section comes into view, auto-highlight ALL characters in hierarchical order
     ScrollTrigger.create({
       trigger: section.trigger,
-      start: 'top 75%', // More conservative trigger point
-      end: 'bottom 25%', // Wider range to prevent conflicts
-      onEnter: () => {
-        // Kill any existing animation first
-        if (fillAnimation) fillAnimation.kill();
-        
-        // Animate ALL characters in the section sequentially with fill effect
-        fillAnimation = gsap.to(allChars, {
-          color: '#000000', // Black
-          duration: section.duration || 0.8, // Use section-specific duration
-          stagger: {
-            each: section.stagger || 0.025, // Use section-specific stagger
-            from: 'start',
-            ease: 'none'
-          },
-          ease: 'none',
-          delay: section.delay
-        });
-      },
-      onLeave: () => {
-        // Kill fill animation and reset instantly when leaving
-        if (fillAnimation) fillAnimation.kill();
-        gsap.to(allChars, {
-          color: '#d4d4d4',
-          duration: 0.2,
-          ease: 'power1.out',
-          overwrite: 'auto' // Prevent conflicts
-        });
-      },
-      onLeaveBack: () => {
-        // Kill fill animation and reset when scrolling back up
-        if (fillAnimation) fillAnimation.kill();
-        gsap.to(allChars, {
-          color: '#d4d4d4',
-          duration: 0.2,
-          ease: 'power1.out',
-          overwrite: 'auto'
-        });
-      },
-      onEnterBack: () => {
-        // Kill any existing animation first
-        if (fillAnimation) fillAnimation.kill();
-        
-        // Re-animate when scrolling back up into view
-        fillAnimation = gsap.to(allChars, {
-          color: '#000000',
-          duration: section.duration || 0.8, // Use section-specific duration
-          stagger: {
-            each: section.stagger || 0.025, // Use section-specific stagger
-            from: 'start',
-            ease: 'none'
-          },
-          ease: 'none',
-          delay: section.delay
-        });
-      }
+      start: startPoint,
+      end: endPoint,
+      onEnter: startAnimation,
+      onLeave: resetAnimation,
+      onLeaveBack: resetAnimation,
+      onEnterBack: startAnimation
     });
   });
+
+  // Check if hero section is in view on scroll and manually trigger if needed
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    // If we're at or near the top of the page
+    if (currentScrollY < 100) {
+      const heroAnimation = sectionAnimations.get('#hero-section');
+      if (heroAnimation) {
+        // Check if characters are not already animated (gray color)
+        const firstChar = heroAnimation.allChars[0];
+        if (firstChar) {
+          const currentColor = window.getComputedStyle(firstChar).color;
+          // rgb(212, 212, 212) is #d4d4d4 (gray)
+          if (currentColor === 'rgb(212, 212, 212)' || currentColor === 'rgb(211, 211, 211)') {
+            heroAnimation.startAnimation();
+          }
+        }
+      }
+    }
+    
+    lastScrollY = currentScrollY;
+  }, { passive: true });
 }

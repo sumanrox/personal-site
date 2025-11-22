@@ -19,9 +19,8 @@ export function initSectionAnimations() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-        once: true
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
       }
     });
   });
@@ -36,8 +35,8 @@ export function initSectionAnimations() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: header,
-        start: 'top 85%',
-        once: true
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
       }
     });
   });
@@ -55,8 +54,8 @@ export function initSectionAnimations() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: text,
-        start: 'top 88%',
-        once: true
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
       }
     });
   });
@@ -74,8 +73,8 @@ export function initSectionAnimations() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: container,
-        start: 'top 82%',
-        once: true
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
       }
     });
   });
@@ -90,8 +89,8 @@ export function initSectionAnimations() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: card,
-        start: 'top 85%',
-        once: true
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
       }
     });
   });

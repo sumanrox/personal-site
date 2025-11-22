@@ -27,6 +27,7 @@
     <!-- GSAP and ScrollTrigger for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     
     <!-- SplitType for text splitting -->
     <script src="https://unpkg.com/split-type"></script>
@@ -37,40 +38,43 @@
     <!-- Modular CSS -->
     <link rel="stylesheet" href="assets/css/main-modular.css" />
   </head>
-  <body class="font-funnel bg-white text-black antialiased">
+  <body class="font-funnel bg-white text-black antialiased overflow-x-hidden">
+    
+    <!-- Film grain overlay -->
+    <div class="film-grain"></div>
+    
+    <!-- Spacer for hero parallax effect -->
+    <div class="h-screen"></div>
     
     <!-- Content wrapper -->
     <div class="relative z-10">
     
-      <!-- Navigation Component -->
-      <div id="nav-placeholder"></div>
+  <!-- Navigation Component -->
+  <div id="nav-placeholder"></div>
       
-      <!-- Hero Component -->
-      <div id="hero-placeholder"></div>
+  <!-- Hero Component -->
+  <div id="hero-placeholder" class="border-b border-black"></div>
       
-      <!-- Logo Carousel Component -->
-      <div id="logo-carousel-placeholder"></div>
+  <!-- Logo Carousel Component -->
+  
+  <!-- About Component -->
+  <div id="about-placeholder"></div>
+  
+  <!-- Experience Component -->
+  <div id="experience-placeholder"></div>
+  <div id="logo-carousel-placeholder"></div>
       
-      <!-- About Component -->
-      <div id="about-placeholder"></div>
+  <!-- Projects Component -->
+  <div id="projects-placeholder"></div>
       
-      <!-- Projects Component -->
-      <div id="projects-placeholder"></div>
+  <!-- Work Component -->
+  <div id="work-placeholder"></div>
       
-      <!-- Work Component -->
-      <div id="work-placeholder"></div>
+  <!-- Contact Component -->
+  <div id="contact-placeholder"></div>
       
-      <!-- Experience Component -->
-      <div id="experience-placeholder"></div>
-      
-      <!-- Skills Component -->
-      <div id="skills-placeholder"></div>
-      
-      <!-- Contact Component -->
-      <div id="contact-placeholder"></div>
-      
-      <!-- Footer Component -->
-      <div id="footer-placeholder"></div>
+  <!-- Footer Component -->
+  <div id="footer-placeholder"></div>
       
     </div> <!-- Close content wrapper -->
 

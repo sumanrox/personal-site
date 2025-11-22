@@ -1,9 +1,9 @@
-<!-- Contact Section - F-pattern: Clear left hierarchy -->
-    <section id="contact" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-20">
+<!-- Contact Section - Bold & Impactful -->
+    <section id="contact" class="px-6 md:px-12 lg:px-20 xl:px-32 bg-black text-white py-20">
       <div class="max-w-7xl w-full mx-auto relative z-10">
-        <!-- Section header with pill -->
-        <div class="mb-16">
-          <div id="contact-pill-container" class="mb-6">
+        <!-- Section header -->
+        <div class="mb-20">
+          <div id="contact-pill-container" class="mb-4">
             <div class="pill-section-header" data-text="CONTACT">
               <!-- Pill content -->
               <div class="pill-content">
@@ -14,59 +14,77 @@
               </div>
             </div>
           </div>
-          <p id="contact-text" class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight max-w-4xl">
-            Let's collaborate on securing the digital world
-          </p>
+          <h2 id="contact-text" class="text-7xl md:text-9xl font-bold leading-none">
+            Let's<br/>Work<br/>Together
+          </h2>
         </div>
 
-        <!-- F-pattern contact info -->
-        <div class="max-w-5xl">
+        <div class="grid lg:grid-cols-2 gap-20">
+          <!-- Left: Contact Info & Stats -->
           <div class="space-y-12">
-            <!-- Email -->
-            <div class="grid md:grid-cols-12 gap-6">
-              <div class="md:col-span-3">
-                <p class="text-sm font-semibold text-black uppercase tracking-wider">Email</p>
-              </div>
-              <div class="md:col-span-9">
-                <a href="mailto:security@sumanroy.dev" class="text-2xl md:text-3xl font-bold text-black hover:text-gray-600 transition-colors inline-flex items-center group">
-                  security@sumanroy.dev
-                  <svg class="w-6 h-6 ml-3 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                  </svg>
-                </a>
-                <p class="text-gray-600 mt-2">
-                  Available for penetration testing engagements, security consulting, and private 
-                  bug bounty programs. PGP key available upon request.
-                </p>
+            <div>
+              <p class="text-sm text-gray-500 uppercase tracking-wider mb-3">Email</p>
+              <a href="mailto:security@sumanroy.dev" class="text-3xl font-bold hover:text-gray-400 transition-colors">
+                security@sumanroy.dev
+              </a>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500 uppercase tracking-wider mb-3">Social</p>
+              <div class="space-y-3">
+                <a href="https://github.com/sumanroy" class="block text-xl hover:text-gray-400 transition-colors">GitHub →</a>
+                <a href="https://hackerone.com/sumanroy" class="block text-xl hover:text-gray-400 transition-colors">HackerOne (Top 1%) →</a>
+                <a href="https://linkedin.com/in/sumanroy-security" class="block text-xl hover:text-gray-400 transition-colors">LinkedIn →</a>
+                <a href="https://twitter.com/sumanroy_sec" class="block text-xl hover:text-gray-400 transition-colors">Twitter →</a>
               </div>
             </div>
 
-            <!-- Platforms -->
-            <div class="grid md:grid-cols-12 gap-6">
-              <div class="md:col-span-3">
-                <p class="text-sm font-semibold text-black uppercase tracking-wider">Bug Bounty</p>
-              </div>
-              <div class="md:col-span-9">
-                <div class="space-y-3">
-                  <a href="https://hackerone.com/sumanroy" class="block text-lg text-gray-600 hover:text-black transition-colors">HackerOne (Top 1%) →</a>
-                  <a href="https://bugcrowd.com/sumanroy" class="block text-lg text-gray-600 hover:text-black transition-colors">Bugcrowd →</a>
-                  <a href="https://github.com/sumanroy" class="block text-lg text-gray-600 hover:text-black transition-colors">GitHub (Security Research) →</a>
-                  <a href="https://twitter.com/sumanroy_sec" class="block text-lg text-gray-600 hover:text-black transition-colors">Twitter (Security) →</a>
-                  <a href="https://linkedin.com/in/sumanroy-security" class="block text-lg text-gray-600 hover:text-black transition-colors">LinkedIn →</a>
-                </div>
-              </div>
+            <div class="pt-12 border-t border-white/10">
+              <p class="text-sm text-gray-500 uppercase tracking-wider mb-3">Availability</p>
+              <p class="text-xl text-gray-300 mb-4">Remote Worldwide</p>
+              <p class="text-sm text-gray-400">Open to private programs, pentesting contracts, and security research collaborations</p>
             </div>
 
-            <!-- Availability -->
-            <div class="grid md:grid-cols-12 gap-6">
-              <div class="md:col-span-3">
-                <p class="text-sm font-semibold text-black uppercase tracking-wider">Availability</p>
-              </div>
-              <div class="md:col-span-9">
-                <p class="text-lg text-gray-600">Remote Worldwide</p>
-                <p class="text-gray-500 mt-1">Open to private programs, pentesting contracts, and security research collaborations</p>
-              </div>
+            <div class="pt-8">
+              <p class="text-sm text-gray-500 uppercase tracking-wider mb-3">Response Time</p>
+              <p class="text-xl text-gray-300">Within 24 hours</p>
+              <p class="text-sm text-gray-400">Urgent security matters prioritized</p>
             </div>
+          </div>
+
+          <!-- Right: Form -->
+          <div>
+            <div class="mb-12">
+              <p class="text-2xl text-gray-300 leading-relaxed">
+                I'm available for penetration testing engagements, security consulting, 
+                and bug bounty collaborations. Let's discuss your security needs.
+              </p>
+            </div>
+
+            <form class="space-y-6">
+              <div>
+                <input type="text" name="name" class="w-full px-0 py-4 bg-transparent border-b-2 border-white/20 focus:border-white transition-colors text-2xl text-white placeholder-gray-400 focus:outline-none" placeholder="Your Name" required />
+              </div>
+
+              <div>
+                <input type="email" name="email" class="w-full px-0 py-4 bg-transparent border-b-2 border-white/20 focus:border-white transition-colors text-2xl text-white placeholder-gray-400 focus:outline-none" placeholder="Email Address" required />
+              </div>
+
+              <div>
+                <input type="text" name="company" class="w-full px-0 py-4 bg-transparent border-b-2 border-white/20 focus:border-white transition-colors text-2xl text-white placeholder-gray-400 focus:outline-none" placeholder="Company / Organization" />
+              </div>
+
+              <div>
+                <textarea rows="4" name="message" class="w-full px-0 py-4 bg-transparent border-b-2 border-white/20 focus:border-white transition-colors text-2xl text-white placeholder-gray-400 focus:outline-none resize-none" placeholder="Tell me about your project" required></textarea>
+              </div>
+
+              <button type="submit" class="group mt-8 flex items-center gap-4 text-2xl font-bold hover:text-gray-400 transition-colors">
+                <span>Send Message</span>
+                <svg class="w-8 h-8 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </button>
+            </form>
           </div>
         </div>
       </div>

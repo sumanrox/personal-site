@@ -1,3 +1,21 @@
+/* Rainbow underline animation for experience section */
+.rainbow-underline {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, #ff6b6b, #f7d060, #43e97b, #38f9d7, #5a87ff, #b043e7);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.rainbow-underline.animate-slide {
+  transform: scaleX(1);
+}
 /* Animation Utilities & Text Effects */
 
 /* Prevent awkward word breaks in animated headings */

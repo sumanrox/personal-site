@@ -14,7 +14,7 @@
   min-width: clamp(160px, 40vw, 200px);
   max-width: 90vw;
   height: clamp(40px, 8vw, 48px);
-  opacity: 1;
+  opacity: 0;
   clip-path: polygon(
     0 35%,
     10.7% 0,
@@ -82,4 +82,18 @@
     min-width: 200px;
     height: 48px;
   }
+}
+
+/* Contact section specific styling - white background with black elements */
+#contact-pill-container .pill-section-header {
+  background: white;
+  color: black;
+}
+
+#contact-pill-container .pill-element {
+  color: black;
+}
+
+#contact-pill-container .pill-element.text {
+  color: black;
 }

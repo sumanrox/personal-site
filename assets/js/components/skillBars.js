@@ -20,8 +20,8 @@ export function initSkillBars() {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: bar,
-          start: 'top 85%',
-          once: true
+          start: 'top 95%',
+          toggleActions: 'play none none reset'
         }
       }
     );
@@ -36,8 +36,8 @@ export function initSkillBars() {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: bar,
-          start: 'top 85%',
-          once: true
+          start: 'top 95%',
+          toggleActions: 'play none none reset'
         },
         onUpdate: function() {
           const progress = this.progress();

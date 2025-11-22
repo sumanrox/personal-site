@@ -51,7 +51,9 @@ export class PillHeadersController {
   }
 
   animatePill(pillData) {
-    if (pillData.isAnimating) return;
+    // Skip if already animated
+    if (pillData.animated || pillData.isAnimating) return;
+    
     pillData.isAnimating = true;
 
     // Kill any existing timeline
@@ -63,6 +65,22 @@ export class PillHeadersController {
         pillData.animated = true;
       }
     });
+
+    const pillHeader = pillData.container.querySelector('.pill-section-header');
+
+    // Step 0: Diagonal fill animation of the polygon
+    pillData.timeline.fromTo(pillHeader, 
+      {
+        opacity: 0,
+        clipPath: 'polygon(0 35%, 0 0, 0 0, 0 65%, 0 100%, 0 100%)'
+      },
+      {
+        opacity: 1,
+        clipPath: 'polygon(0 35%, 10.7% 0, 100% 0, 100% 65%, 89.3% 100%, 0% 100%)',
+        duration: 0.5,
+        ease: "power2.out"
+      }
+    );
 
     // Step 1: Fade in triangle and open bracket (faster)
     pillData.timeline.to([pillData.triangle, pillData.openBracket], {
@@ -119,6 +137,13 @@ export class PillHeadersController {
   resetPill(pillData) {
     if (pillData.timeline) pillData.timeline.kill();
     
+    const pillHeader = pillData.container.querySelector('.pill-section-header');
+    
+    gsap.set(pillHeader, {
+      opacity: 0,
+      clipPath: 'polygon(0 35%, 0 0, 0 0, 0 65%, 0 100%, 0 100%)'
+    });
+    
     gsap.set([pillData.triangle, pillData.openBracket, pillData.closeBracket, pillData.text], {
       opacity: 0,
       x: 0
@@ -153,29 +178,74 @@ export class PillHeadersController {
   }
 
   setupScrollTrigger(pillData) {
+    const section = pillData.container.closest('section');
+    const isWorkSection = pillData.sectionName === 'work';
+    const isContactSection = pillData.sectionName === 'contact';
+    
     ScrollTrigger.create({
-      trigger: pillData.container,
+      trigger: section,
       start: "top 80%",
-      end: "bottom 20%",
+      end: "bottom top",
       onEnter: () => {
-        this.animatePill(pillData);
+        if (!pillData.animated) {
+          this.animatePill(pillData);
+        }
       },
       onLeave: () => {
-        this.resetPill(pillData);
+        if (!isWorkSection) {
+          this.resetPill(pillData);
+        } else {
+          // Reset work pill only when contact section is entering
+          this.checkAndResetForContact(pillData);
+        }
       },
       onEnterBack: () => {
-        this.animatePill(pillData);
+        if (!pillData.animated) {
+          this.animatePill(pillData);
+        }
+        // If contact is entering back, reset work pill to re-animate
+        if (isContactSection) {
+          this.resetWorkPillOnContactEnterBack();
+        }
       },
       onLeaveBack: () => {
-        this.resetPill(pillData);
-      },
-      onUpdate: () => {
-        // Check if pill should be animated when scrolling slowly
-        if (this.isPillInViewport(pillData) && !pillData.animated && !pillData.isAnimating) {
-          this.animatePill(pillData);
+        if (!isWorkSection) {
+          this.resetPill(pillData);
+        }
+        // When contact leaves back (scrolling up), re-animate work pill
+        if (isContactSection) {
+          this.reanimateWorkPillOnContactLeaveBack();
         }
       }
     });
+  }
+
+  checkAndResetForContact(workPillData) {
+    const contactSection = document.getElementById('contact');
+    if (!contactSection) return;
+    
+    ScrollTrigger.create({
+      trigger: contactSection,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        this.resetPill(workPillData);
+      }
+    });
+  }
+
+  resetWorkPillOnContactEnterBack() {
+    const workPill = this.pills.find(p => p.sectionName === 'work');
+    if (workPill) {
+      this.resetPill(workPill);
+    }
+  }
+
+  reanimateWorkPillOnContactLeaveBack() {
+    const workPill = this.pills.find(p => p.sectionName === 'work');
+    if (workPill && !workPill.animated) {
+      this.animatePill(workPill);
+    }
   }
 
   // Method to manually trigger all animations (useful for testing)
