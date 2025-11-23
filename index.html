@@ -85,6 +85,9 @@
   </head>
   <body class="font-funnel bg-white text-black antialiased overflow-x-hidden">
     
+    <!-- SEO: Hidden H1 for search engines -->
+    <h1 class="sr-only">Suman Roy - Security Researcher | Penetration Testing & Bug Bounty Hunter</h1>
+
     <!-- Loading Screen with 3D Orb Animation -->
     <div id="page-loader" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center transition-opacity duration-500">
       <div class="loader-orb-wrap"></div>
@@ -147,6 +150,10 @@
       if (orbWrap) {
         const totalParticles = 300;
         const baseHue = 0;
+        let cssStyles = '';
+        
+        // Create a document fragment for better performance
+        const fragment = document.createDocumentFragment();
         
         for (let i = 0; i < totalParticles; i++) {
           const particle = document.createElement('div');
@@ -164,7 +171,7 @@
           
           // Create unique animation
           const animName = `orbit-${i}`;
-          const keyframes = `
+          cssStyles += `
             @keyframes ${animName} {
               2% { opacity: 1; }
               5% { transform: rotateZ(-${z}deg) rotateY(${y}deg) translateX(100px) rotateZ(${z}deg); }
@@ -176,14 +183,17 @@
             }
           `;
           
-          // Inject keyframes
-          const style = document.createElement('style');
-          style.textContent = keyframes;
-          document.head.appendChild(style);
-          
           particle.style.animation = `${animName} 60s infinite`;
-          orbWrap.appendChild(particle);
+          fragment.appendChild(particle);
         }
+        
+        // Inject all styles at once
+        const style = document.createElement('style');
+        style.textContent = cssStyles;
+        document.head.appendChild(style);
+        
+        // Append all particles at once
+        orbWrap.appendChild(fragment);
       }
       
       // Decryption text effect

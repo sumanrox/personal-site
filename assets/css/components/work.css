@@ -1,0 +1,326 @@
+/* Work/Research Section Styles */
+
+/* Container Setup */
+#work {
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Pattern */
+.work-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(#e5e5e5 1px, transparent 1px),
+        linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Horizontal Scroll Container */
+.horizontal-scroll-container {
+    /* Width and padding handled by utility classes in HTML now */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    /* Clips content to the max-width container */
+    z-index: 1;
+}
+
+.horizontal-scroll-wrapper {
+    display: flex;
+    gap: 4rem;
+    /* Adjusted padding: Header takes ~35-40%, so we start cards after that */
+    padding-left: 40%;
+    will-change: transform;
+    height: 70vh;
+    align-items: center;
+}
+
+/* Sticky Header Area */
+.work-header-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Aligns to the left of the max-width container */
+    height: 100%;
+    width: 35%;
+    /* Relative to the max-width container */
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    pointer-events: none;
+
+    /* Glassmorphism Gradient Fade */
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.8) 60%,
+            rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+}
+
+.work-header-content {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+/* Research Card Design - "Data Deck" Aesthetic */
+.research-card-h {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+/* Hover Effect: Lift & Shadow */
+.research-card-h:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    border-color: #000;
+    z-index: 5;
+}
+
+/* Card Header Area */
+.card-header {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 1.5rem;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.year-badge {
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #888;
+    border: 1px solid #eee;
+    padding: 0.25rem 0.6rem;
+    background: #fafafa;
+}
+
+/* Severity Indicators */
+.severity-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: #f5f5f5;
+}
+
+.severity-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.severity-critical .severity-dot {
+    background-color: #ff3b30;
+    box-shadow: 0 0 8px rgba(255, 59, 48, 0.6);
+}
+
+.severity-critical {
+    color: #ff3b30;
+    background: rgba(255, 59, 48, 0.1);
+}
+
+.severity-high .severity-dot {
+    background-color: #ff9500;
+    box-shadow: 0 0 8px rgba(255, 149, 0, 0.6);
+}
+
+.severity-high {
+    color: #ff9500;
+    background: rgba(255, 149, 0, 0.1);
+}
+
+.severity-medium .severity-dot {
+    background-color: #ffcc00;
+}
+
+.severity-medium {
+    color: #bfa100;
+    background: rgba(255, 204, 0, 0.1);
+}
+
+.severity-research .severity-dot {
+    background-color: #5856d6;
+}
+
+.severity-research {
+    color: #5856d6;
+    background: rgba(88, 86, 214, 0.1);
+}
+
+/* Typography */
+.card-title {
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: #000;
+    margin-bottom: 0.75rem;
+}
+
+.card-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Description */
+.card-body {
+    flex-grow: 1;
+}
+
+.card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Data Grid Footer */
+.card-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.data-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.data-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    font-weight: 700;
+}
+
+.data-value {
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.bounty-value {
+    color: #00c853;
+    /* Success Green */
+}
+
+/* Action Button */
+.view-report-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid #000;
+}
+
+.view-report-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.view-report-btn i {
+    transition: transform 0.3s ease;
+}
+
+.view-report-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .horizontal-scroll-container {
+        height: auto;
+        display: block;
+        overflow: visible;
+        padding: 4rem 1.5rem;
+        /* Reset padding for mobile */
+    }
+
+    .work-bg-pattern {
+        display: none;
+    }
+
+    .work-header-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin-bottom: 3rem;
+        background: none;
+        backdrop-filter: none;
+        mask-image: none;
+    }
+
+    .horizontal-scroll-wrapper {
+        flex-direction: column;
+        padding: 0;
+        gap: 2rem;
+        height: auto;
+        transform: none !important;
+    }
+
+    .research-card-h {
+        min-width: 100%;
+        max-width: 100%;
+    }
+}

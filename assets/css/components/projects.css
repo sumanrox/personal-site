@@ -1,83 +1,217 @@
-/* Projects Section - Bento Card Styles */
+/* Projects Section Styles */
 
-.bento-card {
-  background: #1a1a1a;
-  border: 2px solid #2a2a2a;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  opacity: 1 !important;
-  color: #e0e0e0;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+/* Grid Layout handled by Tailwind classes in HTML */
+
+/* Project Card - Premium Glassmorphism */
+.project-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow;
+    border-radius: 0;
+    /* Sharp corners for modern feel */
 }
 
-.bento-card:hover {
-  border-color: #00ffff;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
-  transform: translateY(-4px) scale(1.03);
-  opacity: 1 !important;
+/* Subtle inner border for depth */
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 20;
 }
 
-.bento-card .text-base,
-.bento-card .text-lg,
-.bento-card .text-gray-600 {
-  color: #b0b0b0 !important;
-  opacity: 1 !important;
+/* Dot Pattern Background */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#000 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.02;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
 }
 
-.bento-card .text-gray-600 {
-  color: #808080 !important;
+.project-card:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 20px 40px -5px rgba(0, 0, 0, 0.08),
+        0 10px 20px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 0, 0, 0.02);
+    /* Crisp edge */
+    z-index: 10;
+    transform: translateY(-4px);
 }
 
-.bento-card .font-bold {
-  color: #e0e0e0 !important;
+.project-card:hover::before {
+    opacity: 0.06;
 }
 
-.bento-card [data-lucide] {
-  opacity: 1 !important;
+.project-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: translateZ(20px);
 }
 
-.bento-card span {
-  opacity: 1 !important;
+/* Background Hover Effect - Gradient Sweep */
+.project-bg-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.02) 0%,
+            rgba(0, 0, 0, 0.01) 50%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.bento-card .bg-red-100,
-.bento-card .bg-blue-100,
-.bento-card .bg-green-100,
-.bento-card .bg-purple-100,
-.bento-card .bg-teal-100,
-.bento-card .bg-gray-100,
-.bento-card .bg-gray-200 {
-  opacity: 1 !important;
+.project-card:hover .project-bg-hover {
+    opacity: 1;
 }
 
-.bento-card .rounded {
-  border-radius: 0.75rem !important;
+/* Icon Wrapper - Magnetic Feel */
+.project-icon-wrapper {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    color: #000;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    margin-bottom: 2rem;
 }
 
-.bento-card .rounded-2xl {
-  border-radius: 1rem !important;
+.project-card:hover .project-icon-wrapper {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Terminal Card Styles */
-.terminal-card {
-  background: #1a1a1a;
-  border: 2px solid #374151;
-  overflow: hidden;
-  transition: all 0.3s ease;
+/* Link Button - Top Right */
+.project-link {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    color: #999;
+    background: transparent;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 50%;
 }
 
-.terminal-card:hover {
-  transform: translateY(-2px);
+.project-link:hover {
+    color: #000;
+    background: #f5f5f5;
+    transform: rotate(45deg);
 }
 
-.terminal-header {
-  background: #262626;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #374151;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+/* Typography */
+.project-title {
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    color: #000;
+    letter-spacing: -0.03em;
+    transition: color 0.3s ease;
 }
 
-.terminal-header .w-3 {
-  border-radius: 9999px !important;
+.project-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 2.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+/* Meta Info */
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0;
+    background: transparent;
+    color: #888;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .tag {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+.project-stats {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .stat {
+    color: #000;
+}
+
+.stat i {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2px;
 }

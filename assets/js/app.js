@@ -20,6 +20,7 @@ import { initMagazineAbout } from './components/magazineAbout.js';
 import { initHorizontalScrollWork } from './components/horizontalScrollWork.js';
 import { PillHeadersController } from './components/pillHeaders.js';
 import { initFormSecurity } from './components/formSecurity.js';
+import { initProjects } from './components/projects.js';
 import './components/heroThree.js';
 
 (function () {
@@ -48,8 +49,9 @@ import './components/heroThree.js';
       initParallaxEffect();
       initWorkScrollLock();
       initMagazineAbout();
-      initFormSecurity();
-      initHorizontalScrollWork();
+      try { initFormSecurity(); } catch (e) { console.error('Error initializing Form Security:', e); }
+      try { initHorizontalScrollWork(); } catch (e) { console.error('Error initializing Work Scroll:', e); }
+      try { initProjects(); } catch (e) { console.error('Error initializing Projects:', e); }
 
       // Initialize counter animation after a delay to ensure DOM is ready
       setTimeout(() => {
@@ -65,6 +67,10 @@ import './components/heroThree.js';
       if (locomotiveScroll) {
         setTimeout(() => {
           locomotiveScroll.update();
+          if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+            console.log('🔄 ScrollTrigger refreshed');
+          }
           console.log('🚂 Locomotive Scroll updated after component initialization');
         }, 500);
       }

@@ -156,6 +156,27 @@
       "tags": ["YAML", "Security", "Open Source"],
       "github": "https://github.com/projectdiscovery/nuclei/pulls?q=author:sumanroy",
       "featured": true
+    },
+    {
+      "name": "CloudSploit-Custom",
+      "description": "Extended CloudSploit with custom plugins for detecting misconfigurations in hybrid cloud environments.",
+      "tags": ["JavaScript", "AWS", "Azure", "Compliance"],
+      "github": "https://github.com/sumanroy/cloudsploit-custom",
+      "featured": true
+    },
+    {
+      "name": "API Fuzzer Pro",
+      "description": "High-performance API fuzzing tool designed to uncover edge-case vulnerabilities in REST and GraphQL endpoints.",
+      "tags": ["Go", "Fuzzing", "API Security"],
+      "github": "https://github.com/sumanroy/api-fuzzer-pro",
+      "featured": true
+    },
+    {
+      "name": "ZeroTrust Auth",
+      "description": "A proof-of-concept implementation of Zero Trust authentication principles using mTLS and OPA policies.",
+      "tags": ["Rust", "OPA", "Zero Trust"],
+      "github": "https://github.com/sumanroy/zerotrust-auth",
+      "featured": true
     }
   ],
   
