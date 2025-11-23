@@ -16,7 +16,14 @@ export function initScrollProgress() {
   const updateProgress = () => {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    let scrollTop = 0;
+    if (window.locomotiveScroll && window.locomotiveScroll.scroll) {
+      scrollTop = window.locomotiveScroll.scroll.instance.scroll.y || 0;
+    } else {
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    }
+    
     const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
     const percentage = Math.min(scrollPercent, 100);
     
@@ -26,15 +33,30 @@ export function initScrollProgress() {
 
   // Update on scroll with throttling for performance
   let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateProgress();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
+  
+  // Listen to Locomotive Scroll if available
+  if (window.locomotiveScroll) {
+    window.locomotiveScroll.on('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  } else {
+    // Fallback to window scroll
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
 
   // Initial update
   updateProgress();

@@ -4,8 +4,8 @@
   position: relative;
   background: black;
   color: white;
-  font-family: 'Courier New', monospace;
-  font-weight: 600;
+  font-family: inherit;
+  font-weight: 700;
   font-size: clamp(14px, 2.5vw, 16px);
   padding: clamp(10px, 2vw, 12px) clamp(18px, 4vw, 24px);
   display: inline-flex;

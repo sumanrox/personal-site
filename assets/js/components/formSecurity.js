@@ -7,6 +7,29 @@ export function initFormSecurity() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
+  // Initialize Notyf for toast notifications
+  const notyf = new Notyf({
+    duration: 4000,
+    position: { x: 'right', y: 'top' },
+    types: [
+      {
+        type: 'success',
+        background: '#000',
+        icon: false
+      },
+      {
+        type: 'error',
+        background: '#ef4444',
+        icon: false
+      },
+      {
+        type: 'warning',
+        background: '#f59e0b',
+        icon: false
+      }
+    ]
+  });
+
   // Rate limiting storage
   const RATE_LIMIT_KEY = 'form_submission_time';
   const RATE_LIMIT_MS = 60000; // 1 minute between submissions
@@ -44,36 +67,28 @@ export function initFormSecurity() {
 
   // Show error message
   const showError = (message) => {
-    // Remove existing errors
-    const existingError = contactForm.querySelector('.form-error');
-    if (existingError) existingError.remove();
-
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'form-error text-red-400 text-sm mt-2 font-semibold';
-    errorDiv.textContent = message;
-    contactForm.insertBefore(errorDiv, contactForm.querySelector('button'));
-
-    // Auto-remove after 5 seconds
-    setTimeout(() => errorDiv.remove(), 5000);
+    notyf.error(message);
   };
 
   // Show success message
   const showSuccess = () => {
-    const existingSuccess = contactForm.querySelector('.form-success');
-    if (existingSuccess) existingSuccess.remove();
-
-    const successDiv = document.createElement('div');
-    successDiv.className = 'form-success text-green-400 text-sm mt-2 font-semibold';
-    successDiv.textContent = '✓ Message sent successfully! I\'ll respond within 24 hours.';
-    contactForm.insertBefore(successDiv, contactForm.querySelector('button'));
-
-    setTimeout(() => successDiv.remove(), 7000);
+    notyf.success('✓ Message sent! I\'ll respond within 24 hours.');
+  };
+  
+  // Show warning message
+  const showWarning = (message) => {
+    notyf.open({ type: 'warning', message });
   };
 
   // Form submission handler
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Get submit button and add loading state
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const submitText = document.getElementById('submit-text');
+    const submitArrow = document.getElementById('submit-arrow');
+    
     // Check honeypot (bot detection)
     const honeypot = contactForm.querySelector('input[name="website"]');
     if (honeypot && honeypot.value) {
@@ -141,26 +156,56 @@ export function initFormSecurity() {
       timestamp: new Date().toISOString()
     };
 
-    // Update rate limit timestamp
-    localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('btn-loading');
+    submitText.textContent = 'Sending...';
+    if (submitArrow) submitArrow.style.opacity = '0';
 
-    // Here you would send the sanitized data to your backend
-    // For now, just log it (in production, remove this)
-    console.log('Form submitted with sanitized data:', sanitizedData);
+    // Simulate API call (replace with actual backend call)
+    try {
+      // Here you would send the sanitized data to your backend
+      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(sanitizedData) });
+      
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      console.log('Form submitted with sanitized data:', sanitizedData);
 
-    // Show success message
-    showSuccess();
+      // Update rate limit timestamp
+      localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
 
-    // Reset form and Turnstile
-    contactForm.reset();
-    turnstileToken = null;
-    
-    // Reset Turnstile widget
-    if (typeof turnstile !== 'undefined') {
-      const widget = contactForm.querySelector('.cf-turnstile');
-      if (widget) {
-        turnstile.reset(widget);
+      // Show success message
+      showSuccess();
+      
+      // Add success animation to button
+      submitBtn.classList.add('bounce-success');
+      setTimeout(() => submitBtn.classList.remove('bounce-success'), 500);
+
+      // Reset form and Turnstile
+      contactForm.reset();
+      turnstileToken = null;
+      
+      // Reset Turnstile widget
+      if (typeof turnstile !== 'undefined') {
+        const widget = contactForm.querySelector('.cf-turnstile');
+        if (widget) {
+          turnstile.reset(widget);
+        }
       }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      showError('Something went wrong. Please try again.');
+      
+      // Add error shake animation
+      submitBtn.classList.add('shake-error');
+      setTimeout(() => submitBtn.classList.remove('shake-error'), 400);
+    } finally {
+      // Remove loading state
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('btn-loading');
+      submitText.textContent = 'Send Message';
+      if (submitArrow) submitArrow.style.opacity = '1';
     }
   });
 

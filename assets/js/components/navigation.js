@@ -16,6 +16,7 @@ export function initNavigation() {
   const mobileMenuClose = document.getElementById('mobile-menu-close');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu a'); // All links in mobile menu
 
   if (!navContainer || !mobileMenuBtn || !mobileMenu) {
     console.error('Required navigation elements not found');
@@ -95,7 +96,13 @@ export function initNavigation() {
   let lastScrollY = 0;
 
   const updateNavOnScroll = () => {
-    const scrollY = window.scrollY;
+    // Get scroll position from Locomotive Scroll if available
+    let scrollY = 0;
+    if (window.locomotiveScroll && window.locomotiveScroll.scroll) {
+      scrollY = window.locomotiveScroll.scroll.instance.scroll.y || 0;
+    } else {
+      scrollY = window.scrollY || 0;
+    }
     
     if (scrollY > 50) {
       navContainer.classList.add('nav-scrolled');
@@ -108,15 +115,30 @@ export function initNavigation() {
 
   // Throttled scroll listener
   let scrollTicking = false;
-  window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(() => {
-        updateNavOnScroll();
-        scrollTicking = false;
-      });
-      scrollTicking = true;
-    }
-  });
+  
+  // Listen to Locomotive Scroll if available
+  if (window.locomotiveScroll) {
+    window.locomotiveScroll.on('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          updateNavOnScroll();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    });
+  } else {
+    // Fallback to window scroll
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          updateNavOnScroll();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    });
+  }
 
   // Mobile menu state
   let mobileMenuOpen = false;
@@ -227,7 +249,7 @@ export function initNavigation() {
   }
 
   // Close mobile menu when clicking links
-  mobileLinks.forEach(link => {
+  mobileMenuLinks.forEach(link => {
     link.addEventListener('click', () => {
       closeMobileMenu();
     });
@@ -247,6 +269,35 @@ export function initNavigation() {
     if (e.key === 'Escape' && mobileMenuOpen) {
       closeMobileMenu();
     }
+  });
+
+  // Handle smooth scrolling for navigation links with Locomotive Scroll
+  const allNavLinks = document.querySelectorAll('a[href^="#"]');
+  allNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#') && href.length > 1) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const target = document.getElementById(targetId);
+        
+        if (target && window.locomotiveScroll) {
+          // Close mobile menu if open
+          if (mobileMenuOpen) {
+            closeMobileMenu();
+          }
+          
+          // Use Locomotive Scroll's scrollTo
+          window.locomotiveScroll.scrollTo(target, {
+            duration: 1000,
+            easing: [0.25, 0.0, 0.35, 1.0]
+          });
+        } else if (target) {
+          // Fallback for regular scroll
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
   });
 
   console.log('✅ Minimalist navigation initialized');

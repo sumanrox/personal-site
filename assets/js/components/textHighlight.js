@@ -4,6 +4,9 @@
  */
 
 export function initTextHighlight() {
+  // Get the scroll container for Locomotive Scroll
+  const scroller = document.querySelector('[data-scroll-container]');
+  
   // Configuration for animated sections
   const animatedSections = [
     {
@@ -114,6 +117,7 @@ export function initTextHighlight() {
       trigger: section.trigger,
       start: startPoint,
       end: endPoint,
+      scroller: scroller, // Use Locomotive Scroll container
       onEnter: startAnimation,
       onLeave: resetAnimation,
       onLeaveBack: resetAnimation,
@@ -121,27 +125,5 @@ export function initTextHighlight() {
     });
   });
 
-  // Check if hero section is in view on scroll and manually trigger if needed
-  let lastScrollY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    
-    // If we're at or near the top of the page
-    if (currentScrollY < 100) {
-      const heroAnimation = sectionAnimations.get('#hero-section');
-      if (heroAnimation) {
-        // Check if characters are not already animated (gray color)
-        const firstChar = heroAnimation.allChars[0];
-        if (firstChar) {
-          const currentColor = window.getComputedStyle(firstChar).color;
-          // rgb(212, 212, 212) is #d4d4d4 (gray)
-          if (currentColor === 'rgb(212, 212, 212)' || currentColor === 'rgb(211, 211, 211)') {
-            heroAnimation.startAnimation();
-          }
-        }
-      }
-    }
-    
-    lastScrollY = currentScrollY;
-  }, { passive: true });
+  console.log('Text highlight animations initialized');
 }

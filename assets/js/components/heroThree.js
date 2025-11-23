@@ -26,6 +26,7 @@ function initExperienceRainbowUnderline() {
 	ScrollTrigger.create({
 		trigger: underline,
 		start: 'top 80%',
+		scroller: document.querySelector('[data-scroll-container]'),
 		onEnter: () => {
 			setTimeout(() => {
 				underline.style.transform = 'scaleX(1)';

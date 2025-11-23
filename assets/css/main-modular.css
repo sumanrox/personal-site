@@ -11,8 +11,14 @@
 /* Base styles & reset */
 @import url('components/base.css');
 
+/* Loader animation */
+@import url('components/loader.css');
+
 /* Accessibility improvements */
 @import url('components/accessibility.css');
+
+/* Micro-interactions and UX enhancements */
+@import url('components/micro-interactions.css');
 
 /* Component-specific styles */
 @import url('components/navigation.css');

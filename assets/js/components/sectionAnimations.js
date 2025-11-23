@@ -6,6 +6,14 @@
 export function initSectionAnimations() {
   console.log('Initializing ultra-fast section animations');
   
+  // Get the scroll container
+  const scroller = document.querySelector('[data-scroll-container]');
+  
+  // Configure ScrollTrigger for Locomotive Scroll
+  ScrollTrigger.defaults({
+    scroller: scroller
+  });
+  
   // Main section fade-in with minimal delay
   const sections = gsap.utils.toArray('section');
   sections.forEach((section, index) => {
@@ -17,10 +25,13 @@ export function initSectionAnimations() {
       y: 30,
       duration: 0.5,
       ease: 'power2.out',
+      force3D: true, // Force GPU acceleration
       scrollTrigger: {
         trigger: section,
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play none none none',
+        fastScrollEnd: true, // Better handling of fast scrolling
+        preventOverlaps: true
       }
     });
   });
@@ -33,10 +44,12 @@ export function initSectionAnimations() {
       x: -20,
       duration: 0.4,
       ease: 'power2.out',
+      force3D: true,
       scrollTrigger: {
         trigger: header,
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play none none none',
+        fastScrollEnd: true
       }
     });
   });
@@ -52,10 +65,12 @@ export function initSectionAnimations() {
       y: 10,
       duration: 0.3,
       ease: 'power2.out',
+      force3D: true,
       scrollTrigger: {
         trigger: text,
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play none none none',
+        fastScrollEnd: true
       }
     });
   });
@@ -71,10 +86,12 @@ export function initSectionAnimations() {
       stagger: 0.04,
       duration: 0.4,
       ease: 'power2.out',
+      force3D: true,
       scrollTrigger: {
         trigger: container,
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play none none none',
+        fastScrollEnd: true
       }
     });
   });
@@ -87,17 +104,30 @@ export function initSectionAnimations() {
       y: 25,
       duration: 0.4,
       ease: 'power2.out',
+      force3D: true,
       scrollTrigger: {
         trigger: card,
         start: 'top 95%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play none none none',
+        fastScrollEnd: true
       }
     });
   });
 
-  // Refresh ScrollTrigger on window resize
+  // Refresh ScrollTrigger on window resize (throttled for mobile performance)
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+  });
+  
+  // Refresh on orientation change (mobile/tablet)
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
   });
   
   console.log('Ultra-fast section animations initialized');

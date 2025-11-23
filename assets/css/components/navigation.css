@@ -8,13 +8,14 @@
 /* Navigation Bar */
 .nav-bar {
   transition: all 0.3s ease;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-scrolled .nav-bar {
-  background: rgba(0, 0, 0, 0.98);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Maintains same solid black background on scroll */
+  background: rgb(0, 0, 0);
 }
 
 /* Logo */
