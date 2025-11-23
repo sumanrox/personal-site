@@ -8,13 +8,14 @@
 
 /* Character span styling for animated text - SplitType creates .char class */
 .char {
-  color: #d4d4d4; /* default gray */
+  color: #4a4a4a;
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: color;
 }
 
 .char.active {
-  color: #000000; /* black when activated */
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 /* Preserve word spacing */

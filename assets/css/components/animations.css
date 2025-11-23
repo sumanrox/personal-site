@@ -4,8 +4,8 @@
   width: 100%;
   height: 4px;
   margin-top: 8px;
-  background: linear-gradient(90deg, #ff6b6b, #f7d060, #43e97b, #38f9d7, #5a87ff, #b043e7);
-  border-radius: 2px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #0080ff, #ff007f, #9d00ff);
+  border-radius: 0;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -59,7 +59,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -70,7 +70,7 @@
 }
 
 .tilt-card:hover {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* Counter Animation - Numbers will be animated via JS */
@@ -90,11 +90,12 @@
   top: 0;
   left: 0;
   height: 3px;
-  background: #000000;
+  background: linear-gradient(90deg, #00ffff 0%, #ff00ff 50%, #00ff00 100%);
   z-index: 9999;
   transform-origin: left;
   width: 100%;
   transform: scaleX(0);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
 
 /* Fade-in animation class */

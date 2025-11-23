@@ -28,7 +28,8 @@ body {
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Noise Texture Overlay - Film Grain Effect */
@@ -47,16 +48,47 @@ body::before {
 }
 
 @keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 25%); }
-  90% { transform: translate(-10%, 10%); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 25%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
 }
 
 /* No rounded corners anywhere */
@@ -70,7 +102,12 @@ footer .rounded-full {
 }
 
 /* Typography consistency */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   word-break: keep-all;
@@ -90,6 +127,7 @@ a {
 
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
+
   /* Ensure proper spacing on mobile */
   section {
     padding-top: 4rem !important;
@@ -122,7 +160,7 @@ a {
   }
 
   /* Fix project card spacing */
-  .space-y-32 > * + * {
+  .space-y-32>*+* {
     margin-top: 4rem !important;
   }
 
@@ -136,6 +174,7 @@ a {
 
 /* Tablet adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
+
   #hero-text-1,
   #hero-text-2 {
     font-size: clamp(4rem, 8vw, 6rem) !important;
@@ -155,6 +194,7 @@ a {
 
 /* Ensure smooth animations on all devices */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -168,4 +208,3 @@ a {
 section {
   border: none;
 }
-

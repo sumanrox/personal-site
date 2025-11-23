@@ -1,5 +1,22 @@
 /* Navigation Styles - Elegant & Minimalist */
 
+/* Polygon button for Contact CTA */
+.polygon-btn {
+  clip-path: polygon(
+    0 35%,
+    10.7% 0,
+    100% 0,
+    100% 65%,
+    89.3% 100%,
+    0% 100%
+  );
+  border: none !important;
+}
+
+.polygon-btn:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
+}
+
 /* Navigation Container */
 .nav-container {
   transition: all 0.3s ease;
@@ -11,6 +28,15 @@
   background: rgb(0, 0, 0);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  --nav-clip-depth: 25px;
+  clip-path: polygon(
+    0 var(--nav-clip-depth),
+    20px 0,
+    100% 0,
+    100% calc(100% - var(--nav-clip-depth)),
+    calc(100% - 20px) 100%,
+    0 100%
+  );
 }
 
 .nav-scrolled .nav-bar {

@@ -1,17 +1,17 @@
 /* Projects Section - Bento Card Styles */
 
 .bento-card {
-  background: #fff;
-  border: 2px solid #e5e7eb;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  background: #1a1a1a;
+  border: 2px solid #2a2a2a;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   opacity: 1 !important;
-  color: #111;
-  transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s;
+  color: #e0e0e0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .bento-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  border-color: #111;
+  border-color: #00ffff;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
   transform: translateY(-4px) scale(1.03);
   opacity: 1 !important;
 }
@@ -19,16 +19,16 @@
 .bento-card .text-base,
 .bento-card .text-lg,
 .bento-card .text-gray-600 {
-  color: #222 !important;
+  color: #b0b0b0 !important;
   opacity: 1 !important;
 }
 
 .bento-card .text-gray-600 {
-  color: #444 !important;
+  color: #808080 !important;
 }
 
 .bento-card .font-bold {
-  color: #111 !important;
+  color: #e0e0e0 !important;
 }
 
 .bento-card [data-lucide] {
@@ -55,4 +55,29 @@
 
 .bento-card .rounded-2xl {
   border-radius: 1rem !important;
+}
+
+/* Terminal Card Styles */
+.terminal-card {
+  background: #1a1a1a;
+  border: 2px solid #374151;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.terminal-card:hover {
+  transform: translateY(-2px);
+}
+
+.terminal-header {
+  background: #262626;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terminal-header .w-3 {
+  border-radius: 9999px !important;
 }

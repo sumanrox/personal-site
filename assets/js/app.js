@@ -17,6 +17,7 @@ import { initLogoCarousel } from './components/logoCarousel.js';
 import { initParallaxEffect } from './components/parallaxEffect.js';
 import { initWorkScrollLock } from './components/workScrollLock.js';
 import { initMagazineAbout } from './components/magazineAbout.js';
+import { initHorizontalScrollWork } from './components/horizontalScrollWork.js';
 import { PillHeadersController } from './components/pillHeaders.js';
 import { initFormSecurity } from './components/formSecurity.js';
 import './components/heroThree.js';
@@ -29,10 +30,10 @@ import './components/heroThree.js';
   initializeContent().then(() => {
     // Initialize Locomotive Scroll first and wait for it
     const locomotiveScroll = initLocomotiveScroll();
-    
+
     // Store globally for debugging and component access
     window.locomotiveScroll = locomotiveScroll;
-    
+
     // Wait a bit for Locomotive to fully initialize before starting other components
     setTimeout(() => {
       // Initialize all components after Locomotive is ready
@@ -48,7 +49,8 @@ import './components/heroThree.js';
       initWorkScrollLock();
       initMagazineAbout();
       initFormSecurity();
-      
+      initHorizontalScrollWork();
+
       // Initialize counter animation after a delay to ensure DOM is ready
       setTimeout(() => {
         initCounterAnimation();
@@ -58,7 +60,7 @@ import './components/heroThree.js';
       setTimeout(() => {
         window.pillHeaders = new PillHeadersController();
       }, 200);
-      
+
       // Update Locomotive after everything is initialized
       if (locomotiveScroll) {
         setTimeout(() => {

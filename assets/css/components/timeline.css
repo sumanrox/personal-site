@@ -1,8 +1,9 @@
 /* Timeline Styles - Studio Grade */
 
 .timeline-line {
-  background: #e5e7eb;
+  background: #2a2a2a;
   position: relative;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
 .timeline-line-fill {
@@ -15,8 +16,8 @@
 
 .timeline-dot {
   border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px currentColor;
+  background: #00ffff;
+  box-shadow: 0 0 0 4px #0d0d0d, 0 0 0 6px #00ffff, 0 0 20px rgba(0, 255, 255, 0.6);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -41,7 +42,8 @@
 }
 
 .timeline-item:hover .timeline-dot {
-  box-shadow: 0 0 0 6px #ffffff, 0 0 0 8px currentColor, 0 0 20px currentColor;
+  box-shadow: 0 0 0 6px #0d0d0d, 0 0 0 8px #00ffff, 0 0 30px rgba(0, 255, 255, 0.8), 0 0 50px rgba(0, 255, 255, 0.4);
+  transform: scale(1.2);
 }
 
 .timeline-connector {
@@ -52,7 +54,8 @@
 .timeline-item:hover .timeline-connector {
   opacity: 1;
   width: 3rem;
-  background: linear-gradient(to right, #000000 0%, transparent 100%);
+  background: linear-gradient(to right, #00ffff 0%, transparent 100%);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 .timeline-content {
