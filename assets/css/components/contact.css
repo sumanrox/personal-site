@@ -4,11 +4,13 @@
     position: relative;
     background-color: #050505;
     color: #ffffff;
-    overflow: hidden;
-    z-index: 50;
-    /* Ensure it stays on top of pinned sections */
+    overflow-x: hidden;
+    z-index: 10000;
+    /* Above the body grain effect */
     transform: translate3d(0, 0, 0);
     /* Force hardware acceleration and new stacking context */
+    isolation: isolate;
+    /* Create new stacking context to isolate from body grain */
 }
 
 /* Background Texture */
@@ -35,6 +37,24 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .contact-heading {
+        font-size: 3rem !important;
+        line-height: 0.95;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-heading {
+        font-size: 2.5rem !important;
+        /* Force smaller size on very small screens */
+    }
 }
 
 .contact-sub {
@@ -42,16 +62,20 @@
     font-weight: 300;
     letter-spacing: 0.02em;
     color: #888;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 /* Form Styles */
 .contact-input-group {
     position: relative;
     margin-bottom: 2rem;
+    max-width: 100%;
 }
 
 .contact-input {
     width: 100%;
+    max-width: 100%;
     background: transparent;
     border: none;
     border-bottom: 1px solid #333;
@@ -61,6 +85,13 @@
     font-size: 1.25rem;
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     border-radius: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .contact-input {
+        font-size: 1rem;
+    }
 }
 
 .contact-input:focus {
@@ -124,6 +155,8 @@
     color: #888;
     text-decoration: none;
     transition: all 0.4s ease;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .contact-link:hover {
@@ -136,6 +169,15 @@
     font-family: 'Funnel Display', sans-serif;
     font-size: 1.5rem;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .contact-link-label {
+        font-size: 1.25rem;
+    }
 }
 
 .contact-link-icon {
@@ -158,6 +200,14 @@
     background: rgba(255, 255, 255, 0.05);
     border-radius: 100px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .status-indicator {
+        font-size: 0.75rem;
+    }
 }
 
 .status-dot {
