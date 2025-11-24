@@ -24,13 +24,16 @@ async function loadAllComponents() {
   const components = [
     { placeholder: '#nav-placeholder', path: 'components/navigation.html' },
     { placeholder: '#hero-placeholder', path: 'components/hero.html' },
-    { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },
     { placeholder: '#about-placeholder', path: 'components/about.html' },
-    { placeholder: '#work-placeholder', path: 'components/work.html' },
+    { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },
+    { placeholder: '#pricing-placeholder', path: 'components/pricing.html' },
+    { placeholder: '#testimonials-placeholder', path: 'components/testimonials.html' },
+    { placeholder: '#faq-placeholder', path: 'components/faq.html' },
     { placeholder: '#experience-placeholder', path: 'components/experience.html' },
+    { placeholder: '#projects-placeholder', path: 'components/projects.html' },
+    { placeholder: '#work-placeholder', path: 'components/work.html' },
     { placeholder: '#contact-placeholder', path: 'components/contact.html' },
-    { placeholder: '#footer-placeholder', path: 'components/footer.html' },
-    { placeholder: '#projects-placeholder', path: 'components/projects.html' }
+    { placeholder: '#footer-placeholder', path: 'components/footer.html' }
   ];
 
   // Load all components in parallel

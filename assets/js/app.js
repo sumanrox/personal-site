@@ -24,6 +24,7 @@ import { initProjects } from './components/projects.js';
 import { initBackToTop } from './components/back-to-top.js';
 import { initPullToRefresh } from './components/pull-to-refresh.js';
 import { initProjectPillAnimation } from './components/projectPillAnimation.js';
+import { initFAQAccordion } from './components/faqAccordion.js';
 import './components/heroThree.js';
 
 (function () {
@@ -58,6 +59,7 @@ import './components/heroThree.js';
       try { initProjectPillAnimation(); } catch (e) { console.error('Error initializing Project Pills:', e); }
       try { initBackToTop(); } catch (e) { console.error('Error initializing Back to Top:', e); }
       try { initPullToRefresh(); } catch (e) { console.error('Error initializing Pull to Refresh:', e); }
+      try { initFAQAccordion(); } catch (e) { console.error('Error initializing FAQ Accordion:', e); }
 
       // Initialize counter animation after a delay to ensure DOM is ready
       setTimeout(() => {
