@@ -163,7 +163,7 @@
     transition: all 0.3s ease;
     width: 100%;
     max-width: 400px;
-    backdrop-filter: blur(5px);
+
 }
 
 /* Scanline Effect */
@@ -279,13 +279,11 @@
 .contact-submit-tech.btn-success {
     border-color: #00c853;
     background: rgba(0, 200, 83, 0.1);
-    box-shadow: 0 0 30px rgba(0, 200, 83, 0.2);
 }
 
 .contact-submit-tech.btn-success .tech-text,
 .contact-submit-tech.btn-success .tech-bracket {
     color: #00c853 !important;
-    text-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
 }
 
 /* Error State */
