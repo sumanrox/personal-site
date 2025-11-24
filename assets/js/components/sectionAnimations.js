@@ -5,21 +5,24 @@
 
 export function initSectionAnimations() {
   console.log('Initializing ultra-fast section animations');
-  
+
   // Get the scroll container
   const scroller = document.querySelector('[data-scroll-container]');
-  
+
   // Configure ScrollTrigger for Locomotive Scroll
   ScrollTrigger.defaults({
     scroller: scroller
   });
-  
+
   // Main section fade-in with minimal delay
   const sections = gsap.utils.toArray('section');
   sections.forEach((section, index) => {
     // Skip hero section (already visible)
     if (section.id === 'hero-section') return;
-    
+
+    // Skip experience section (cards animate separately, no section fade)
+    if (section.id === 'experience') return;
+
     gsap.from(section, {
       opacity: 0,
       y: 30,
@@ -59,7 +62,7 @@ export function initSectionAnimations() {
   sectionTexts.forEach((text, index) => {
     // Skip if parent is a grid container
     if (text.parentElement.classList.contains('grid')) return;
-    
+
     gsap.from(text, {
       opacity: 0,
       y: 10,
@@ -78,8 +81,12 @@ export function initSectionAnimations() {
   // Animate grid items with fast stagger (EXCLUDING the outer grid containers)
   const gridContainers = gsap.utils.toArray('.grid:not(.md\\:grid-cols-12)');
   gridContainers.forEach(container => {
+    // Skip if this grid is inside the experience section
+    const inExperience = container.closest('#experience');
+    if (inExperience) return;
+
     const items = container.children;
-    
+
     gsap.from(items, {
       opacity: 0,
       y: 15,
@@ -122,13 +129,13 @@ export function initSectionAnimations() {
       ScrollTrigger.refresh();
     }, 250);
   });
-  
+
   // Refresh on orientation change (mobile/tablet)
   window.addEventListener('orientationchange', () => {
     setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);
   });
-  
+
   console.log('Ultra-fast section animations initialized');
 }

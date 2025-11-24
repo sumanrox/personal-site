@@ -43,6 +43,8 @@
     gap: 4rem;
     /* Adjusted padding: Header takes ~35-40%, so we start cards after that */
     padding-left: 40%;
+    /* Add right padding to ensure last card is fully visible */
+    padding-right: 10vw;
     will-change: transform;
     height: 70vh;
     align-items: center;

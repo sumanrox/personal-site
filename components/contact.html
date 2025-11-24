@@ -58,28 +58,42 @@
       <!-- Right Column: Form -->
       <div>
         <form id="contact-form" class="mt-8" method="POST" action="#">
-          <div class="contact-input-group">
-            <input type="text" id="contact-name" name="name" class="contact-input" placeholder="Name" required>
+          <div class="contact-input-group relative">
+            <i data-lucide="user"
+              class="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 transition-colors duration-300 input-icon"></i>
+            <input type="text" id="contact-name" name="name" class="contact-input pl-10" placeholder="Name" required>
           </div>
 
-          <div class="contact-input-group">
-            <input type="email" id="contact-email" name="email" class="contact-input" placeholder="Email" required>
+          <div class="contact-input-group relative">
+            <i data-lucide="mail"
+              class="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 transition-colors duration-300 input-icon"></i>
+            <input type="email" id="contact-email" name="email" class="contact-input pl-10" placeholder="Email"
+              required>
           </div>
 
-          <div class="contact-input-group">
-            <input type="text" id="contact-company" name="company" class="contact-input"
+          <div class="contact-input-group relative">
+            <i data-lucide="building"
+              class="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 transition-colors duration-300 input-icon"></i>
+            <input type="text" id="contact-company" name="company" class="contact-input pl-10"
               placeholder="Company (Optional)">
           </div>
 
-          <div class="contact-input-group">
-            <textarea id="contact-message" name="message" rows="4" class="contact-input resize-none"
+          <div class="contact-input-group relative">
+            <i data-lucide="message-square"
+              class="absolute left-0 top-6 w-5 h-5 text-gray-500 transition-colors duration-300 input-icon"></i>
+            <textarea id="contact-message" name="message" rows="4" class="contact-input resize-none pl-10"
               placeholder="Message" required></textarea>
           </div>
 
           <div class="pt-8">
-            <button type="submit" id="contact-submit-btn" class="contact-submit group">
-              <span id="submit-text">Transmit</span>
-              <i id="submit-arrow" data-lucide="send" class="w-5 h-5"></i>
+            <button type="submit" id="contact-submit-btn" class="contact-submit-tech group">
+              <span class="tech-bracket text-gray-500 group-hover:text-white transition-colors duration-300">[</span>
+              <span id="submit-text" class="tech-text mx-2 font-mono font-bold tracking-widest uppercase">INITIATE
+                TRANSMISSION</span>
+              <span class="tech-bracket text-gray-500 group-hover:text-white transition-colors duration-300">]</span>
+              <div
+                class="tech-bg absolute inset-0 bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+              </div>
             </button>
           </div>
         </form>

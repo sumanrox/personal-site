@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - Advanced Variations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+        }
+
+        .variation-container {
+            background: white;
+            border: 2px solid #000;
+            margin-bottom: 4rem;
+            padding: 2rem;
+        }
+
+        .variation-title {
+            font-family: 'Funnel Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #000;
+        }
+
+        /* Variation 5: Staggered Reveal */
+        .v5-item {
+            background: white;
+            border: 1px solid #e5e5e5;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Variation 6: Accordion Style */
+        .v6-item {
+            border-bottom: 2px solid #e5e5e5;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .v6-header {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .v6-header:hover {
+            padding-left: 1rem;
+        }
+
+        .v6-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .v6-item.active .v6-content {
+            max-height: 500px;
+        }
+
+        .v6-arrow {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .v6-item.active .v6-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Variation 7: Split Screen */
+        .v7-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            min-height: 400px;
+        }
+
+        .v7-nav {
+            border-right: 2px solid #e5e5e5;
+            padding-right: 2rem;
+        }
+
+        .v7-nav-item {
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .v7-nav-item:hover {
+            background: #fafafa;
+            border-left-color: #ccc;
+        }
+
+        .v7-nav-item.active {
+            background: #000;
+            color: white;
+            border-left-color: #000;
+        }
+
+        .v7-detail {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        /* Variation 8: Horizontal Scroll Cards */
+        .v8-scroll {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 1rem 0;
+            scrollbar-width: thin;
+        }
+
+        .v8-card {
+            min-width: 350px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            background: white;
+            border: 2px solid #000;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .v8-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Common */
+        .tag-pill {
+            font-size: 0.65rem;
+            padding: 0.3rem 0.6rem;
+            background: #f0f0f0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .current-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.7rem;
+            background: #000;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold mb-8" style="font-family: 'Funnel Display', sans-serif;">
+            Experience - Advanced Variations with Animations
+        </h1>
+        <p class="text-gray-600 mb-12 text-lg">Professional GSAP-powered animations</p>
+
+        <!-- Variation 5: Staggered Reveal -->
+        <div class="variation-container">
+            <div class="variation-title">✦ Variation 5: Staggered Reveal (Scroll Animation)</div>
+            <p class="text-sm text-gray-600 mb-6">Items fade in and slide up with stagger delay as you scroll. Smooth
+                and professional.</p>
+
+            <div class="v5-container">
+                <div class="v5-item" data-index="0">
+                    <div class="current-badge mb-3">
+                        <span class="pulse-dot"></span>
+                        <span>Current</span>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-2" style="font-family: 'Funnel Display', sans-serif;">Independent
+                        Security Researcher</h3>
+                    <p class="text-gray-600 font-semibold mb-2">Self-Employed</p>
+                    <p class="text-gray-400 text-xs uppercase mb-3">2023 - Present</p>
+                    <p class="text-gray-600 text-sm mb-3">Full-time vulnerability research focusing on critical security
+                        flaws.</p>
+                    <div class="flex gap-2">
+                        <span class="tag-pill">Bug Bounty</span>
+                        <span class="tag-pill">CVE</span>
+                    </div>
+                </div>
+
+                <div class="v5-item" data-index="1">
+                    <h3 class="font-bold text-2xl mb-2" style="font-family: 'Funnel Display', sans-serif;">Senior
+                        Penetration Tester</h3>
+                    <p class="text-gray-600 font-semibold mb-2">SecureTech Solutions</p>
+                    <p class="text-gray-400 text-xs uppercase mb-3">2021 - 2023</p>
+                    <p class="text-gray-600 text-sm mb-3">Led comprehensive security assessments for Fortune 500
+                        companies.</p>
+                    <div class="flex gap-2">
+                        <span class="tag-pill">Pentesting</span>
+                        <span class="tag-pill">Red Team</span>
+                    </div>
+                </div>
+
+                <div class="v5-item" data-index="2">
+                    <h3 class="font-bold text-2xl mb-2" style="font-family: 'Funnel Display', sans-serif;">Security
+                        Analyst</h3>
+                    <p class="text-gray-600 font-semibold mb-2">CyberGuard Inc.</p>
+                    <p class="text-gray-400 text-xs uppercase mb-3">2018 - 2021</p>
+                    <p class="text-gray-600 text-sm mb-3">Foundation role building cybersecurity expertise.</p>
+                    <div class="flex gap-2">
+                        <span class="tag-pill">CISSP</span>
+                        <span class="tag-pill">CEH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 6: Accordion -->
+        <div class="variation-container">
+            <div class="variation-title">✦ Variation 6: Accordion/Expandable (Interactive)</div>
+            <p class="text-sm text-gray-600 mb-6">Click to expand roles. Smooth height animation with elastic easing.
+            </p>
+
+            <div>
+                <div class="v6-item active" data-v6-id="1">
+                    <div class="v6-header">
+                        <div>
+                            <div class="current-badge mb-2">
+                                <span class="pulse-dot"></span>
+                                <span>Current</span>
+                            </div>
+                            <h3 class="font-bold text-xl" style="font-family: 'Funnel Display', sans-serif;">Independent
+                                Security Researcher</h3>
+                            <p class="text-gray-500 text-sm">2023 - Present</p>
+                        </div>
+                        <div class="v6-arrow text-2xl">→</div>
+                    </div>
+                    <div class="v6-content pb-4">
+                        <p class="text-gray-600 mb-3 text-sm">Full-time vulnerability research focusing on critical
+                            security flaws in major platforms.</p>
+                        <div class="space-y-2 mb-3 text-sm text-gray-600">
+                            <div>• 12+ CVEs discovered</div>
+                            <div>• $50K+ in bug bounties</div>
+                            <div>• Top 1% HackerOne rank</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">Bug Bounty</span>
+                            <span class="tag-pill">Research</span>
+                            <span class="tag-pill">CVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="v6-item" data-v6-id="2">
+                    <div class="v6-header">
+                        <div>
+                            <h3 class="font-bold text-xl" style="font-family: 'Funnel Display', sans-serif;">Senior
+                                Penetration Tester</h3>
+                            <p class="text-gray-500 text-sm">2021 - 2023</p>
+                        </div>
+                        <div class="v6-arrow text-2xl">→</div>
+                    </div>
+                    <div class="v6-content pb-4">
+                        <p class="text-gray-600 mb-3 text-sm">Led comprehensive security assessments for Fortune 500
+                            companies.</p>
+                        <div class="space-y-2 mb-3 text-sm text-gray-600">
+                            <div>• 50+ enterprise clients</div>
+                            <div>• Red Team operations</div>
+                            <div>• Cloud security specialist</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">Pentesting</span>
+                            <span class="tag-pill">Red Team</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="v6-item" data-v6-id="3">
+                    <div class="v6-header">
+                        <div>
+                            <h3 class="font-bold text-xl" style="font-family: 'Funnel Display', sans-serif;">Security
+                                Analyst</h3>
+                            <p class="text-gray-500 text-sm">2018 - 2021</p>
+                        </div>
+                        <div class="v6-arrow text-2xl">→</div>
+                    </div>
+                    <div class="v6-content pb-4">
+                        <p class="text-gray-600 mb-3 text-sm">Foundation role building cybersecurity expertise.</p>
+                        <div class="space-y-2 mb-3 text-sm text-gray-600">
+                            <div>• Incident response</div>
+                            <div>• SIEM management</div>
+                            <div>• Vulnerability assessments</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">CISSP</span>
+                            <span class="tag-pill">CEH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 7: Split Screen -->
+        <div class="variation-container">
+            <div class="variation-title">✦ Variation 7: Split Screen Navigation</div>
+            <p class="text-sm text-gray-600 mb-6">Left nav, right details. Smooth cross-fade animation on switch.</p>
+
+            <div class="v7-container">
+                <div class="v7-nav">
+                    <div class="v7-nav-item active" data-v7-target="exp1">
+                        <div class="current-badge mb-2">
+                            <span class="pulse-dot"></span>
+                            <span>Current</span>
+                        </div>
+                        <div class="font-bold">Independent Researcher</div>
+                        <div class="text-xs text-gray-500 mt-1">2023 - Present</div>
+                    </div>
+                    <div class="v7-nav-item" data-v7-target="exp2">
+                        <div class="font-bold">Sr. Pentester</div>
+                        <div class="text-xs text-gray-500 mt-1">2021 - 2023</div>
+                    </div>
+                    <div class="v7-nav-item" data-v7-target="exp3">
+                        <div class="font-bold">Security Analyst</div>
+                        <div class="text-xs text-gray-500 mt-1">2018 - 2021</div>
+                    </div>
+                </div>
+
+                <div class="v7-details">
+                    <div class="v7-detail" id="exp1" style="opacity: 1; transform: translateX(0);">
+                        <h3 class="font-bold text-3xl mb-4" style="font-family: 'Funnel Display', sans-serif;">
+                            Independent Security Researcher</h3>
+                        <p class="text-gray-600 font-semibold mb-2">Self-Employed</p>
+                        <p class="text-gray-400 text-sm uppercase mb-4">2023 - Present • 2+ Years</p>
+                        <p class="text-gray-600 mb-4 leading-relaxed">Full-time vulnerability research focusing on
+                            critical security flaws in major platforms. Achieved top rankings in bug bounty programs.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="text-sm">✓ 12+ CVEs discovered</div>
+                            <div class="text-sm">✓ $50K+ bug bounties</div>
+                            <div class="text-sm">✓ Top 1% HackerOne</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">Bug Bounty</span>
+                            <span class="tag-pill">Research</span>
+                            <span class="tag-pill">CVE</span>
+                        </div>
+                    </div>
+
+                    <div class="v7-detail" id="exp2">
+                        <h3 class="font-bold text-3xl mb-4" style="font-family: 'Funnel Display', sans-serif;">Senior
+                            Penetration Tester</h3>
+                        <p class="text-gray-600 font-semibold mb-2">SecureTech Solutions</p>
+                        <p class="text-gray-400 text-sm uppercase mb-4">2021 - 2023 • 2 Years</p>
+                        <p class="text-gray-600 mb-4 leading-relaxed">Led comprehensive security assessments for Fortune
+                            500 companies specializing in web applications and cloud security.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="text-sm">✓ 50+ enterprise clients</div>
+                            <div class="text-sm">✓ Red Team operations</div>
+                            <div class="text-sm">✓ Cloud security specialist</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">Pentesting</span>
+                            <span class="tag-pill">Red Team</span>
+                        </div>
+                    </div>
+
+                    <div class="v7-detail" id="exp3">
+                        <h3 class="font-bold text-3xl mb-4" style="font-family: 'Funnel Display', sans-serif;">Security
+                            Analyst</h3>
+                        <p class="text-gray-600 font-semibold mb-2">CyberGuard Inc.</p>
+                        <p class="text-gray-400 text-sm uppercase mb-4">2018 - 2021 • 3 Years</p>
+                        <p class="text-gray-600 mb-4 leading-relaxed">Foundation role building cybersecurity expertise
+                            through incident response and security monitoring.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="text-sm">✓ Incident response</div>
+                            <div class="text-sm">✓ SIEM management</div>
+                            <div class="text-sm">✓ Vulnerability assessments</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">CISSP</span>
+                            <span class="tag-pill">CEH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variation 8: Horizontal Scroll -->
+        <div class="variation-container">
+            <div class="variation-title">✦ Variation 8: Horizontal Scroll Cards</div>
+            <p class="text-sm text-gray-600 mb-6">Swipe/scroll horizontally. Bold cards with scale animation.</p>
+
+            <div class="v8-scroll">
+                <div class="v8-card">
+                    <div class="current-badge mb-4">
+                        <span class="pulse-dot"></span>
+                        <span>Current Role</span>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3" style="font-family: 'Funnel Display', sans-serif;">Independent
+                        Security Researcher</h3>
+                    <p class="text-gray-600 font-semibold mb-2">Self-Employed</p>
+                    <p class="text-gray-400 text-xs uppercase mb-4">2023 - Present</p>
+                    <p class="text-gray-600 text-sm mb-4">Full-time vulnerability research and bug bounty hunting.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="tag-pill">Bug Bounty</span>
+                        <span class="tag-pill">CVE</span>
+                        <span class="tag-pill">Research</span>
+                    </div>
+                </div>
+
+                <div class="v8-card">
+                    <h3 class="font-bold text-2xl mb-3" style="font-family: 'Funnel Display', sans-serif;">Senior
+                        Penetration Tester</h3>
+                    <p class="text-gray-600 font-semibold mb-2">SecureTech Solutions</p>
+                    <p class="text-gray-400 text-xs uppercase mb-4">2021 - 2023</p>
+                    <p class="text-gray-600 text-sm mb-4">Security assessments for Fortune 500 companies.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="tag-pill">Pentesting</span>
+                        <span class="tag-pill">Red Team</span>
+                        <span class="tag-pill">Cloud</span>
+                    </div>
+                </div>
+
+                <div class="v8-card">
+                    <h3 class="font-bold text-2xl mb-3" style="font-family: 'Funnel Display', sans-serif;">Security
+                        Analyst</h3>
+                    <p class="text-gray-600 font-semibold mb-2">CyberGuard Inc.</p>
+                    <p class="text-gray-400 text-xs uppercase mb-4">2018 - 2021</p>
+                    <p class="text-gray-600 text-sm mb-4">Incident response and security monitoring.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="tag-pill">CISSP</span>
+                        <span class="tag-pill">CEH</span>
+                        <span class="tag-pill">Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="bg-black text-white p-8">
+            <h2 class="text-2xl font-bold mb-4" style="font-family: 'Funnel Display', sans-serif;">🚀 Animation
+                Highlights</h2>
+            <ul class="space-y-3 text-sm">
+                <li><strong>Variation 5:</strong> Scroll-triggered stagger - Most professional for long lists</li>
+                <li><strong>Variation 6:</strong> Accordion - Great for conserving space, one role at a time</li>
+                <li><strong>Variation 7:</strong> Split screen - Sophisticated navigation, Apple-like feel</li>
+                <li><strong>Variation 8:</strong> Horizontal scroll - Modern, mobile-friendly carousel</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Variation 5: Staggered scroll reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.v5-item', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: '.v5-container',
+                    start: 'top 80%',
+                }
+            });
+
+            // Variation 6: Accordion
+            document.querySelectorAll('.v6-item').forEach(item => {
+                item.querySelector('.v6-header').addEventListener('click', () => {
+                    const wasActive = item.classList.contains('active');
+                    document.querySelectorAll('.v6-item').forEach(i => i.classList.remove('active'));
+                    if (!wasActive) item.classList.add('active');
+                });
+            });
+
+            // Variation 7: Split screen nav
+            document.querySelectorAll('.v7-nav-item').forEach(nav => {
+                nav.addEventListener('click', () => {
+                    const target = nav.dataset.v7Target;
+
+                    // Update nav
+                    document.querySelectorAll('.v7-nav-item').forEach(n => n.classList.remove('active'));
+                    nav.classList.add('active');
+
+                    // Animate details
+                    const currentDetail = document.querySelector('.v7-detail[style*="opacity: 1"]');
+                    const nextDetail = document.getElementById(target);
+
+                    if (currentDetail && nextDetail && currentDetail !== nextDetail) {
+                        gsap.to(currentDetail, {
+                            opacity: 0,
+                            x: -20,
+                            duration: 0.3,
+                            ease: "power2.in",
+                            onComplete: () => {
+                                currentDetail.style.transform = 'translateX(20px)';
+                            }
+                        });
+
+                        gsap.to(nextDetail, {
+                            opacity: 1,
+                            x: 0,
+                            duration: 0.4,
+                            delay: 0.2,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

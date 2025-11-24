@@ -7,41 +7,9 @@ export function initFormSecurity() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
 
-  // Initialize Notyf for toast notifications
-  const notyf = new Notyf({
-    duration: 4000,
-    position: { x: 'right', y: 'top' },
-    types: [
-      {
-        type: 'success',
-        background: '#000',
-        icon: false
-      },
-      {
-        type: 'error',
-        background: '#ef4444',
-        icon: false
-      },
-      {
-        type: 'warning',
-        background: '#f59e0b',
-        icon: false
-      }
-    ]
-  });
-
   // Rate limiting storage
   const RATE_LIMIT_KEY = 'form_submission_time';
   const RATE_LIMIT_MS = 60000; // 1 minute between submissions
-
-  // Turnstile token storage
-  let turnstileToken = null;
-
-  // Callback for Turnstile success
-  window.onTurnstileSuccess = (token) => {
-    turnstileToken = token;
-    console.log('Turnstile verification successful');
-  };
 
   // XSS Prevention: Sanitize input
   const sanitizeInput = (input) => {
@@ -60,52 +28,75 @@ export function initFormSecurity() {
   const isRateLimited = () => {
     const lastSubmission = localStorage.getItem(RATE_LIMIT_KEY);
     if (!lastSubmission) return false;
-    
+
     const timeSince = Date.now() - parseInt(lastSubmission, 10);
     return timeSince < RATE_LIMIT_MS;
   };
 
-  // Show error message
-  const showError = (message) => {
-    notyf.error(message);
+  // Helper to update button state
+  const updateButtonState = (type, message) => {
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const submitText = document.getElementById('submit-text');
+
+    if (!submitBtn || !submitText) return;
+
+    // Reset classes
+    submitBtn.classList.remove('btn-loading', 'btn-success', 'btn-error');
+
+    if (type === 'loading') {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('btn-loading');
+      submitText.textContent = 'TRANSMITTING...';
+    } else if (type === 'success') {
+      submitBtn.classList.add('btn-success');
+      submitText.textContent = 'MESSAGE SENT';
+
+      // Reset after delay
+      setTimeout(() => {
+        resetButton();
+      }, 3000);
+    } else if (type === 'error') {
+      submitBtn.classList.add('btn-error');
+      submitBtn.classList.add('shake-error');
+      submitText.textContent = message ? message.toUpperCase() : 'TRANSMISSION FAILED';
+
+      // Remove shake animation
+      setTimeout(() => {
+        submitBtn.classList.remove('shake-error');
+      }, 500);
+
+      // Reset after delay
+      setTimeout(() => {
+        resetButton();
+      }, 3000);
+    }
   };
 
-  // Show success message
-  const showSuccess = () => {
-    notyf.success('✓ Message sent! I\'ll respond within 24 hours.');
-  };
-  
-  // Show warning message
-  const showWarning = (message) => {
-    notyf.open({ type: 'warning', message });
+  const resetButton = () => {
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const submitText = document.getElementById('submit-text');
+
+    if (!submitBtn) return;
+
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('btn-loading', 'btn-success', 'btn-error');
+    submitText.textContent = 'INITIATE TRANSMISSION';
   };
 
   // Form submission handler
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Get submit button and add loading state
-    const submitBtn = document.getElementById('contact-submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const submitArrow = document.getElementById('submit-arrow');
-    
     // Check honeypot (bot detection)
     const honeypot = contactForm.querySelector('input[name="website"]');
     if (honeypot && honeypot.value) {
-      // Silent fail - likely a bot
       console.warn('Honeypot triggered - potential bot submission');
-      return;
-    }
-
-    // Validate Cloudflare Turnstile
-    if (!turnstileToken) {
-      showError('Please complete the verification challenge.');
       return;
     }
 
     // Rate limiting check
     if (isRateLimited()) {
-      showError('Please wait a moment before submitting again.');
+      updateButtonState('error', 'Please wait a moment');
       return;
     }
 
@@ -117,32 +108,17 @@ export function initFormSecurity() {
 
     // Validation
     if (!name || name.length < 2) {
-      showError('Please enter a valid name (minimum 2 characters).');
-      return;
-    }
-
-    if (name.length > 100) {
-      showError('Name is too long (maximum 100 characters).');
+      updateButtonState('error', 'Invalid Name');
       return;
     }
 
     if (!isValidEmail(email)) {
-      showError('Please enter a valid email address.');
-      return;
-    }
-
-    if (company.length > 100) {
-      showError('Company name is too long (maximum 100 characters).');
+      updateButtonState('error', 'Invalid Email');
       return;
     }
 
     if (!message || message.length < 10) {
-      showError('Please enter a message (minimum 10 characters).');
-      return;
-    }
-
-    if (message.length > 2000) {
-      showError('Message is too long (maximum 2000 characters).');
+      updateButtonState('error', 'Message too short');
       return;
     }
 
@@ -152,60 +128,30 @@ export function initFormSecurity() {
       email: sanitizeInput(email),
       company: sanitizeInput(company),
       message: sanitizeInput(message),
-      'cf-turnstile-response': turnstileToken, // Cloudflare Turnstile token
       timestamp: new Date().toISOString()
     };
 
     // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.classList.add('btn-loading');
-    submitText.textContent = 'Sending...';
-    if (submitArrow) submitArrow.style.opacity = '0';
+    updateButtonState('loading');
 
-    // Simulate API call (replace with actual backend call)
+    // Simulate API call
     try {
-      // Here you would send the sanitized data to your backend
-      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(sanitizedData) });
-      
       // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       console.log('Form submitted with sanitized data:', sanitizedData);
 
       // Update rate limit timestamp
       localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
 
-      // Show success message
-      showSuccess();
-      
-      // Add success animation to button
-      submitBtn.classList.add('bounce-success');
-      setTimeout(() => submitBtn.classList.remove('bounce-success'), 500);
+      // Show success state
+      updateButtonState('success');
 
-      // Reset form and Turnstile
+      // Reset form
       contactForm.reset();
-      turnstileToken = null;
-      
-      // Reset Turnstile widget
-      if (typeof turnstile !== 'undefined') {
-        const widget = contactForm.querySelector('.cf-turnstile');
-        if (widget) {
-          turnstile.reset(widget);
-        }
-      }
     } catch (error) {
       console.error('Form submission error:', error);
-      showError('Something went wrong. Please try again.');
-      
-      // Add error shake animation
-      submitBtn.classList.add('shake-error');
-      setTimeout(() => submitBtn.classList.remove('shake-error'), 400);
-    } finally {
-      // Remove loading state
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('btn-loading');
-      submitText.textContent = 'Send Message';
-      if (submitArrow) submitArrow.style.opacity = '1';
+      updateButtonState('error', 'Transmission Failed');
     }
   });
 
@@ -220,19 +166,50 @@ export function initFormSecurity() {
     }
   });
 
-  // Prevent paste of potentially malicious content
-  const textInputs = contactForm.querySelectorAll('input[type="text"], input[type="email"], textarea');
-  textInputs.forEach(input => {
-    input.addEventListener('paste', (e) => {
-      setTimeout(() => {
-        // Limit pasted content
-        if (input.value.length > parseInt(input.getAttribute('maxlength') || '1000', 10)) {
-          input.value = input.value.substring(0, parseInt(input.getAttribute('maxlength') || '1000', 10));
-          showError('Pasted content was truncated to maximum length.');
-        }
-      }, 0);
-    });
-  });
+  // Text Scramble Effect
+  const scrambleText = (element, finalText) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+    let iterations = 0;
 
-  console.log('✅ Form security initialized with validation and rate limiting');
+    // Clear any existing interval to prevent conflicts
+    if (element.dataset.interval) {
+      clearInterval(parseInt(element.dataset.interval));
+    }
+
+    const interval = setInterval(() => {
+      element.innerText = finalText
+        .split('')
+        .map((letter, index) => {
+          if (index < iterations) {
+            return finalText[index];
+          }
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join('');
+
+      if (iterations >= finalText.length) {
+        clearInterval(interval);
+        element.dataset.interval = '';
+      }
+
+      iterations += 1 / 2; // Speed of reveal
+    }, 30);
+
+    element.dataset.interval = interval.toString();
+  };
+
+  // Add hover listener to button
+  const submitBtn = document.getElementById('contact-submit-btn');
+  const submitText = document.getElementById('submit-text');
+
+  if (submitBtn && submitText) {
+    submitBtn.addEventListener('mouseenter', () => {
+      // Only scramble if not loading/success/error
+      if (!submitBtn.disabled && !submitBtn.classList.contains('btn-success') && !submitBtn.classList.contains('btn-error')) {
+        scrambleText(submitText, 'INITIATE TRANSMISSION');
+      }
+    });
+  }
+
+  console.log('✅ Form security initialized with button feedback and animations');
 }

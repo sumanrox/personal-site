@@ -31,6 +31,8 @@
 @import url('components/logo-carousel.css');
 @import url('components/work.css');
 @import url('components/contact.css');
+@import url('components/back-to-top.css');
+@import url('components/pull-to-refresh.css');
 
 /* Legacy styles - will be migrated to components */
 /* These are temporary and should be moved to appropriate component files */

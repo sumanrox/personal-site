@@ -1,177 +1,202 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" />
-    <title>Suman Roy — Security Researcher | Penetration Testing & Bug Bounty Hunter</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Security researcher specializing in penetration testing, vulnerability research, and bug bounty hunting. 12+ CVEs discovered, Top 1% on HackerOne." />
-    <meta name="keywords" content="security researcher, penetration testing, bug bounty, vulnerability research, ethical hacking, CVE, HackerOne" />
-    <meta name="author" content="Suman Roy" />
-    <meta name="theme-color" content="#000000" />
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Suman Roy — Security Researcher" />
-    <meta property="og:description" content="Security researcher specializing in penetration testing, vulnerability research, and bug bounty hunting." />
-    <meta property="og:site_name" content="Suman Roy" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@sumanroy_sec" />
-    <meta name="twitter:title" content="Suman Roy — Security Researcher" />
-    <meta name="twitter:description" content="Security researcher specializing in penetration testing and vulnerability research." />
-    
-    <!-- Security Note: For production, configure these as HTTP headers in your server config:
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" />
+  <title>Suman Roy — Security Researcher | Penetration Testing & Bug Bounty Hunter</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Security researcher specializing in penetration testing, vulnerability research, and bug bounty hunting. 12+ CVEs discovered, Top 1% on HackerOne." />
+  <meta name="keywords"
+    content="security researcher, penetration testing, bug bounty, vulnerability research, ethical hacking, CVE, HackerOne" />
+  <meta name="author" content="Suman Roy" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Suman Roy — Security Researcher" />
+  <meta property="og:description"
+    content="Security researcher specializing in penetration testing, vulnerability research, and bug bounty hunting." />
+  <meta property="og:site_name" content="Suman Roy" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@sumanroy_sec" />
+  <meta name="twitter:title" content="Suman Roy — Security Researcher" />
+  <meta name="twitter:description"
+    content="Security researcher specializing in penetration testing and vulnerability research." />
+
+  <!-- Security Note: For production, configure these as HTTP headers in your server config:
          - X-Content-Type-Options: nosniff
          - X-Frame-Options: DENY
          - X-XSS-Protection: 1; mode=block
          - Strict-Transport-Security: max-age=31536000; includeSubDomains
          - Content-Security-Policy: [full CSP]
     -->
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    
-    <!-- Performance: Preload critical CSS -->
-    <link rel="preload" href="assets/css/main-modular.css" as="style" />
-    
-    <!-- Google Fonts - Funnel Display -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              funnel: ['Funnel Display', 'sans-serif'],
-            },
-          }
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Performance: Preload critical CSS -->
+  <link rel="preload" href="assets/css/main-modular.css" as="style" />
+
+  <!-- Google Fonts - Funnel Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            funnel: ['Funnel Display', 'sans-serif'],
+          },
         }
       }
-    </script>
-    
-    <!-- Resource Hints for CDNs -->
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-    <link rel="dns-prefetch" href="https://unpkg.com" />
-    
-    <!-- GSAP and ScrollTrigger for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-    
-    <!-- SplitType for text splitting -->
-    <script src="https://unpkg.com/split-type" defer></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
-    
-    <!-- Cloudflare Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    
-    <!-- Locomotive Scroll for smooth scrolling -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
-    
-    <!-- Notyf - Toast Notifications -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
-    
-    <!-- Modular CSS -->
-    <link rel="stylesheet" href="assets/css/main-modular.css" />
-  </head>
-  <body class="font-funnel bg-white text-black antialiased overflow-x-hidden">
-    
-    <!-- SEO: Hidden H1 for search engines -->
-    <h1 class="sr-only">Suman Roy - Security Researcher | Penetration Testing & Bug Bounty Hunter</h1>
+    }
+  </script>
 
-    <!-- Loading Screen with 3D Orb Animation -->
-    <div id="page-loader" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center transition-opacity duration-500">
-      <div class="loader-orb-wrap"></div>
-      <div id="loader-text" class="loader-text">DECRYPTING</div>
-    </div>
-    
-    <!-- Skip to main content for keyboard navigation -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold focus:border-2 focus:border-black">Skip to main content</a>
-    
-    <!-- Film grain overlay -->
-    <div class="film-grain" aria-hidden="true"></div>
-    
-    <!-- Navigation Component - Outside scroll container to stay fixed -->
-    <div id="nav-placeholder"></div>
-    
-    <!-- Locomotive Scroll Container -->
-    <div data-scroll-container>
-    
+  <!-- Resource Hints for CDNs -->
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+
+  <!-- GSAP and ScrollTrigger for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+    integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer" defer></script>
+
+  <!-- SplitType for text splitting -->
+  <script src="https://unpkg.com/split-type" defer></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- Locomotive Scroll for smooth scrolling -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
+
+  <!-- Notyf - Toast Notifications -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
+
+  <!-- Modular CSS -->
+  <link rel="stylesheet" href="assets/css/main-modular.css" />
+</head>
+
+<body class="font-funnel bg-white text-black antialiased overflow-x-hidden">
+
+  <!-- Pull to Refresh Indicator -->
+  <div id="pull-to-refresh">
+    <div class="ptr-icon"></div>
+  </div>
+
+  <!-- SEO: Hidden H1 for search engines -->
+  <h1 class="sr-only">Suman Roy - Security Researcher | Penetration Testing & Bug Bounty Hunter</h1>
+
+  <!-- Loading Screen with 3D Orb Animation -->
+  <div id="page-loader"
+    class="fixed inset-0 bg-black z-[9999] flex items-center justify-center transition-opacity duration-500">
+    <div class="loader-orb-wrap"></div>
+    <div id="loader-text" class="loader-text">DECRYPTING</div>
+  </div>
+
+  <!-- Skip to main content for keyboard navigation -->
+  <a href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold focus:border-2 focus:border-black">Skip
+    to main content</a>
+
+  <!-- Film grain overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- Navigation Component - Outside scroll container to stay fixed -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Locomotive Scroll Container -->
+  <div data-scroll-container>
+
     <!-- Spacer for hero parallax effect -->
     <div class="h-screen" aria-hidden="true"></div>
-    
+
     <!-- Content wrapper -->
     <main id="main-content" class="relative z-10">
-      
-  <!-- Hero Component -->
-  <div id="hero-placeholder" class="border-b border-black"></div>
-      
-  <!-- Logo Carousel Component -->
-  
-  <!-- About Component -->
-  <div id="about-placeholder"></div>
-  
-  <!-- Experience Component -->
-  <div id="experience-placeholder"></div>
-  <!--<div id="logo-carousel-placeholder"></div>-->
-      
-  <!-- Projects Component -->
-  <div id="projects-placeholder"></div>
-      
-  <!-- Work Component -->
-  <div id="work-placeholder"></div>
-      
-  <!-- Contact Component -->
-  <div id="contact-placeholder"></div>
-      
-  <!-- Footer Component -->
-  <div id="footer-placeholder"></div>
-      
-    </main> <!-- Close main content -->
-    
-    </div> <!-- Close Locomotive Scroll Container -->
 
-    <!-- Component Loader -->
-    <script src="load-components.js" defer></script>
-    
-    <!-- Main App Script -->
-    <script type="module">
-      // Generate 300 particles for the 3D orb loader
-      const orbWrap = document.querySelector('.loader-orb-wrap');
-      if (orbWrap) {
-        const totalParticles = 300;
-        const baseHue = 0;
-        let cssStyles = '';
-        
-        // Create a document fragment for better performance
-        const fragment = document.createDocumentFragment();
-        
-        for (let i = 0; i < totalParticles; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'loader-particle';
-          particle.style.animationDelay = `${i * 0.003}s`;
-          
-          // Calculate random angles and hue
-          const z = Math.random() * 360;
-          const y = Math.random() * 360;
-          const hue = ((40 / totalParticles * i) + baseHue);
-          
-          particle.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
-          particle.setAttribute('data-z', z);
-          particle.setAttribute('data-y', y);
-          
-          // Create unique animation
-          const animName = `orbit-${i}`;
-          cssStyles += `
+      <!-- Hero Component -->
+      <div id="hero-placeholder" class="border-b border-black"></div>
+
+      <!-- Logo Carousel Component -->
+
+      <!-- About Component -->
+      <div id="about-placeholder"></div>
+
+      <!-- Experience Component -->
+      <div id="experience-placeholder"></div>
+      <!--<div id="logo-carousel-placeholder"></div>-->
+
+      <!-- Projects Component -->
+      <div id="projects-placeholder"></div>
+
+      <!-- Work Component -->
+      <div id="work-placeholder"></div>
+
+      <!-- Contact Component -->
+      <div id="contact-placeholder"></div>
+
+      <!-- Footer Component -->
+      <div id="footer-placeholder"></div>
+
+    </main> <!-- Close main content -->
+
+  </div> <!-- Close Locomotive Scroll Container -->
+
+  <!-- Back to Top Button - MUST BE OUTSIDE SCROLL CONTAINER -->
+  <div id="back-to-top" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </div>
+
+  <!-- Component Loader -->
+  <script src="load-components.js" defer></script>
+
+  <!-- Main App Script -->
+  <script type="module">
+    // Generate 300 particles for the 3D orb loader
+    const orbWrap = document.querySelector('.loader-orb-wrap');
+    if (orbWrap) {
+      const totalParticles = 300;
+      const baseHue = 0;
+      let cssStyles = '';
+
+      // Create a document fragment for better performance
+      const fragment = document.createDocumentFragment();
+
+      for (let i = 0; i < totalParticles; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'loader-particle';
+        particle.style.animationDelay = `${i * 0.003}s`;
+
+        // Calculate random angles and hue
+        const z = Math.random() * 360;
+        const y = Math.random() * 360;
+        const hue = ((40 / totalParticles * i) + baseHue);
+
+        particle.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+        particle.setAttribute('data-z', z);
+        particle.setAttribute('data-y', y);
+
+        // Create unique animation
+        const animName = `orbit-${i}`;
+        cssStyles += `
             @keyframes ${animName} {
               2% { opacity: 1; }
               5% { transform: rotateZ(-${z}deg) rotateY(${y}deg) translateX(100px) rotateZ(${z}deg); }
@@ -182,95 +207,96 @@
               100% { transform: rotateZ(-${z}deg) rotateY(${y}deg) translateX(300px) rotateZ(${z}deg); }
             }
           `;
-          
-          particle.style.animation = `${animName} 60s infinite`;
-          fragment.appendChild(particle);
-        }
-        
-        // Inject all styles at once
-        const style = document.createElement('style');
-        style.textContent = cssStyles;
-        document.head.appendChild(style);
-        
-        // Append all particles at once
-        orbWrap.appendChild(fragment);
+
+        particle.style.animation = `${animName} 60s infinite`;
+        fragment.appendChild(particle);
       }
-      
-      // Decryption text effect
-      const loaderText = document.getElementById('loader-text');
-      if (loaderText) {
-        const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const originalText = 'DECRYPTING';
-        const finalText = 'ACCESS GRANTED';
-        let frame = 0;
-        const totalFrames = 4; // 0.13 seconds at 30fps
-        
-        // Decryption effect for initial text
-        const decryptInterval = setInterval(() => {
-          if (frame < totalFrames) {
-            let displayText = '';
-            for (let i = 0; i < originalText.length; i++) {
-              if (frame / totalFrames > i / originalText.length) {
-                displayText += originalText[i];
-              } else {
-                displayText += chars[Math.floor(Math.random() * chars.length)];
-              }
+
+      // Inject all styles at once
+      const style = document.createElement('style');
+      style.textContent = cssStyles;
+      document.head.appendChild(style);
+
+      // Append all particles at once
+      orbWrap.appendChild(fragment);
+    }
+
+    // Decryption text effect
+    const loaderText = document.getElementById('loader-text');
+    if (loaderText) {
+      const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const originalText = 'DECRYPTING';
+      const finalText = 'ACCESS GRANTED';
+      let frame = 0;
+      const totalFrames = 4; // 0.13 seconds at 30fps
+
+      // Decryption effect for initial text
+      const decryptInterval = setInterval(() => {
+        if (frame < totalFrames) {
+          let displayText = '';
+          for (let i = 0; i < originalText.length; i++) {
+            if (frame / totalFrames > i / originalText.length) {
+              displayText += originalText[i];
+            } else {
+              displayText += chars[Math.floor(Math.random() * chars.length)];
             }
-            loaderText.textContent = displayText;
-            frame++;
-          } else {
-            loaderText.textContent = originalText;
-            clearInterval(decryptInterval);
-            
-            // Change to ACCESS GRANTED after orb forms (0.13 seconds)
-            setTimeout(() => {
-              let grantedFrame = 0;
-              const grantedFrames = 6; // 0.2 seconds at 30fps
-              
-              const grantedInterval = setInterval(() => {
-                if (grantedFrame < grantedFrames) {
-                  let displayText = '';
-                  for (let i = 0; i < finalText.length; i++) {
-                    if (grantedFrame / grantedFrames > i / finalText.length) {
-                      displayText += finalText[i];
-                    } else {
-                      displayText += chars[Math.floor(Math.random() * chars.length)];
-                    }
-                  }
-                  loaderText.textContent = displayText;
-                  grantedFrame++;
-                } else {
-                  loaderText.textContent = finalText;
-                  clearInterval(grantedInterval);
-                }
-              }, 1000 / 30);
-            }, 130);
           }
-        }, 1000 / 30);
-      }
-      
-      // Hide loader when page is ready
-      window.addEventListener('load', () => {
-        const loader = document.getElementById('page-loader');
-        if (loader) {
+          loaderText.textContent = displayText;
+          frame++;
+        } else {
+          loaderText.textContent = originalText;
+          clearInterval(decryptInterval);
+
+          // Change to ACCESS GRANTED after orb forms (0.13 seconds)
           setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-              loader.style.display = 'none';
-            }, 500);
-          }, 3000); // Show orb for at least 3 seconds
+            let grantedFrame = 0;
+            const grantedFrames = 6; // 0.2 seconds at 30fps
+
+            const grantedInterval = setInterval(() => {
+              if (grantedFrame < grantedFrames) {
+                let displayText = '';
+                for (let i = 0; i < finalText.length; i++) {
+                  if (grantedFrame / grantedFrames > i / finalText.length) {
+                    displayText += finalText[i];
+                  } else {
+                    displayText += chars[Math.floor(Math.random() * chars.length)];
+                  }
+                }
+                loaderText.textContent = displayText;
+                grantedFrame++;
+              } else {
+                loaderText.textContent = finalText;
+                clearInterval(grantedInterval);
+              }
+            }, 1000 / 30);
+          }, 130);
         }
-      });
-      
-      // Wait for components to load before initializing app
-      window.initializeApp = async function() {
-        const { default: initApp } = await import('./assets/js/app.js');
-        
-        // Initialize Lucide Icons
-        if (typeof lucide !== 'undefined') {
-          lucide.createIcons();
-        }
-      };
-    </script>
-  </body>
+      }, 1000 / 30);
+    }
+
+    // Hide loader when page is ready
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('page-loader');
+      if (loader) {
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 500);
+        }, 3000); // Show orb for at least 3 seconds
+      }
+    });
+
+    // Wait for components to load before initializing app
+    window.initializeApp = async function () {
+      const { default: initApp } = await import('./assets/js/app.js');
+
+      // Initialize Lucide Icons
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    };
+  </script>
+</body>
+
 </html>

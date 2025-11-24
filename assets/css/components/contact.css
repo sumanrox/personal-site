@@ -101,48 +101,232 @@
 }
 
 .contact-input::placeholder {
-    color: #444;
+    color: #888;
     transition: color 0.3s ease;
 }
 
 .contact-input:focus::placeholder {
-    color: #666;
+    color: #aaa;
 }
 
 /* Floating Label Effect (Optional, using placeholder for now but styled) */
+.contact-input-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
 
-/* Submit Button */
-.contact-submit {
+.contact-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 1rem 0 1rem 2.5rem;
+    /* Added left padding for icon */
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border-radius: 0;
+}
+
+.contact-input:focus {
+    outline: none;
+    border-bottom-color: #fff;
+    padding-left: 2.75rem;
+    /* Slight shift on focus */
+}
+
+.contact-input::placeholder {
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.contact-input:focus::placeholder {
+    color: #aaa;
+}
+
+.contact-input-group:focus-within .input-icon {
+    color: #fff;
+}
+
+/* Tech Pill Submit Button - Advanced Animation */
+.contact-submit-tech {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    color: #fff;
     padding: 1rem 2rem;
-    background: #fff;
-    color: #000;
-    border: none;
-    font-family: 'Funnel Display', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
 }
 
-.contact-submit:hover {
-    background: #e5e5e5;
-    transform: translateY(-2px);
-    padding-right: 2.5rem;
+/* Scanline Effect */
+.contact-submit-tech::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
 }
 
-.contact-submit i {
-    transition: transform 0.4s ease;
+.contact-submit-tech:hover::before {
+    left: 100%;
+    transition: left 0.8s ease;
 }
 
-.contact-submit:hover i {
-    transform: translateX(5px);
+/* Glow Effect */
+.contact-submit-tech:hover {
+    border-color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.tech-text {
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s ease;
+    letter-spacing: 0.2em;
+}
+
+.tech-bracket {
+    position: relative;
+    z-index: 10;
+    font-family: monospace;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+.contact-submit-tech:hover .tech-bracket {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.contact-submit-tech:hover .tech-bracket:first-child {
+    transform: translateX(-10px);
+}
+
+.contact-submit-tech:hover .tech-bracket:last-child {
+    transform: translateX(10px);
+}
+
+/* Loading State - Progress Bar */
+.contact-submit-tech.btn-loading {
+    border-color: #666;
+    cursor: not-allowed;
+}
+
+.contact-submit-tech.btn-loading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: #fff;
+    animation: progress-indeterminate 2s infinite linear;
+}
+
+@keyframes progress-indeterminate {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+
+    50% {
+        width: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+.contact-submit-tech.btn-loading .tech-text {
+    opacity: 0.7;
+    animation: pulse-text 1s infinite;
+}
+
+@keyframes pulse-text {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Success State */
+.contact-submit-tech.btn-success {
+    border-color: #00c853;
+    background: rgba(0, 200, 83, 0.1);
+    box-shadow: 0 0 30px rgba(0, 200, 83, 0.2);
+}
+
+.contact-submit-tech.btn-success .tech-text,
+.contact-submit-tech.btn-success .tech-bracket {
+    color: #00c853 !important;
+    text-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
+}
+
+/* Error State */
+.contact-submit-tech.btn-error {
+    border-color: #ff3b30;
+    background: rgba(255, 59, 48, 0.1);
+    box-shadow: 0 0 30px rgba(255, 59, 48, 0.2);
+}
+
+.contact-submit-tech.btn-error .tech-text,
+.contact-submit-tech.btn-error .tech-bracket {
+    color: #ff3b30 !important;
+    text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
+}
+
+/* Shake Animation for Error */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake-error {
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 /* Contact Info Links */

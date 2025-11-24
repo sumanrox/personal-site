@@ -21,6 +21,9 @@ import { initHorizontalScrollWork } from './components/horizontalScrollWork.js';
 import { PillHeadersController } from './components/pillHeaders.js';
 import { initFormSecurity } from './components/formSecurity.js';
 import { initProjects } from './components/projects.js';
+import { initBackToTop } from './components/back-to-top.js';
+import { initPullToRefresh } from './components/pull-to-refresh.js';
+import { initProjectPillAnimation } from './components/projectPillAnimation.js';
 import './components/heroThree.js';
 
 (function () {
@@ -52,6 +55,9 @@ import './components/heroThree.js';
       try { initFormSecurity(); } catch (e) { console.error('Error initializing Form Security:', e); }
       try { initHorizontalScrollWork(); } catch (e) { console.error('Error initializing Work Scroll:', e); }
       try { initProjects(); } catch (e) { console.error('Error initializing Projects:', e); }
+      try { initProjectPillAnimation(); } catch (e) { console.error('Error initializing Project Pills:', e); }
+      try { initBackToTop(); } catch (e) { console.error('Error initializing Back to Top:', e); }
+      try { initPullToRefresh(); } catch (e) { console.error('Error initializing Pull to Refresh:', e); }
 
       // Initialize counter animation after a delay to ensure DOM is ready
       setTimeout(() => {

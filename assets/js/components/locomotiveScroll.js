@@ -19,18 +19,26 @@ export function initLocomotiveScroll() {
     return null;
   }
 
+  // Detect if mobile/tablet
+  const isMobile = window.innerWidth <= 768;
+  const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+
   // Initialize Locomotive Scroll
   const locoScroll = new LocomotiveScroll({
     el: scrollContainer,
     smooth: true,
     smartphone: {
-      smooth: true
+      smooth: true,
+      lerp: 0.15, // Smoother on mobile (balanced between responsive and smooth)
+      multiplier: 1.2 // Slight increase in scroll distance
     },
     tablet: {
-      smooth: true
+      smooth: true,
+      lerp: 0.12, // Very smooth on tablet
+      multiplier: 1.15
     },
-    // Multiplier for scroll speed
-    multiplier: 1.0,
+    // Multiplier for scroll speed on desktop
+    multiplier: isMobile ? 1.2 : (isTablet ? 1.15 : 1.0),
     // Class to add when scrolling
     class: 'is-inview',
     // Repeat animations on scroll up
@@ -39,7 +47,7 @@ export function initLocomotiveScroll() {
     getDirection: true,
     getSpeed: true,
     // Enable native scrollbar
-    lerp: 0.1, // Smoothness (0.1 = smooth, 1 = instant)
+    lerp: isMobile ? 0.15 : (isTablet ? 0.12 : 0.1), // Smoother but still responsive
     reloadOnContextChange: true
   });
 

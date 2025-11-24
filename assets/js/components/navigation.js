@@ -24,7 +24,7 @@ export function initNavigation() {
   }
 
   // Elegant entrance animation
-  gsap.fromTo(navBar, 
+  gsap.fromTo(navBar,
     { y: -30, opacity: 0 },
     { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
   );
@@ -39,29 +39,29 @@ export function initNavigation() {
     const openBracket = link.querySelector('.nav-open-bracket');
     const closeBracket = link.querySelector('.nav-close-bracket');
     const text = link.querySelector('.nav-text');
-    
+
     let hoverTimeline = null;
 
     link.addEventListener('mouseenter', () => {
       if (hoverTimeline) hoverTimeline.kill();
-      
+
       hoverTimeline = gsap.timeline();
-      
+
       // Step 1: Open bracket appears
       hoverTimeline.to(openBracket, {
         opacity: 1,
         duration: 0.15,
         ease: "power2.out"
       });
-      
+
       // Step 2: Close bracket slides from left
       const textWidth = text.offsetWidth;
-      hoverTimeline.fromTo(closeBracket, 
+      hoverTimeline.fromTo(closeBracket,
         { x: -(textWidth + 8), opacity: 1 },
         { x: 0, duration: 0.2, ease: "power2.out" },
         "-=0.1"
       );
-      
+
       // Step 3: Text blinks rapidly
       hoverTimeline.to(text, {
         opacity: 0,
@@ -70,23 +70,23 @@ export function initNavigation() {
         yoyo: true,
         ease: "power2.inOut"
       }, "-=0.15");
-      
+
       // Ensure text stays visible
       hoverTimeline.set(text, { opacity: 1 });
     });
 
     link.addEventListener('mouseleave', () => {
       if (hoverTimeline) hoverTimeline.kill();
-      
+
       hoverTimeline = gsap.timeline();
-      
+
       // Reverse animation - fade out all elements
       hoverTimeline.to([openBracket, closeBracket], {
         opacity: 0,
         duration: 0.2,
         ease: "power2.in"
       });
-      
+
       hoverTimeline.set(closeBracket, { x: 0 });
       hoverTimeline.set(text, { opacity: 1 });
     });
@@ -103,19 +103,19 @@ export function initNavigation() {
     } else {
       scrollY = window.scrollY || 0;
     }
-    
+
     if (scrollY > 50) {
       navContainer.classList.add('nav-scrolled');
     } else {
       navContainer.classList.remove('nav-scrolled');
     }
-    
+
     lastScrollY = scrollY;
   };
 
   // Throttled scroll listener
   let scrollTicking = false;
-  
+
   // Listen to Locomotive Scroll if available
   if (window.locomotiveScroll) {
     window.locomotiveScroll.on('scroll', () => {
@@ -157,7 +157,7 @@ export function initNavigation() {
     mobileMenuBtn.classList.add('active');
     mobileMenuBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    
+
     // Animate hamburger to X
     const hamburgerLines = mobileMenuBtn.querySelectorAll('.hamburger-line');
     gsap.to(hamburgerLines[0], {
@@ -172,7 +172,7 @@ export function initNavigation() {
       duration: 0.3,
       ease: "power2.out"
     });
-    
+
     // Fade in menu
     gsap.to(mobileMenu, {
       opacity: 1,
@@ -181,12 +181,12 @@ export function initNavigation() {
       ease: "power2.out"
     });
 
-    // Stagger mobile links
-    gsap.fromTo(mobileLinks,
-      { x: -30, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.5, stagger: 0.08, delay: 0.2, ease: "power2.out" }
-    );
-    
+    // Slide-in animation removed for instant menu display
+    // gsap.fromTo(mobileLinks,
+    //   { x: -30, opacity: 0 },
+    //   { x: 0, opacity: 1, duration: 0.5, stagger: 0.08, delay: 0.2, ease: "power2.out" }
+    // );
+
     // Focus trap: focus first link
     if (mobileLinks.length > 0) {
       setTimeout(() => mobileLinks[0].focus(), 300);
@@ -214,20 +214,19 @@ export function initNavigation() {
       ease: "power2.in"
     });
 
-    // Quick exit animation
-    gsap.to(mobileLinks, {
-      x: -20,
-      opacity: 0,
-      duration: 0.3,
-      stagger: 0.04,
-      ease: "power2.in"
-    });
+    // Exit animation removed for instant menu close
+    // gsap.to(mobileLinks, {
+    //   x: -20,
+    //   opacity: 0,
+    //   duration: 0.3,
+    //   stagger: 0.04,
+    //   ease: "power2.in"
+    // });
 
     gsap.to(mobileMenu, {
       opacity: 0,
       pointerEvents: 'none',
       duration: 0.4,
-      delay: 0.2,
       ease: "power2.out"
     });
   };
@@ -257,9 +256,9 @@ export function initNavigation() {
 
   // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (mobileMenuOpen && 
-        !mobileMenuBtn.contains(e.target) && 
-        !mobileMenu.contains(e.target)) {
+    if (mobileMenuOpen &&
+      !mobileMenuBtn.contains(e.target) &&
+      !mobileMenu.contains(e.target)) {
       closeMobileMenu();
     }
   });
@@ -280,13 +279,13 @@ export function initNavigation() {
         e.preventDefault();
         const targetId = href.substring(1);
         const target = document.getElementById(targetId);
-        
+
         if (target && window.locomotiveScroll) {
           // Close mobile menu if open
           if (mobileMenuOpen) {
             closeMobileMenu();
           }
-          
+
           // Use Locomotive Scroll's scrollTo
           window.locomotiveScroll.scrollTo(target, {
             duration: 1000,

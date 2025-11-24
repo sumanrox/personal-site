@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience - Improved Current Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+        }
+
+        /* Improved masonry grid - cleaner spacing */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Featured card (current role) - refined */
+        .featured-card {
+            background: #000;
+            color: white;
+            padding: 3rem;
+            grid-column: span 2;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Standard cards - cleaner borders */
+        .experience-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            border-color: #000;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Typography improvements */
+        .role-title {
+            font-family: 'Funnel Display', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .company-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .period {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Current badge */
+        .current-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-family: 'Funnel Display', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Highlights */
+        .highlight-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .highlight-icon {
+            width: 1rem;
+            height: 1rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        /* Rainbow underline animation (exact original) */
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-rainbow {
+            animation: rainbow 3s ease-in-out infinite;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 1024px) {
+            .featured-card {
+                grid-column: span 1;
+                padding: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .role-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-12">
+            <h1 class="text-5xl font-bold mb-4" style="font-family: 'Funnel Display', sans-serif;">
+                Experience - Improved
+            </h1>
+            <p class="text-gray-600 text-lg">Cleaner spacing, better typography, refined animations</p>
+        </div>
+
+        <div class="experience-grid">
+            <!-- Current Role - Featured -->
+            <div class="featured-card">
+                <div class="current-badge">
+                    <span class="pulse-dot"></span>
+                    <span>Current Role</span>
+                </div>
+
+                <h3 class="role-title text-white relative pb-5">
+                    Independent Security Researcher
+                    <div
+                        class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-[length:200%_100%] animate-rainbow">
+                    </div>
+                </h3>
+
+                <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                    Full-time vulnerability research focusing on critical security flaws in major platforms.
+                    Achieved top rankings in bug bounty programs with significant financial rewards.
+                </p>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="text-center">
+                        <div class="stat-value">12+</div>
+                        <div class="stat-label">CVEs Discovered</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-value">$50K+</div>
+                        <div class="stat-label">Bug Bounties</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-value">Top 1%</div>
+                        <div class="stat-label">HackerOne Rank</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="period text-gray-400">2023 - Present • 2+ Years</div>
+                    <i data-lucide="shield-check" class="w-6 h-6 text-green-400"></i>
+                </div>
+            </div>
+
+            <!-- Previous Role 1 -->
+            <div class="experience-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="period">2021 - 2023</div>
+                    <i data-lucide="briefcase" class="w-5 h-5 text-gray-400"></i>
+                </div>
+
+                <h3 class="role-title">
+                    Senior Penetration Tester
+                </h3>
+                <p class="company-name">SecureTech Solutions</p>
+
+                <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                    Led comprehensive security assessments for Fortune 500 companies. Specialized in web applications,
+                    network infrastructure, and cloud security testing.
+                </p>
+
+                <div class="highlight-list">
+                    <div class="highlight-item">
+                        <i data-lucide="check-circle" class="highlight-icon text-green-600"></i>
+                        <span class="text-sm">50+ Enterprise Clients</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i data-lucide="check-circle" class="highlight-icon text-green-600"></i>
+                        <span class="text-sm">Red Team Operations</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i data-lucide="check-circle" class="highlight-icon text-green-600"></i>
+                        <span class="text-sm">Cloud Security Specialist</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Previous Role 2 -->
+            <div class="experience-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="period">2018 - 2021</div>
+                    <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+                </div>
+
+                <h3 class="role-title">
+                    Security Analyst
+                </h3>
+                <p class="company-name">CyberGuard Inc.</p>
+
+                <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                    Foundation role building cybersecurity expertise through incident response, vulnerability
+                    assessments,
+                    and security monitoring.
+                </p>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-100 text-xs font-semibold uppercase tracking-wider">CISSP</span>
+                    <span class="px-3 py-1 bg-gray-100 text-xs font-semibold uppercase tracking-wider">CEH</span>
+                    <span class="px-3 py-1 bg-gray-100 text-xs font-semibold uppercase tracking-wider">Python</span>
+                </div>
+            </div>
+
+            <!-- Speaking & Community - Full Width -->
+            <div class="experience-card" style="grid-column: span 2;">
+                <div class="flex items-center gap-3 mb-6">
+                    <i data-lucide="mic" class="w-6 h-6"></i>
+                    <h3 class="text-xl font-bold">Speaking & Community Involvement</h3>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="flex justify-center mb-4">
+                            <i data-lucide="radio" class="w-12 h-12"></i>
+                        </div>
+                        <div class="font-bold text-lg mb-2">DEF CON Speaker</div>
+                        <div class="text-sm text-gray-600">"JWT Implementation Vulnerabilities"</div>
+                    </div>
+                    <div>
+                        <div class="flex justify-center mb-4">
+                            <i data-lucide="map-pin" class="w-12 h-12"></i>
+                        </div>
+                        <div class="font-bold text-lg mb-2">BSides Regular</div>
+                        <div class="text-sm text-gray-600">Austin, Dallas, Houston</div>
+                    </div>
+                    <div>
+                        <div class="flex justify-center mb-4">
+                            <i data-lucide="award" class="w-12 h-12"></i>
+                        </div>
+                        <div class="font-bold text-lg mb-2">CTF Competitor</div>
+                        <div class="text-sm text-gray-600">Black Hat, Local Events</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

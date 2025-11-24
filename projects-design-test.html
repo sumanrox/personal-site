@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Pill Animation Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .project-item {
+            border-left: 4px solid #e5e5e5;
+            padding: 2.5rem 0 2.5rem 2rem;
+            position: relative;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 4px;
+            height: 0;
+            background: #000;
+            transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-item:hover::before {
+            height: 100%;
+        }
+
+        .project-number-container {
+            font-family: 'Funnel Display', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-bracket,
+        .project-number {
+            opacity: 0;
+            color: #000;
+        }
+
+        .project-title {
+            font-family: 'Funnel Display', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .tag-pill {
+            font-size: 0.65rem;
+            padding: 0.35rem 0.75rem;
+            background: #f5f5f5;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+            color: #666;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover .tag-pill {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .project-meta {
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .project-item {
+                padding: 2rem 0 2rem 1.5rem;
+            }
+
+            .project-number-container {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-title {
+                font-size: 1.5rem;
+            }
+
+            .project-description {
+                font-size: 0.85rem;
+            }
+
+            .tag-pill {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .project-meta {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-item {
+                padding: 1.5rem 0 1.5rem 1rem;
+                border-left-width: 3px;
+            }
+
+            .project-item::before {
+                left: -3px;
+                width: 3px;
+            }
+
+            .project-number-container {
+                font-size: 2rem;
+                gap: 0.25rem;
+            }
+
+            .project-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-5xl font-bold mb-4" style="font-family: 'Funnel Display', sans-serif;">
+            Editorial Projects (Pill Animation)
+        </h1>
+        <p class="text-gray-600 mb-12">Same bracket animation as pill headers - clean and professional</p>
+
+        <div class="bg-white p-12">
+            <div class="project-item">
+                <div class="project-number-container">
+                    <span class="project-bracket project-open-bracket">[</span>
+                    <span class="project-number">01</span>
+                    <span class="project-bracket project-close-bracket">]</span>
+                </div>
+                <h3 class="project-title">ReconMaster Pro</h3>
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed max-w-2xl">
+                    Advanced penetration testing framework with automated vulnerability detection and enterprise
+                    reporting.
+                </p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tag-pill">Python</span>
+                    <span class="tag-pill">Security</span>
+                    <span class="tag-pill">Enterprise</span>
+                    <span class="tag-pill">CLI</span>
+                </div>
+                <div class="flex gap-6">
+                    <div class="project-meta">★ 2.4k</div>
+                    <div class="project-meta">🔀 320</div>
+                    <div class="project-meta">2 days ago</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-number-container">
+                    <span class="project-bracket project-open-bracket">[</span>
+                    <span class="project-number">02</span>
+                    <span class="project-bracket project-close-bracket">]</span>
+                </div>
+                <h3 class="project-title">SubEnum Scanner</h3>
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed max-w-2xl">
+                    High-performance subdomain enumeration with multi-threaded scanning and DNS validation.
+                </p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tag-pill">Go</span>
+                    <span class="tag-pill">Recon</span>
+                    <span class="tag-pill">DNS</span>
+                    <span class="tag-pill">Fast</span>
+                </div>
+                <div class="flex gap-6">
+                    <div class="project-meta">★ 1.8k</div>
+                    <div class="project-meta">🔀 210</div>
+                    <div class="project-meta">5 days ago</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-number-container">
+                    <span class="project-bracket project-open-bracket">[</span>
+                    <span class="project-number">03</span>
+                    <span class="project-bracket project-close-bracket">]</span>
+                </div>
+                <h3 class="project-title">CloudGuard Suite</h3>
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed max-w-2xl">
+                    Cloud security analysis for AWS, GCP, and Azure with automated compliance reporting.
+                </p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tag-pill">Node.js</span>
+                    <span class="tag-pill">Cloud</span>
+                    <span class="tag-pill">AWS</span>
+                    <span class="tag-pill">Azure</span>
+                </div>
+                <div class="flex gap-6">
+                    <div class="project-meta">★ 956</div>
+                    <div class="project-meta">🔀 89</div>
+                    <div class="project-meta">1 week ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Exact pill animation from pillHeaders
+        function animateProjectNumber(item) {
+            const openBracket = item.querySelector('.project-open-bracket');
+            const closeBracket = item.querySelector('.project-close-bracket');
+            const number = item.querySelector('.project-number');
+            if (!openBracket || !closeBracket || !number) return;
+
+            const tl = gsap.timeline();
+
+            // Step 1: Fade in open bracket
+            tl.to(openBracket, { opacity: 1, duration: 0.15, ease: "power2.out" });
+
+            // Step 2: Position close bracket at open bracket, then slide right
+            const numberWidth = number.offsetWidth;
+            tl.set(closeBracket, { x: -(numberWidth + 16), opacity: 1 });
+            tl.to(closeBracket, { x: 0, duration: 0.25, ease: "power2.inOut" });
+
+            // Step 3: Number blinks during slide (exact same as pillHeaders)
+            tl.to(number, { opacity: 1, duration: 0.04, repeat: 4, yoyo: true, ease: "power2.inOut" }, "-=0.15");
+            tl.set(number, { opacity: 1 });
+        }
+
+        // Animate on load with stagger
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.project-item').forEach((item, i) => {
+                setTimeout(() => animateProjectNumber(item), i * 200);
+            });
+        });
+    </script>
+</body>
+
+</html>
