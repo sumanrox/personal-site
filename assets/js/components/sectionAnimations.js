@@ -23,20 +23,28 @@ export function initSectionAnimations() {
     // Skip experience section (cards animate separately, no section fade)
     if (section.id === 'experience') return;
 
-    gsap.from(section, {
-      opacity: 0,
-      y: 30,
-      duration: 0.5,
-      ease: 'power2.out',
-      force3D: true, // Force GPU acceleration
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 95%',
-        toggleActions: 'play none none none',
-        fastScrollEnd: true, // Better handling of fast scrolling
-        preventOverlaps: true
+    // Section fade and slide animation with proper opacity handling
+    gsap.fromTo(section, 
+      {
+        opacity: 1, // Start fully visible to prevent white flashes
+        y: 50
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        force3D: true,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%',
+          end: 'top 20%',
+          toggleActions: 'play none none reverse',
+          fastScrollEnd: true,
+          preventOverlaps: true
+        }
       }
-    });
+    );
   });
 
   // Animate section headers instantly

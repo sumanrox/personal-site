@@ -5,7 +5,9 @@
 
 async function loadComponent(placeholder, componentPath) {
   try {
-    const response = await fetch(componentPath);
+    // Add timestamp to prevent caching during development
+    const cacheBuster = `?t=${Date.now()}`;
+    const response = await fetch(componentPath + cacheBuster);
     if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
     const html = await response.text();
     
@@ -26,12 +28,11 @@ async function loadAllComponents() {
     { placeholder: '#hero-placeholder', path: 'components/hero.html' },
     { placeholder: '#about-placeholder', path: 'components/about.html' },
     { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },
-    { placeholder: '#pricing-placeholder', path: 'components/pricing.html' },
-    { placeholder: '#testimonials-placeholder', path: 'components/testimonials.html' },
-    { placeholder: '#faq-placeholder', path: 'components/faq.html' },
     { placeholder: '#experience-placeholder', path: 'components/experience.html' },
-    { placeholder: '#projects-placeholder', path: 'components/projects.html' },
     { placeholder: '#work-placeholder', path: 'components/work.html' },
+    { placeholder: '#projects-placeholder', path: 'components/projects.html' },
+    { placeholder: '#testimonials-placeholder', path: 'components/testimonials-new.html' },
+    { placeholder: '#faq-placeholder', path: 'components/faq.html' },
     { placeholder: '#contact-placeholder', path: 'components/contact.html' },
     { placeholder: '#footer-placeholder', path: 'components/footer.html' }
   ];
@@ -40,6 +41,15 @@ async function loadAllComponents() {
   await Promise.all(
     components.map(comp => loadComponent(comp.placeholder, comp.path))
   );
+
+  // Force Tailwind to rescan for dynamic content
+  if (window.tailwind && window.tailwind.config) {
+    // Trigger a reparse by updating a dummy element
+    const dummy = document.createElement('div');
+    dummy.className = 'hidden md:block';
+    document.body.appendChild(dummy);
+    setTimeout(() => dummy.remove(), 100);
+  }
 
   // Initialize Lucide icons once after all components load
   setTimeout(() => {

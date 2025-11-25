@@ -18,14 +18,14 @@
 
 /* Character span styling for animated text - SplitType creates .char class */
 .char {
-  color: #4a4a4a;
+  color: var(--text-light);
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: color;
 }
 
 .char.active {
-  color: #00ffff;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  color: var(--color-primary);
+  text-shadow: var(--shadow-primary-glow);
 }
 
 /* Preserve word spacing */

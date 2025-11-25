@@ -9,9 +9,6 @@ export function initLogoCarousel() {
       this.container = document.getElementById('logo-carousel');
       this.track = document.getElementById('logo-track');
       this.isPaused = false;
-      this.scrollPosition = 0;
-      this.scrollSpeed = 1.5; // pixels per frame
-      this.animationFrame = null;
       this.init();
     }
 
@@ -21,65 +18,44 @@ export function initLogoCarousel() {
         return;
       }
 
-      this.startScroll();
-      console.log('🎠 Logo carousel initialized with seamless scroll');
+      this.setupInfiniteScroll();
+      console.log('🎠 Logo carousel initialized with CSS-based infinite scroll');
     }
 
-    startScroll() {
-      const scroll = () => {
-        if (!this.isPaused) {
-          this.scrollPosition += this.scrollSpeed;
-          
-          // Calculate the width of one logo item including gap
-          const firstItem = this.track.querySelector('.logo-item');
-          if (firstItem) {
-            const itemWidth = firstItem.offsetWidth;
-            const gap = parseFloat(getComputedStyle(this.track).gap) || 48; // 3rem = 48px
-            const singleItemWidth = itemWidth + gap;
-            
-            // Count items in first set (before "Logo Set 2" comment)
-            const allItems = this.track.querySelectorAll('.logo-item');
-            const itemsPerSet = allItems.length / 2;
-            const oneSetWidth = singleItemWidth * itemsPerSet;
-            
-            // Reset seamlessly when we've scrolled exactly one set
-            if (this.scrollPosition >= oneSetWidth) {
-              this.scrollPosition = this.scrollPosition - oneSetWidth;
-            }
-          }
-          
-          this.track.style.transform = `translateX(-${this.scrollPosition}px)`;
-        }
-        
-        this.animationFrame = requestAnimationFrame(scroll);
-      };
+    setupInfiniteScroll() {
+      // Clone all logo items for seamless infinite scroll
+      const items = Array.from(this.track.children);
+      const clone = items.map(item => item.cloneNode(true));
       
-      scroll();
+      // Append clones to create seamless loop
+      clone.forEach(item => this.track.appendChild(item));
+      
+      // Calculate total width of original items
+      const firstItem = items[0];
+      if (firstItem) {
+        const itemWidth = firstItem.offsetWidth;
+        const gap = parseFloat(getComputedStyle(this.track).gap) || 48;
+        const totalWidth = (itemWidth + gap) * items.length;
+        
+        // Set CSS variable for animation duration (based on width for consistent speed)
+        const duration = totalWidth / 50; // ~50px per second
+        this.track.style.setProperty('--scroll-duration', `${duration}s`);
+      }
+      
+      // Start animation
+      this.track.classList.add('scrolling');
     }
 
     pause() {
-      this.isPaused = true;
-      this.container.classList.add('scroll-paused');
+      this.track.style.animationPlayState = 'paused';
     }
 
     resume() {
-      this.isPaused = false;
-      this.container.classList.remove('scroll-paused');
-    }
-
-    reverse() {
-      this.scrollSpeed = -this.scrollSpeed;
-    }
-
-    setupHoverPause() {
-      // Hover pause disabled - carousel continues scrolling
-      console.log('🎠 Logo carousel hover pause disabled');
+      this.track.style.animationPlayState = 'running';
     }
 
     destroy() {
-      if (this.animationFrame) {
-        cancelAnimationFrame(this.animationFrame);
-      }
+      this.track.classList.remove('scrolling');
     }
   }
 

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Section Variations</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        funnel: ['Funnel Display', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Funnel Display', sans-serif;
+            background: #f0ece8;
+        }
+        
+        .variation {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border: 3px solid black;
+        }
+        
+        .variation-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: black;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Variation 1: Brutalist Grid */
+        .v1-card {
+            background: white;
+            border: 3px solid black;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .v1-card:hover {
+            transform: translate(4px, -4px);
+            box-shadow: -8px 8px 0 black;
+        }
+        
+        .v1-severity {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid black;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .v1-severity.critical { background: #ef4444; color: white; }
+        .v1-severity.high { background: #f59e0b; color: white; }
+        
+        /* Variation 2: Magazine Layout */
+        .v2-card {
+            background: white;
+            border: 2px solid #e5e5e5;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .v2-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ef4444 0%, #f59e0b 100%);
+        }
+        
+        .v2-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #666;
+            font-weight: 700;
+        }
+        
+        /* Variation 3: Minimalist Cards */
+        .v3-card {
+            background: #fafafa;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .v3-card:hover {
+            background: white;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .v3-number {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            opacity: 0.1;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        /* Variation 4: Terminal Style */
+        .v4-card {
+            background: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 1.5rem;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+        
+        .v4-prompt {
+            color: #00ff00;
+            margin-right: 0.5rem;
+        }
+        
+        .v4-output {
+            color: #00ffff;
+        }
+        
+        /* Variation 5: Newspaper Column */
+        .v5-card {
+            background: white;
+            border-top: 4px solid black;
+            border-bottom: 4px solid black;
+            padding: 2rem;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+        
+        .v5-headline {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            column-span: all;
+            margin-bottom: 1rem;
+        }
+        
+        .v5-byline {
+            column-span: all;
+            border-bottom: 1px solid black;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        /* Variation 6: Bento Box / Masonry Grid */
+        .v6-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        
+        .v6-card {
+            background: white;
+            padding: 1.5rem;
+            border: 2px solid black;
+            transition: all 0.3s ease;
+        }
+        
+        .v6-card:hover {
+            transform: scale(1.02);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+        
+        .v6-large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .v6-wide {
+            grid-column: span 2;
+        }
+        
+        /* Variation 7: Timeline Vertical */
+        .v7-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .v7-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #ef4444, #f59e0b, #10b981);
+        }
+        
+        .v7-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-left: 4px solid black;
+        }
+        
+        .v7-item::before {
+            content: '';
+            position: absolute;
+            left: -3.75rem;
+            top: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: white;
+            border: 4px solid black;
+            border-radius: 50%;
+        }
+        
+        /* Variation 8: Card Stack / Layered */
+        .v8-stack {
+            position: relative;
+            padding-top: 3rem;
+        }
+        
+        .v8-card {
+            background: white;
+            border: 3px solid black;
+            padding: 2.5rem;
+            margin-bottom: -2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .v8-card:hover {
+            transform: translateY(-20px);
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .v8-card:nth-child(1) { transform: rotate(-2deg); }
+        .v8-card:nth-child(2) { transform: rotate(1deg); }
+        .v8-card:nth-child(3) { transform: rotate(-1deg); }
+        
+        /* Variation 9: Split Screen Diagonal */
+        .v9-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .v9-card {
+            background: white;
+            padding: 2rem;
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+            transition: all 0.3s ease;
+        }
+        
+        .v9-card:hover {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transform: scale(1.02);
+        }
+        
+        /* Variation 10: Neon Cyberpunk */
+        .v10-card {
+            background: #0a0a0a;
+            border: 2px solid #00ffff;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3),
+                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .v10-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: neonSweep 3s infinite;
+        }
+        
+        @keyframes neonSweep {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .v10-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6),
+                        inset 0 0 30px rgba(0, 255, 255, 0.2);
+            border-color: #ff00ff;
+        }
+        
+        .v10-text {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="p-8">
+    <h1 class="text-6xl font-bold mb-12 text-center">Research Section Variations</h1>
+    
+    <!-- Variation 1: Brutalist Grid -->
+    <div class="variation">
+        <div class="variation-title">Variation 1: Brutalist Grid</div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="v1-card">
+                <div class="mb-4">
+                    <span class="v1-severity critical">CRITICAL</span>
+                </div>
+                <h3 class="text-3xl font-black mb-2 leading-tight">CVE-2024-XXXXX</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide">Remote Code Execution</p>
+                <p class="text-sm leading-relaxed mb-4 opacity-70">
+                    Discovered critical RCE vulnerability affecting 50,000+ installations.
+                </p>
+                <div class="flex gap-4 text-sm font-bold">
+                    <div>
+                        <div class="text-xs opacity-50">BOUNTY</div>
+                        <div class="text-2xl font-black">$15K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs opacity-50">CVSS</div>
+                        <div class="text-2xl font-black">9.8</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v1-card">
+                <div class="mb-4">
+                    <span class="v1-severity high">HIGH</span>
+                </div>
+                <h3 class="text-3xl font-black mb-2 leading-tight">Auth Bypass</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide">Mobile Banking App</p>
+                <p class="text-sm leading-relaxed mb-4 opacity-70">
+                    Logic flaw in JWT implementation allowing full account takeover.
+                </p>
+                <div class="flex gap-4 text-sm font-bold">
+                    <div>
+                        <div class="text-xs opacity-50">BOUNTY</div>
+                        <div class="text-2xl font-black">$10K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs opacity-50">USERS</div>
+                        <div class="text-2xl font-black">2M+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v1-card">
+                <div class="mb-4">
+                    <span class="v1-severity high">HIGH</span>
+                </div>
+                <h3 class="text-3xl font-black mb-2 leading-tight">XSS Chain</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide">SaaS Admin Panel</p>
+                <p class="text-sm leading-relaxed mb-4 opacity-70">
+                    Chained stored XSS with CSRF for full admin account takeover.
+                </p>
+                <div class="flex gap-4 text-sm font-bold">
+                    <div>
+                        <div class="text-xs opacity-50">BOUNTY</div>
+                        <div class="text-2xl font-black">$8.5K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs opacity-50">TYPE</div>
+                        <div class="text-2xl font-black">CHAIN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 2: Magazine Layout -->
+    <div class="variation">
+        <div class="variation-title">Variation 2: Magazine Layout</div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="v2-card p-8">
+                <div class="mb-6">
+                    <span class="v2-label">Critical Severity • 2024</span>
+                </div>
+                <h2 class="text-5xl font-black mb-4 leading-none">CVE-2024-XXXXX</h2>
+                <h3 class="text-xl font-semibold mb-6 text-gray-600">Remote Code Execution in Enterprise CMS</h3>
+                <p class="leading-relaxed mb-6 text-gray-700">
+                    Discovered a critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection 
+                    with a deserialization flaw to achieve unauthenticated remote code execution.
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200">
+                    <div>
+                        <div class="v2-label mb-2">Bounty</div>
+                        <div class="text-3xl font-bold text-green-600">$15,000</div>
+                    </div>
+                    <div>
+                        <div class="v2-label mb-2">CVSS Score</div>
+                        <div class="text-3xl font-bold">9.8</div>
+                    </div>
+                    <div>
+                        <div class="v2-label mb-2">Platform</div>
+                        <div class="text-3xl font-bold">H1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v2-card p-8">
+                <div class="mb-6">
+                    <span class="v2-label">High Severity • 2023</span>
+                </div>
+                <h2 class="text-5xl font-black mb-4 leading-none">Auth Bypass</h2>
+                <h3 class="text-xl font-semibold mb-6 text-gray-600">Mobile Banking Application</h3>
+                <p class="leading-relaxed mb-6 text-gray-700">
+                    Identified a logic flaw in the JWT implementation allowing full account takeover. 
+                    Exploited weak token validation to bypass MFA and access user accounts.
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200">
+                    <div>
+                        <div class="v2-label mb-2">Bounty</div>
+                        <div class="text-3xl font-bold text-green-600">$10,000</div>
+                    </div>
+                    <div>
+                        <div class="v2-label mb-2">Users</div>
+                        <div class="text-3xl font-bold">2M+</div>
+                    </div>
+                    <div>
+                        <div class="v2-label mb-2">Platform</div>
+                        <div class="text-3xl font-bold">BC</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 3: Minimalist Cards -->
+    <div class="variation">
+        <div class="variation-title">Variation 3: Minimalist Cards</div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="v3-card relative">
+                <div class="v3-number">01</div>
+                <div class="mb-2 text-xs font-bold text-red-600 uppercase tracking-widest">Critical</div>
+                <h3 class="text-2xl font-bold mb-2">CVE-2024-XXXXX</h3>
+                <p class="text-sm mb-4 text-gray-600">Remote Code Execution in Enterprise CMS</p>
+                <div class="flex gap-4 text-sm">
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Bounty</div>
+                        <div class="font-bold text-green-600">$15,000</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">CVSS</div>
+                        <div class="font-bold">9.8</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v3-card relative">
+                <div class="v3-number">02</div>
+                <div class="mb-2 text-xs font-bold text-orange-600 uppercase tracking-widest">High</div>
+                <h3 class="text-2xl font-bold mb-2">Auth Bypass</h3>
+                <p class="text-sm mb-4 text-gray-600">Mobile Banking Application</p>
+                <div class="flex gap-4 text-sm">
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Bounty</div>
+                        <div class="font-bold text-green-600">$10,000</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Users</div>
+                        <div class="font-bold">2M+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v3-card relative">
+                <div class="v3-number">03</div>
+                <div class="mb-2 text-xs font-bold text-orange-600 uppercase tracking-widest">High</div>
+                <h3 class="text-2xl font-bold mb-2">XSS Chain</h3>
+                <p class="text-sm mb-4 text-gray-600">SaaS Platform Admin Panel</p>
+                <div class="flex gap-4 text-sm">
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Bounty</div>
+                        <div class="font-bold text-green-600">$8,500</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">Type</div>
+                        <div class="font-bold">Chain</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 4: Terminal Style -->
+    <div class="variation">
+        <div class="variation-title">Variation 4: Terminal / Hacker Style</div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="v4-card">
+                <div class="mb-4">
+                    <span class="v4-prompt">root@security:~$</span>
+                    <span>cat CVE-2024-XXXXX.txt</span>
+                </div>
+                <div class="mb-4">
+                    <div class="v4-output">================================</div>
+                    <div class="text-red-500 font-bold text-xl my-2">CRITICAL: RCE DISCOVERED</div>
+                    <div class="v4-output">================================</div>
+                </div>
+                <div class="mb-4 text-sm">
+                    <div><span class="text-gray-400">[TARGET]</span> Enterprise CMS Platform</div>
+                    <div><span class="text-gray-400">[IMPACT]</span> 50,000+ installations</div>
+                    <div><span class="text-gray-400">[VECTOR]</span> SQL Injection → Deserialization</div>
+                </div>
+                <div class="border-t border-green-500 pt-4 mt-4">
+                    <div class="flex gap-8">
+                        <div><span class="text-gray-400">BOUNTY:</span> <span class="text-yellow-400 font-bold">$15,000</span></div>
+                        <div><span class="text-gray-400">CVSS:</span> <span class="text-red-400 font-bold">9.8</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v4-card">
+                <div class="mb-4">
+                    <span class="v4-prompt">root@security:~$</span>
+                    <span>./exploit_auth_bypass.sh</span>
+                </div>
+                <div class="mb-4">
+                    <div class="v4-output">================================</div>
+                    <div class="text-orange-400 font-bold text-xl my-2">HIGH: AUTH BYPASS FOUND</div>
+                    <div class="v4-output">================================</div>
+                </div>
+                <div class="mb-4 text-sm">
+                    <div><span class="text-gray-400">[TARGET]</span> Mobile Banking App</div>
+                    <div><span class="text-gray-400">[IMPACT]</span> 2M+ active users</div>
+                    <div><span class="text-gray-400">[VECTOR]</span> JWT Logic Flaw</div>
+                </div>
+                <div class="border-t border-green-500 pt-4 mt-4">
+                    <div class="flex gap-8">
+                        <div><span class="text-gray-400">BOUNTY:</span> <span class="text-yellow-400 font-bold">$10,000</span></div>
+                        <div><span class="text-gray-400">MFA:</span> <span class="text-red-400 font-bold">BYPASSED</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 5: Newspaper Column -->
+    <div class="variation">
+        <div class="variation-title">Variation 5: Newspaper / Editorial Style</div>
+        <div class="space-y-8">
+            <div class="v5-card">
+                <div class="v5-headline">Critical Vulnerability Discovered in Enterprise CMS Platform</div>
+                <div class="v5-byline">
+                    <strong>CVE-2024-XXXXX</strong> | Security Researcher: Suman Roy | Severity: Critical (9.8 CVSS) | $15,000 Bounty
+                </div>
+                <p class="mb-4">
+                    In a significant security discovery, a critical Remote Code Execution (RCE) vulnerability was 
+                    identified affecting over 50,000 enterprise installations worldwide. The vulnerability, assigned 
+                    CVE-2024-XXXXX, represents one of the most severe security flaws discovered this year.
+                </p>
+                <p class="mb-4">
+                    The exploit chain begins with a SQL injection vulnerability in the content management system's 
+                    authentication module. By carefully crafting malicious SQL queries, an attacker can bypass 
+                    input validation mechanisms and inject arbitrary SQL commands into the database layer.
+                </p>
+                <p>
+                    This initial foothold is then leveraged to exploit a secondary deserialization flaw in the 
+                    application's session handling mechanism. The combination of these two vulnerabilities allows 
+                    for complete remote code execution without any authentication requirements, making it particularly 
+                    dangerous for internet-facing installations.
+                </p>
+            </div>
+            
+            <div class="v5-card">
+                <div class="v5-headline">Authentication Bypass Threatens 2 Million Banking Users</div>
+                <div class="v5-byline">
+                    <strong>High Severity</strong> | Security Researcher: Suman Roy | Impact: 2M+ Users | $10,000 Bounty
+                </div>
+                <p class="mb-4">
+                    A high-severity authentication bypass vulnerability has been discovered in a widely-used mobile 
+                    banking application, potentially affecting over two million active users. The flaw allows attackers 
+                    to completely bypass the application's security measures, including multi-factor authentication.
+                </p>
+                <p>
+                    The vulnerability stems from a logic error in the JSON Web Token (JWT) implementation. By 
+                    exploiting weak token validation procedures, malicious actors can forge authentication tokens 
+                    and gain unauthorized access to user accounts, including the ability to initiate transactions 
+                    and access sensitive financial information.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 6: Bento Box / Masonry Grid -->
+    <div class="variation">
+        <div class="variation-title">Variation 6: Bento Box / Masonry Grid</div>
+        <div class="v6-grid">
+            <div class="v6-card v6-large">
+                <div class="mb-3 text-xs font-bold text-red-600 uppercase">Critical</div>
+                <h3 class="text-4xl font-black mb-3 leading-tight">CVE-2024-XXXXX</h3>
+                <p class="text-sm font-bold mb-3">Remote Code Execution</p>
+                <p class="text-sm mb-4 leading-relaxed">
+                    Discovered critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection 
+                    with deserialization flaw for complete system compromise.
+                </p>
+                <div class="flex gap-4 mt-4">
+                    <div>
+                        <div class="text-xs opacity-50">Bounty</div>
+                        <div class="text-2xl font-black text-green-600">$15K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs opacity-50">CVSS</div>
+                        <div class="text-2xl font-black">9.8</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v6-card">
+                <div class="mb-2 text-xs font-bold text-orange-600 uppercase">High</div>
+                <h3 class="text-xl font-black mb-2">Auth Bypass</h3>
+                <p class="text-xs mb-3">JWT Logic Flaw</p>
+                <div class="text-xl font-black text-green-600">$10K</div>
+            </div>
+            
+            <div class="v6-card">
+                <div class="mb-2 text-xs font-bold text-orange-600 uppercase">High</div>
+                <h3 class="text-xl font-black mb-2">XSS Chain</h3>
+                <p class="text-xs mb-3">Admin Panel</p>
+                <div class="text-xl font-black text-green-600">$8.5K</div>
+            </div>
+            
+            <div class="v6-card v6-wide">
+                <div class="mb-2 text-xs font-bold text-blue-600 uppercase">Research</div>
+                <h3 class="text-2xl font-black mb-2">AWS S3 Exposure Study</h3>
+                <p class="text-sm">Large-scale reconnaissance identified 200+ misconfigured buckets exposing PII data.</p>
+            </div>
+            
+            <div class="v6-card v6-wide">
+                <div class="mb-2 text-xs font-bold text-purple-600 uppercase">Medium</div>
+                <h3 class="text-2xl font-black mb-2">API Rate Limit Bypass</h3>
+                <p class="text-sm">Exploited race condition in payment processing API to bypass transaction limits.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 7: Timeline Vertical -->
+    <div class="variation">
+        <div class="variation-title">Variation 7: Timeline Vertical</div>
+        <div class="v7-timeline">
+            <div class="v7-item">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <span class="text-xs font-bold text-red-600 uppercase tracking-wider">Critical</span>
+                        <h3 class="text-3xl font-black mt-2">CVE-2024-XXXXX</h3>
+                        <p class="text-sm font-semibold text-gray-600">Remote Code Execution in Enterprise CMS</p>
+                    </div>
+                    <span class="text-sm font-bold text-gray-400">2024</span>
+                </div>
+                <p class="text-sm leading-relaxed mb-4">
+                    Discovered critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection 
+                    with deserialization flaw to achieve unauthenticated remote code execution.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <div><span class="text-gray-500">Bounty:</span> <span class="font-bold text-green-600">$15,000</span></div>
+                    <div><span class="text-gray-500">CVSS:</span> <span class="font-bold">9.8</span></div>
+                    <div><span class="text-gray-500">Platform:</span> <span class="font-bold">HackerOne</span></div>
+                </div>
+            </div>
+            
+            <div class="v7-item">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">High</span>
+                        <h3 class="text-3xl font-black mt-2">Auth Bypass</h3>
+                        <p class="text-sm font-semibold text-gray-600">Mobile Banking Application</p>
+                    </div>
+                    <span class="text-sm font-bold text-gray-400">2023</span>
+                </div>
+                <p class="text-sm leading-relaxed mb-4">
+                    Identified logic flaw in JWT implementation allowing full account takeover. Exploited weak 
+                    token validation to bypass MFA and access user accounts.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <div><span class="text-gray-500">Bounty:</span> <span class="font-bold text-green-600">$10,000</span></div>
+                    <div><span class="text-gray-500">Users:</span> <span class="font-bold">2M+</span></div>
+                    <div><span class="text-gray-500">Platform:</span> <span class="font-bold">Bugcrowd</span></div>
+                </div>
+            </div>
+            
+            <div class="v7-item">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">High</span>
+                        <h3 class="text-3xl font-black mt-2">XSS Chain Attack</h3>
+                        <p class="text-sm font-semibold text-gray-600">SaaS Platform Admin Panel</p>
+                    </div>
+                    <span class="text-sm font-bold text-gray-400">2023</span>
+                </div>
+                <p class="text-sm leading-relaxed mb-4">
+                    Chained stored XSS with CSRF to achieve full administrator account takeover. 
+                    Demonstrated significant impact on enterprise customers.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <div><span class="text-gray-500">Bounty:</span> <span class="font-bold text-green-600">$8,500</span></div>
+                    <div><span class="text-gray-500">Type:</span> <span class="font-bold">Chain</span></div>
+                    <div><span class="text-gray-500">Platform:</span> <span class="font-bold">Private</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 8: Card Stack / Layered -->
+    <div class="variation">
+        <div class="variation-title">Variation 8: Card Stack / Layered</div>
+        <div class="v8-stack">
+            <div class="v8-card">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold uppercase">Critical</span>
+                    <span class="text-sm font-bold text-gray-400">2024</span>
+                </div>
+                <h3 class="text-4xl font-black mb-3">CVE-2024-XXXXX</h3>
+                <p class="text-lg font-semibold mb-3 text-gray-600">Remote Code Execution in Enterprise CMS</p>
+                <p class="text-sm leading-relaxed mb-6">
+                    Discovered critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection 
+                    with deserialization flaw to achieve complete system compromise.
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t-2 border-black">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">BOUNTY</div>
+                        <div class="text-2xl font-black text-green-600">$15,000</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">CVSS</div>
+                        <div class="text-2xl font-black">9.8</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">PLATFORM</div>
+                        <div class="text-2xl font-black">H1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v8-card">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-orange-600 text-white text-xs font-bold uppercase">High</span>
+                    <span class="text-sm font-bold text-gray-400">2023</span>
+                </div>
+                <h3 class="text-4xl font-black mb-3">Auth Bypass</h3>
+                <p class="text-lg font-semibold mb-3 text-gray-600">Mobile Banking Application</p>
+                <p class="text-sm leading-relaxed mb-6">
+                    Identified logic flaw in JWT implementation allowing full account takeover. Exploited weak 
+                    token validation to bypass MFA.
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t-2 border-black">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">BOUNTY</div>
+                        <div class="text-2xl font-black text-green-600">$10,000</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">USERS</div>
+                        <div class="text-2xl font-black">2M+</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">PLATFORM</div>
+                        <div class="text-2xl font-black">BC</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v8-card">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-orange-600 text-white text-xs font-bold uppercase">High</span>
+                    <span class="text-sm font-bold text-gray-400">2023</span>
+                </div>
+                <h3 class="text-4xl font-black mb-3">XSS Chain</h3>
+                <p class="text-lg font-semibold mb-3 text-gray-600">SaaS Platform Admin Panel</p>
+                <p class="text-sm leading-relaxed mb-6">
+                    Chained stored XSS with CSRF to achieve full administrator account takeover with 
+                    significant enterprise impact.
+                </p>
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t-2 border-black">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">BOUNTY</div>
+                        <div class="text-2xl font-black text-green-600">$8,500</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">TYPE</div>
+                        <div class="text-2xl font-black">CHAIN</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1">PLATFORM</div>
+                        <div class="text-2xl font-black">PVT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 9: Split Screen Diagonal -->
+    <div class="variation">
+        <div class="variation-title">Variation 9: Split Screen Diagonal</div>
+        <div class="v9-container">
+            <div class="v9-card">
+                <div class="mb-4">
+                    <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold uppercase">Critical • 2024</span>
+                </div>
+                <h3 class="text-3xl font-black mb-3">CVE-2024-XXXXX</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-600">Remote Code Execution</p>
+                <p class="text-sm leading-relaxed mb-4">
+                    Critical RCE affecting 50,000+ installations via SQL injection chain.
+                </p>
+                <div class="flex gap-6">
+                    <div>
+                        <div class="text-xs text-gray-500">Bounty</div>
+                        <div class="text-2xl font-black text-green-600">$15K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">CVSS</div>
+                        <div class="text-2xl font-black">9.8</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v9-card">
+                <div class="mb-4">
+                    <span class="px-3 py-1 bg-orange-600 text-white text-xs font-bold uppercase">High • 2023</span>
+                </div>
+                <h3 class="text-3xl font-black mb-3">Auth Bypass</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-600">Mobile Banking App</p>
+                <p class="text-sm leading-relaxed mb-4">
+                    JWT logic flaw enabling full account takeover and MFA bypass.
+                </p>
+                <div class="flex gap-6">
+                    <div>
+                        <div class="text-xs text-gray-500">Bounty</div>
+                        <div class="text-2xl font-black text-green-600">$10K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">Users</div>
+                        <div class="text-2xl font-black">2M+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v9-card">
+                <div class="mb-4">
+                    <span class="px-3 py-1 bg-orange-600 text-white text-xs font-bold uppercase">High • 2023</span>
+                </div>
+                <h3 class="text-3xl font-black mb-3">XSS Chain</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-600">SaaS Admin Panel</p>
+                <p class="text-sm leading-relaxed mb-4">
+                    Chained stored XSS with CSRF for admin account takeover.
+                </p>
+                <div class="flex gap-6">
+                    <div>
+                        <div class="text-xs text-gray-500">Bounty</div>
+                        <div class="text-2xl font-black text-green-600">$8.5K</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">Type</div>
+                        <div class="text-2xl font-black">CHAIN</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v9-card">
+                <div class="mb-4">
+                    <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold uppercase">Research • 2022</span>
+                </div>
+                <h3 class="text-3xl font-black mb-3">AWS Exposure</h3>
+                <p class="text-sm font-bold mb-3 uppercase tracking-wide text-gray-600">Cloud Security Research</p>
+                <p class="text-sm leading-relaxed mb-4">
+                    Identified 200+ misconfigured S3 buckets exposing PII data.
+                </p>
+                <div class="flex gap-6">
+                    <div>
+                        <div class="text-xs text-gray-500">Findings</div>
+                        <div class="text-2xl font-black">200+</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">Type</div>
+                        <div class="text-2xl font-black">CLOUD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Variation 10: Neon Cyberpunk -->
+    <div class="variation">
+        <div class="variation-title">Variation 10: Neon Cyberpunk</div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="v10-card">
+                <div class="relative z-10">
+                    <div class="mb-4">
+                        <span class="v10-text text-xs font-bold uppercase tracking-widest">// CRITICAL SEVERITY</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-3 v10-text">CVE-2024-XXXXX</h3>
+                    <p class="text-sm font-bold mb-3 uppercase tracking-wide" style="color: #ff00ff;">
+                        &gt; Remote_Code_Execution.exe
+                    </p>
+                    <p class="text-sm leading-relaxed mb-6 text-gray-300">
+                        [DISCOVERED] Critical RCE vulnerability affecting 50K+ installations. Chained SQL injection 
+                        with deserialization flaw for complete system compromise.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <div class="text-xs v10-text mb-1">BOUNTY</div>
+                            <div class="text-2xl font-black" style="color: #00ff00;">$15,000</div>
+                        </div>
+                        <div>
+                            <div class="text-xs v10-text mb-1">CVSS</div>
+                            <div class="text-2xl font-black text-red-500">9.8</div>
+                        </div>
+                        <div>
+                            <div class="text-xs v10-text mb-1">STATUS</div>
+                            <div class="text-xl font-black" style="color: #ff00ff;">PWNED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="v10-card">
+                <div class="relative z-10">
+                    <div class="mb-4">
+                        <span class="v10-text text-xs font-bold uppercase tracking-widest">// HIGH SEVERITY</span>
+                    </div>
+                    <h3 class="text-4xl font-black mb-3 v10-text">AUTH_BYPASS</h3>
+                    <p class="text-sm font-bold mb-3 uppercase tracking-wide" style="color: #ff00ff;">
+                        &gt; Mobile_Banking_Exploit.sh
+                    </p>
+                    <p class="text-sm leading-relaxed mb-6 text-gray-300">
+                        [DETECTED] JWT logic flaw enabling full account takeover. Exploited weak token 
+                        validation to bypass MFA authentication layer.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <div class="text-xs v10-text mb-1">BOUNTY</div>
+                            <div class="text-2xl font-black" style="color: #00ff00;">$10,000</div>
+                        </div>
+                        <div>
+                            <div class="text-xs v10-text mb-1">USERS</div>
+                            <div class="text-2xl font-black" style="color: #ff00ff;">2M+</div>
+                        </div>
+                        <div>
+                            <div class="text-xs v10-text mb-1">STATUS</div>
+                            <div class="text-xl font-black" style="color: #00ff00;">FIXED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

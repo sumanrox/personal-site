@@ -5,8 +5,8 @@
     right: 2rem;
     width: 3.5rem;
     height: 3.5rem;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--text-primary);
+    color: var(--text-white);
     border-radius: 50% !important;
     display: flex;
     align-items: center;
@@ -17,8 +17,7 @@
     visibility: hidden;
     transform: translateY(20px);
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    border: 2px solid #000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--border-primary);
     overflow: hidden;
 }
 
@@ -30,8 +29,8 @@
 
 #back-to-top:hover {
     transform: translateY(-5px) scale(1.05);
-    background-color: #222;
-    border-color: #333;
+    background-color: var(--bg-dark-secondary);
+    border-color: var(--border-dark);
 }
 
 #back-to-top svg,

@@ -2,41 +2,18 @@
 
 #contact {
     position: relative;
-    background-color: #050505;
-    color: #ffffff;
+    color: var(--text-gray-medium);
     overflow-x: hidden;
-    z-index: 10000;
-    /* Above the body grain effect */
-    transform: translate3d(0, 0, 0);
-    /* Force hardware acceleration and new stacking context */
-    isolation: isolate;
-    /* Create new stacking context to isolate from body grain */
-}
-
-/* Background Texture */
-#contact::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 0;
+    z-index: 10;
 }
 
 /* Typography */
 .contact-heading {
     font-family: 'Funnel Display', sans-serif;
     font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    background: linear-gradient(to bottom, #fff 0%, #888 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-gray-dark);
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
@@ -46,375 +23,97 @@
 @media (max-width: 768px) {
     .contact-heading {
         font-size: 3rem !important;
-        line-height: 0.95;
+        line-height: 1.1;
     }
 }
 
 @media (max-width: 400px) {
     .contact-heading {
         font-size: 2.5rem !important;
-        /* Force smaller size on very small screens */
     }
 }
 
-.contact-sub {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-    color: #888;
-    max-width: 100%;
-    overflow-wrap: break-word;
-}
-
-/* Form Styles */
-.contact-input-group {
-    position: relative;
-    margin-bottom: 2rem;
-    max-width: 100%;
-}
-
-.contact-input {
+/* Modern Form Input Styles */
+.contact-input-modern {
     width: 100%;
     max-width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #333;
-    padding: 1rem 0;
-    color: #fff;
+    background: var(--bg-white);
+    border: 2px solid var(--border-gray);
+    padding: 0.75rem 1rem;
+    color: var(--text-gray-dark);
     font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
-    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    border-radius: 0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
+.contact-input-modern:focus {
+    outline: none;
+    border-color: var(--color-info);
+    box-shadow: var(--color-info-bg) 0 0 0 4px;
+}
+
+.contact-input-modern::placeholder {
+    color: var(--text-gray-lighter);
+}
+
+/* Brutalist Form Input Styles */
+.contact-input-brutalist {
+    width: 100%;
+    max-width: 100%;
+    background: var(--bg-white);
+    border: 3px solid var(--border-primary);
+    padding: 0.75rem 1rem;
+    color: var(--text-gray-dark);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+}
+
+.contact-input-brutalist:focus {
+    outline: none;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-brutalist-sm);
+    transform: translate(-2px, -2px);
+}
+
+.contact-input-brutalist::placeholder {
+    color: var(--text-gray-light);
+    font-weight: 500;
+}
+
+/* Utility classes for border thickness */
+.border-3 {
+    border-width: 3px;
+}
+
+.border-t-3 {
+    border-top-width: 3px;
+}
+
 @media (max-width: 768px) {
-    .contact-input {
+    .contact-input-modern,
+    .contact-input-brutalist {
         font-size: 1rem;
     }
 }
 
-.contact-input:focus {
-    outline: none;
-    border-bottom-color: #fff;
-    padding-left: 1rem;
+/* Calendly Modal */
+#calendlyModal {
+    z-index: 9999;
 }
 
-.contact-input::placeholder {
-    color: #888;
+/* Character Counter */
+#charCount {
+    font-size: 0.875rem;
+    color: var(--text-gray-lighter);
     transition: color 0.3s ease;
 }
 
-.contact-input:focus::placeholder {
-    color: #aaa;
+#charCount.text-red-500 {
+    color: var(--color-error);
 }
 
-/* Floating Label Effect (Optional, using placeholder for now but styled) */
-.contact-input-group {
-    position: relative;
-    margin-bottom: 2rem;
-}
-
-.contact-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #333;
-    padding: 1rem 0 1rem 2.5rem;
-    /* Added left padding for icon */
-    color: #fff;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    border-radius: 0;
-}
-
-.contact-input:focus {
-    outline: none;
-    border-bottom-color: #fff;
-    padding-left: 2.75rem;
-    /* Slight shift on focus */
-}
-
-.contact-input::placeholder {
-    color: #888;
-    transition: color 0.3s ease;
-}
-
-.contact-input:focus::placeholder {
-    color: #aaa;
-}
-
-.contact-input-group:focus-within .input-icon {
-    color: #fff;
-}
-
-/* Tech Pill Submit Button - Advanced Animation */
-.contact-submit-tech {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid #333;
-    color: #fff;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    width: 100%;
-    max-width: 400px;
-
-}
-
-/* Scanline Effect */
-.contact-submit-tech::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.3),
-            rgba(255, 255, 255, 0.1),
-            transparent);
-    transition: left 0.5s ease;
-    z-index: 1;
-}
-
-.contact-submit-tech:hover::before {
-    left: 100%;
-    transition: left 0.8s ease;
-}
-
-/* Glow Effect */
-.contact-submit-tech:hover {
-    border-color: #fff;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
-
-.tech-text {
-    position: relative;
-    z-index: 10;
-    transition: all 0.3s ease;
-    letter-spacing: 0.2em;
-}
-
-.tech-bracket {
-    position: relative;
-    z-index: 10;
-    font-family: monospace;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    color: #666;
-}
-
-.contact-submit-tech:hover .tech-bracket {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-.contact-submit-tech:hover .tech-bracket:first-child {
-    transform: translateX(-10px);
-}
-
-.contact-submit-tech:hover .tech-bracket:last-child {
-    transform: translateX(10px);
-}
-
-/* Loading State - Progress Bar */
-.contact-submit-tech.btn-loading {
-    border-color: #666;
-    cursor: not-allowed;
-}
-
-.contact-submit-tech.btn-loading::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background: #fff;
-    animation: progress-indeterminate 2s infinite linear;
-}
-
-@keyframes progress-indeterminate {
-    0% {
-        width: 0%;
-        left: 0;
-    }
-
-    50% {
-        width: 100%;
-        left: 0;
-    }
-
-    100% {
-        width: 0%;
-        left: 100%;
-    }
-}
-
-.contact-submit-tech.btn-loading .tech-text {
-    opacity: 0.7;
-    animation: pulse-text 1s infinite;
-}
-
-@keyframes pulse-text {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-}
-
-/* Success State */
-.contact-submit-tech.btn-success {
-    border-color: #00c853;
-    background: rgba(0, 200, 83, 0.1);
-}
-
-.contact-submit-tech.btn-success .tech-text,
-.contact-submit-tech.btn-success .tech-bracket {
-    color: #00c853 !important;
-}
-
-/* Error State */
-.contact-submit-tech.btn-error {
-    border-color: #ff3b30;
-    background: rgba(255, 59, 48, 0.1);
-    box-shadow: 0 0 30px rgba(255, 59, 48, 0.2);
-}
-
-.contact-submit-tech.btn-error .tech-text,
-.contact-submit-tech.btn-error .tech-bracket {
-    color: #ff3b30 !important;
-    text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
-}
-
-/* Shake Animation for Error */
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: translateX(-5px);
-    }
-
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translateX(5px);
-    }
-}
-
-.shake-error {
-    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
-}
-
-/* Contact Info Links */
-.contact-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid #222;
-    color: #888;
-    text-decoration: none;
-    transition: all 0.4s ease;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.contact-link:hover {
-    color: #fff;
-    border-bottom-color: #444;
-    padding-left: 1rem;
-}
-
-.contact-link-label {
-    font-family: 'Funnel Display', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-@media (max-width: 768px) {
-    .contact-link-label {
-        font-size: 1.25rem;
-    }
-}
-
-.contact-link-icon {
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.4s ease;
-}
-
-.contact-link:hover .contact-link-icon {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Status Indicator */
-.status-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 100%;
-    overflow: hidden;
-}
-
-@media (max-width: 768px) {
-    .status-indicator {
-        font-size: 0.75rem;
-    }
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #00ff41;
-    /* Hacker Green */
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 1;
-        box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4);
-    }
-
-    70% {
-        opacity: 0.7;
-        box-shadow: 0 0 0 6px rgba(0, 255, 65, 0);
-    }
-
-    100% {
-        opacity: 1;
-        box-shadow: 0 0 0 0 rgba(0, 255, 65, 0);
-    }
-}
+/* Remove all deprecated old dark theme styles */

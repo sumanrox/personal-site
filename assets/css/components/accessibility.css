@@ -68,7 +68,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #000;
+  outline: var(--outline-width) solid var(--outline-focus);
   outline-offset: 2px;
 }
 
@@ -80,5 +80,5 @@ textarea:focus-visible {
 /* Improve link focus in dark areas */
 .bg-black a:focus-visible,
 .bg-black button:focus-visible {
-  outline-color: #fff;
+  outline-color: var(--outline-focus-dark);
 }

@@ -2,8 +2,8 @@
 
 .pill-section-header {
   position: relative;
-  background: black;
-  color: white;
+  background: var(--text-primary);
+  color: var(--text-white);
   font-family: inherit;
   font-weight: 700;
   font-size: clamp(14px, 2.5vw, 16px);
@@ -23,7 +23,7 @@
     89.3% 100%,
     0% 100%
   );
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 1rem;
 }
 
@@ -36,13 +36,13 @@
 }
 
 .pill-element {
-  color: white;
+  color: var(--text-white);
   display: inline-block;
   opacity: 0; /* Start hidden for animation */
 }
 
 .pill-element.text {
-  color: white;
+  color: var(--text-white);
   letter-spacing: 1px;
 }
 
@@ -86,14 +86,15 @@
 
 /* Contact section specific styling - white background with black elements */
 #contact-pill-container .pill-section-header {
-  background: white;
-  color: black;
+  background: var(--text-primary);
+  color: var(--text-white);
+  box-shadow: var(--shadow-md);
 }
 
 #contact-pill-container .pill-element {
-  color: black;
+  color: var(--text-white);
 }
 
 #contact-pill-container .pill-element.text {
-  color: black;
+  color: var(--text-white);
 }

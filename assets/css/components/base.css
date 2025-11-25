@@ -92,11 +92,7 @@ body::before {
   }
 }
 
-/* No rounded corners anywhere */
-* {
-  border-radius: 0 !important;
-}
-
+/* Controlled border-radius - allow components to define their own */
 /* Exception: Footer arrow circle needs to be round */
 footer .rounded-full {
   border-radius: 9999px !important;

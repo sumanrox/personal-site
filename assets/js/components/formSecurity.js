@@ -80,7 +80,7 @@ export function initFormSecurity() {
 
     submitBtn.disabled = false;
     submitBtn.classList.remove('btn-loading', 'btn-success', 'btn-error');
-    submitText.textContent = 'INITIATE TRANSMISSION';
+    submitText.textContent = 'Send Message';
   };
 
   // Form submission handler
@@ -206,7 +206,7 @@ export function initFormSecurity() {
     submitBtn.addEventListener('mouseenter', () => {
       // Only scramble if not loading/success/error
       if (!submitBtn.disabled && !submitBtn.classList.contains('btn-success') && !submitBtn.classList.contains('btn-error')) {
-        scrambleText(submitText, 'INITIATE TRANSMISSION');
+        scrambleText(submitText, 'Send Message');
       }
     });
   }

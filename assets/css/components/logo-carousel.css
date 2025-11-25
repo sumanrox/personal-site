@@ -47,12 +47,12 @@
 .logo-text {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--text-white);
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
 
-/* Animation keyframes */
+/* Infinite scroll animation - seamless loop */
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -62,9 +62,15 @@
   }
 }
 
-/* Ensure seamless loop without visible reset */
-.logo-track {
+.logo-track.scrolling {
+  animation: scroll-left var(--scroll-duration, 30s) linear infinite;
   will-change: transform;
+}
+
+/* Pause animation on hover if needed */
+.logo-carousel-container:hover .logo-track.scrolling {
+  /* Keep scrolling - no pause */
+  animation-play-state: running;
 }
 
 /* Responsive adjustments */

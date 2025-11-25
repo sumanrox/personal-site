@@ -1,144 +1,198 @@
-/* Projects Section - Editorial Style with Pill Animation */
+/* Projects Section - Brutalist Card Grid Layout */
 
-.project-item {
-    border-left: 4px solid #e5e5e5;
-    padding: 2.5rem 0 2.5rem 2rem;
-    position: relative;
+/* Project Card - Brutalist Styling with Character */
+.opensource-project-card {
+    background: var(--bg-white) !important;
+    padding: 1.5rem !important;
+    border: 3px solid var(--border-primary) !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 350px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
 }
 
-.project-item::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 0;
-    width: 4px;
-    height: 0;
-    background: #000;
-    transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* Alternating border patterns for visual interest */
+.opensource-project-card:nth-child(odd) {
+    border-style: solid !important;
 }
 
-.project-item:hover::before {
-    height: 100%;
+.opensource-project-card:nth-child(even) {
+    border-style: dashed !important;
 }
 
-.project-number-container {
-    font-family: 'Funnel Display', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.opensource-project-card:hover {
+    transform: translateX(6px) translateY(-2px) rotate(-1deg) !important;
+    box-shadow: -6px 6px 0 var(--border-primary) !important;
+    border-style: solid !important;
 }
 
-.project-bracket,
-.project-number {
-    opacity: 0;
-    color: #000;
+/* Card Content */
+.opensource-project-card h3 {
+    font-family: 'Funnel Display', sans-serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 900 !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--text-primary) !important;
+    opacity: 1 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
 }
 
-.project-title {
-    font-family: 'Funnel Display', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #000;
-    line-height: 1.2;
+.opensource-project-card p {
+    font-size: 0.875rem !important;
+    color: var(--text-gray-light) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+    flex-grow: 1 !important;
+    opacity: 1 !important;
 }
 
-.project-description {
-    color: #666;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+.opensource-project-card a {
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
 }
 
-.project-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+.opensource-project-card a:hover {
+    transform: translateX(4px) !important;
 }
 
-.tag-pill {
-    font-size: 0.65rem;
-    padding: 0.35rem 0.75rem;
-    background: #f5f5f5;
-    border-radius: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 700;
-    color: #666;
-    border: 1px solid #e5e5e5;
-    transition: all 0.3s ease;
+/* Colorful Icon Styles */
+.project-icon-terminal {
+    color: #10b981 !important;
+    stroke-width: 2.5px !important;
 }
 
-.project-item:hover .tag-pill {
-    background: #000;
-    color: #fff;
-    border-color: #000;
+.project-icon-search {
+    color: #8b5cf6 !important;
+    stroke-width: 2.5px !important;
 }
 
-.project-meta-container {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+.project-icon-cloud {
+    color: #3b82f6 !important;
+    stroke-width: 2.5px !important;
 }
 
-.project-meta {
-    font-size: 0.7rem;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
+.project-icon-zap {
+    color: #f59e0b !important;
+    stroke-width: 2.5px !important;
+}
+
+.project-icon-code {
+    color: #ef4444 !important;
+    stroke-width: 2.5px !important;
+}
+
+.project-icon-database {
+    color: #06b6d4 !important;
+    stroke-width: 2.5px !important;
+}
+
+.opensource-project-card i[data-lucide="star"] {
+    width: 1rem !important;
+    height: 1rem !important;
+    opacity: 1 !important;
+    color: #fbbf24 !important;
+    stroke-width: 2.5px !important;
+    fill: #fbbf24 !important;
+}
+
+/* Status Badges */
+.status-badge {
+    font-size: 0.625rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.25rem 0.5rem !important;
+    border: 2px solid !important;
+    display: inline-block !important;
+}
+
+.badge-active {
+    background: #10b981 !important;
+    color: white !important;
+    border-color: #10b981 !important;
+}
+
+.badge-maintained {
+    background: #3b82f6 !important;
+    color: white !important;
+    border-color: #3b82f6 !important;
+}
+
+.badge-featured {
+    background: #8b5cf6 !important;
+    color: white !important;
+    border-color: #8b5cf6 !important;
+}
+
+.badge-popular {
+    background: #f59e0b !important;
+    color: white !important;
+    border-color: #f59e0b !important;
+}
+
+.badge-new {
+    background: #ef4444 !important;
+    color: white !important;
+    border-color: #ef4444 !important;
+}
+
+.badge-trending {
+    background: #ec4899 !important;
+    color: white !important;
+    border-color: #ec4899 !important;
+}
+
+/* Technology Tags - Brutalist Style with More Punch */
+.opensource-project-card .tech-tag {
+    padding: 0.375rem 0.625rem !important;
+    border: 2px solid var(--border-primary) !important;
+    background: var(--border-primary) !important;
+    color: var(--bg-white) !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    transition: all 0.2s ease !important;
+}
+
+.opensource-project-card .tech-tag:hover {
+    background: transparent !important;
+    color: var(--border-primary) !important;
+}
+
+/* Star count styling */
+.opensource-project-card .text-sm {
+    font-weight: 700 !important;
+    font-family: 'Funnel Display', sans-serif !important;
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    .project-item {
-        padding: 2rem 0 2rem 1.5rem;
+    .opensource-project-card {
+        min-height: 300px !important;
+        border-width: 2px !important;
     }
-
-    .project-number-container {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
+    
+    .opensource-project-card h3 {
+        font-size: 1.25rem !important;
     }
-
-    .project-title {
-        font-size: 1.5rem;
-    }
-
-    .project-description {
-        font-size: 0.85rem;
-    }
-
-    .tag-pill {
-        font-size: 0.6rem;
-        padding: 0.3rem 0.6rem;
-    }
-
-    .project-meta {
-        font-size: 0.65rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .project-item {
-        padding: 1.5rem 0 1.5rem 1rem;
-        border-left-width: 3px;
-    }
-
-    .project-item::before {
-        left: -3px;
-        width: 3px;
-    }
-
-    .project-number-container {
-        font-size: 2rem;
-        gap: 0.25rem;
-    }
-
-    .project-title {
-        font-size: 1.25rem;
+    
+    .opensource-project-card:hover {
+        transform: translateX(3px) translateY(-1px) !important;
+        box-shadow: -3px 3px 0 var(--border-primary) !important;
     }
 }

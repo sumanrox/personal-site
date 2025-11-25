@@ -1,10 +1,10 @@
-<!-- Projects Section - Editorial Style -->
+<!-- Projects Section - Card Grid Layout (Variation 1) -->
 <section id="projects"
-    class="relative w-full bg-white pt-24 pb-12 md:pt-32 md:pb-16 px-6 md:px-12 lg:px-20 xl:px-32 z-10">
+    class="relative w-full pt-16 pb-10 md:pt-20 md:pb-12 px-6 md:px-12 lg:px-16 xl:px-24 z-10">
     <div class="max-w-7xl w-full mx-auto">
 
         <!-- Header -->
-        <div class="mb-16 md:mb-24">
+        <div class="mb-10 md:mb-14">
             <div id="projects-pill-container" class="mb-6">
                 <div class="pill-section-header" data-text="PROJECTS">
                     <div class="pill-content">
@@ -15,174 +15,149 @@
                     </div>
                 </div>
             </div>
-            <h2 class="text-5xl md:text-7xl font-bold leading-[0.9] tracking-tighter text-black mb-6">
+            <h2 class="text-5xl md:text-6xl font-bold leading-[0.9] tracking-tighter text-black mb-4">
                 Open Source<br>Contributions
             </h2>
-            <p class="text-lg text-gray-500 max-w-xl leading-relaxed">
+            <p class="text-base text-gray-600 max-w-xl leading-relaxed">
                 Building tools for the security community. Focused on automation, reconnaissance, and offensive security
                 frameworks.
             </p>
         </div>
 
-        <!-- Projects List -->
-        <div id="projects-list">
+        <!-- Card Grid Layout -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Project 1 -->
-            <div class="project-item">
-                <div class="project-number-container">
-                    <span class="project-bracket project-open-bracket">[</span>
-                    <span class="project-number">01</span>
-                    <span class="project-bracket project-close-bracket">]</span>
-                </div>
-                <h3 class="project-title">ReconMaster Pro</h3>
-                <p class="project-description">
-                    Advanced penetration testing framework for modern web applications with automated vulnerability
-                    detection,
-                    compliance checking, and enterprise-grade reporting capabilities.
-                </p>
-                <div class="project-tags">
-                    <span class="tag-pill">Python</span>
-                    <span class="tag-pill">Security</span>
-                    <span class="tag-pill">Enterprise</span>
-                    <span class="tag-pill">CLI</span>
-                    <span class="tag-pill">Automation</span>
-                </div>
-                <div class="project-meta-container">
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                        </svg>
-                        <span>2.4k Stars</span>
+            <div class="opensource-project-card">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="terminal" class="w-10 h-10 project-icon-terminal"></i>
+                    <div class="flex gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">2.4k</span>
                     </div>
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        <span>320 Forks</span>
-                    </div>
-                    <div class="project-meta">Updated 2 days ago</div>
                 </div>
+                <div class="flex gap-2 mb-3">
+                    <span class="status-badge badge-active">Active</span>
+                    <span class="status-badge badge-maintained">Well Maintained</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">ReconMaster Pro</h3>
+                <p class="text-sm text-gray-600 mb-4">Advanced penetration testing framework with automated vulnerability detection.</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Security</span>
+                </div>
+                <a href="https://github.com/sumanroy" target="_blank" class="text-sm font-semibold hover:underline">View Project →</a>
             </div>
-
+            
             <!-- Project 2 -->
-            <div class="project-item">
-                <div class="project-number-container">
-                    <span class="project-bracket project-open-bracket">[</span>
-                    <span class="project-number">02</span>
-                    <span class="project-bracket project-close-bracket">]</span>
-                </div>
-                <h3 class="project-title">SubEnum Scanner</h3>
-                <p class="project-description">
-                    High-performance subdomain enumeration tool built with Go. Features multi-threaded scanning,
-                    DNS validation, and comprehensive output formats for security reconnaissance.
-                </p>
-                <div class="project-tags">
-                    <span class="tag-pill">Go</span>
-                    <span class="tag-pill">Recon</span>
-                    <span class="tag-pill">DNS</span>
-                    <span class="tag-pill">Multi-threaded</span>
-                    <span class="tag-pill">Fast</span>
-                </div>
-                <div class="project-meta-container">
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                        </svg>
-                        <span>1.8k Stars</span>
+            <div class="opensource-project-card">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="search" class="w-10 h-10 project-icon-search"></i>
+                    <div class="flex gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">1.8k</span>
                     </div>
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        <span>210 Forks</span>
-                    </div>
-                    <div class="project-meta">Updated 5 days ago</div>
                 </div>
+                <div class="flex gap-2 mb-3">
+                    <span class="status-badge badge-featured">Featured</span>
+                    <span class="status-badge badge-popular">Popular</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">SubEnum Scanner</h3>
+                <p class="text-sm text-gray-600 mb-4">High-performance subdomain enumeration with multi-threaded scanning.</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tech-tag">Go</span>
+                    <span class="tech-tag">Recon</span>
+                </div>
+                <a href="https://github.com/sumanroy" target="_blank" class="text-sm font-semibold hover:underline">View Project →</a>
             </div>
-
+            
             <!-- Project 3 -->
-            <div class="project-item">
-                <div class="project-number-container">
-                    <span class="project-bracket project-open-bracket">[</span>
-                    <span class="project-number">03</span>
-                    <span class="project-bracket project-close-bracket">]</span>
-                </div>
-                <h3 class="project-title">CloudGuard Suite</h3>
-                <p class="project-description">
-                    Cloud security analysis toolkit with automated compliance reporting for AWS, GCP, and Azure.
-                    Identifies misconfigurations and generates actionable security recommendations.
-                </p>
-                <div class="project-tags">
-                    <span class="tag-pill">Node.js</span>
-                    <span class="tag-pill">Cloud</span>
-                    <span class="tag-pill">AWS</span>
-                    <span class="tag-pill">Azure</span>
-                    <span class="tag-pill">GCP</span>
-                    <span class="tag-pill">Compliance</span>
-                </div>
-                <div class="project-meta-container">
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                        </svg>
-                        <span>956 Stars</span>
+            <div class="opensource-project-card">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="cloud" class="w-10 h-10 project-icon-cloud"></i>
+                    <div class="flex gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">956</span>
                     </div>
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        <span>89 Forks</span>
-                    </div>
-                    <div class="project-meta">Updated 1 week ago</div>
                 </div>
+                <div class="flex gap-2 mb-3">
+                    <span class="status-badge badge-active">Active</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">CloudGuard Suite</h3>
+                <p class="text-sm text-gray-600 mb-4">Cloud security toolkit for AWS, GCP, and Azure with compliance reporting.</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Cloud</span>
+                </div>
+                <a href="https://github.com/sumanroy" target="_blank" class="text-sm font-semibold hover:underline">View Project →</a>
             </div>
 
             <!-- Project 4 -->
-            <div class="project-item">
-                <div class="project-number-container">
-                    <span class="project-bracket project-open-bracket">[</span>
-                    <span class="project-number">04</span>
-                    <span class="project-bracket project-close-bracket">]</span>
-                </div>
-                <h3 class="project-title">APIFuzzer</h3>
-                <p class="project-description">
-                    Blazing-fast API security scanner built with Rust. Performs intelligent fuzzing,
-                    authentication bypass testing, and identifies injection vulnerabilities.
-                </p>
-                <div class="project-tags">
-                    <span class="tag-pill">Rust</span>
-                    <span class="tag-pill">API</span>
-                    <span class="tag-pill">Fuzzing</span>
-                    <span class="tag-pill">Performance</span>
-                    <span class="tag-pill">Security</span>
-                </div>
-                <div class="project-meta-container">
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                        </svg>
-                        <span>743 Stars</span>
+            <div class="opensource-project-card">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="zap" class="w-10 h-10 project-icon-zap"></i>
+                    <div class="flex gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">743</span>
                     </div>
-                    <div class="project-meta flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        <span>65 Forks</span>
-                    </div>
-                    <div class="project-meta">Updated 3 days ago</div>
                 </div>
+                <div class="flex gap-2 mb-3">
+                    <span class="status-badge badge-new">New</span>
+                    <span class="status-badge badge-trending">Trending</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">APIFuzzer</h3>
+                <p class="text-sm text-gray-600 mb-4">Blazing-fast API security scanner built with Rust for intelligent fuzzing.</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tech-tag">Rust</span>
+                    <span class="tech-tag">API</span>
+                </div>
+                <a href="https://github.com/sumanroy" target="_blank" class="text-sm font-semibold hover:underline">View Project →</a>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="opensource-project-card">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="code" class="w-10 h-10 project-icon-code"></i>
+                    <div class="flex gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">612</span>
+                    </div>
+                </div>
+                <div class="flex gap-2 mb-3">
+                    <span class="status-badge badge-maintained">Maintained</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">XSSHunter</h3>
+                <p class="text-sm text-gray-600 mb-4">Advanced XSS detection and exploitation framework with real-time alerts.</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">XSS</span>
+                </div>
+                <a href="https://github.com/sumanroy" target="_blank" class="text-sm font-semibold hover:underline">View Project →</a>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="opensource-project-card">
+                <div class="flex items-center justify-between mb-4">
+                    <i data-lucide="database" class="w-10 h-10 project-icon-database"></i>
+                    <div class="flex gap-2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                        <span class="text-sm text-gray-600">489</span>
+                    </div>
+                </div>
+                <div class="flex gap-2 mb-3">
+                    <span class="status-badge badge-active">Active</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">SQLNinja</h3>
+                <p class="text-sm text-gray-600 mb-4">Automated SQL injection detection and exploitation toolkit with database fingerprinting.</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">SQLi</span>
+                </div>
+                <a href="https://github.com/sumanroy" target="_blank" class="text-sm font-semibold hover:underline">View Project →</a>
             </div>
         </div>
 
         <!-- View All Link -->
-        <div class="mt-12 text-center md:text-left">
+        <div class="mt-10 text-center md:text-left">
             <a href="https://github.com/sumanroy" target="_blank"
                 class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-gray-600 transition-colors group text-black">
                 View all repositories

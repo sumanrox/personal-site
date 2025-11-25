@@ -92,10 +92,10 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
 
   <!-- Modular CSS -->
-  <link rel="stylesheet" href="assets/css/main-modular.css" />
+  <link rel="stylesheet" href="assets/css/main-modular.css?v=15" />
 </head>
 
-<body class="font-funnel bg-white text-black antialiased overflow-x-hidden">
+<body class="font-funnel text-black antialiased overflow-x-hidden" style="background: var(--bg-gradient-start); background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27100%27 height=%27100%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.05%27/%3E%3C/svg%3E');">
 
   <!-- Pull to Refresh Indicator -->
   <div id="pull-to-refresh">
@@ -133,34 +133,34 @@
     <main id="main-content" class="relative z-10">
 
       <!-- Hero Component -->
-      <div id="hero-placeholder" class="border-b border-black"></div>
-
-      <!-- About Component -->
-      <div id="about-placeholder"></div>
+      <div id="hero-placeholder"></div>
       
-      <!-- Logo Carousel Component -->
-      <div id="logo-carousel-placeholder"></div>
+      
+      <!-- Sections Wrapper with Gradient Background -->
+      <div class="sections-wrapper relative" style="background: #f0ece8;">
+        <!-- Logo Carousel Component -->
+        <div id="logo-carousel-placeholder" class="relative"></div>
+        <!-- About Component -->
+        <div id="about-placeholder"></div>
+        
+        <!-- Experience Component -->
+        <div id="experience-placeholder"></div>
+        
+        <!-- Work Component -->
+        <div id="work-placeholder"></div>
 
-      <!-- Pricing Component -->
-      <div id="pricing-placeholder"></div>
+        <!-- Projects Component -->
+        <div id="projects-placeholder"></div>
 
-      <!-- Testimonials Component -->
-      <div id="testimonials-placeholder"></div>
+        <!-- Testimonials Component -->
+        <div id="testimonials-placeholder"></div>
 
-      <!-- FAQ Component -->
-      <div id="faq-placeholder"></div>
+        <!-- FAQ Component -->
+        <div id="faq-placeholder"></div>
 
-      <!-- Experience Component -->
-      <div id="experience-placeholder"></div>
-
-      <!-- Projects Component -->
-      <div id="projects-placeholder"></div>
-
-      <!-- Work Component -->
-      <div id="work-placeholder"></div>
-
-      <!-- Contact Component -->
-      <div id="contact-placeholder"></div>
+        <!-- Contact Component -->
+        <div id="contact-placeholder"></div>
+      </div>
 
       <!-- Footer Component -->
       <div id="footer-placeholder"></div>
@@ -176,6 +176,37 @@
 
   <!-- Component Loader -->
   <script src="load-components.js" defer></script>
+
+  <!-- FAQ Toggle Function - Must be global and available immediately -->
+  <script>
+    window.toggleFAQ = function(element) {
+      console.log('FAQ clicked!', element);
+      const answer = element.querySelector('.faq-answer');
+      const icon = element.querySelector('.faq-icon');
+      const isOpen = answer && answer.style.display === 'block';
+      
+      // Close all FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        const ans = item.querySelector('.faq-answer');
+        const ico = item.querySelector('.faq-icon');
+        if (ans) ans.style.display = 'none';
+        if (ico) ico.style.transform = 'rotate(0deg)';
+        item.style.background = 'white';
+        item.style.color = 'black';
+      });
+      
+      // Open this FAQ if it was closed
+      if (!isOpen) {
+        element.classList.add('active');
+        if (answer) answer.style.display = 'block';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+        element.style.background = 'black';
+        element.style.color = 'white';
+      }
+    };
+    console.log('✅ toggleFAQ function defined globally');
+  </script>
 
   <!-- Main App Script -->
   <script type="module">

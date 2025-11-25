@@ -3,8 +3,8 @@
 /* Skill bar container */
 .skill-bar {
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(90deg, #00ffff 0%, #ff00ff 100%);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  box-shadow: var(--shadow-primary-glow);
 }
 
 /* Skill percentage counter */
@@ -16,16 +16,16 @@
 /* Tech tags */
 .tech-tag {
   transition: all 0.2s ease;
-  border: 1px solid #2a2a2a;
-  background: #1a1a1a;
-  color: #e0e0e0;
+  border: 1px solid var(--bg-dark-secondary);
+  background: var(--bg-dark-primary);
+  color: var(--text-dark-mode);
 }
 
 .tech-tag:hover {
   background: transparent;
-  color: #00ffff;
-  border-color: #00ffff;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-primary-glow-strong);
 }
 
 /* CVE Chart styles */

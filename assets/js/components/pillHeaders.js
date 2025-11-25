@@ -12,6 +12,7 @@ export class PillHeadersController {
       'projects-pill-container',
       'skills-pill-container',
       'work-pill-container',
+      'testimonials-pill-container',
       'contact-pill-container'
     ];
 
@@ -179,34 +180,23 @@ export class PillHeadersController {
 
   setupScrollTrigger(pillData) {
     const section = pillData.container.closest('section');
-    const isContactSection = pillData.sectionName === 'contact';
     
     ScrollTrigger.create({
       trigger: section,
       start: "top 80%",
-      end: "bottom top",
+      end: "bottom 20%",
       scroller: document.querySelector('[data-scroll-container]'),
       onEnter: () => {
-        if (!pillData.animated) {
-          this.animatePill(pillData);
-        }
+        this.animatePill(pillData);
       },
       onLeave: () => {
-        // Don't reset contact pill when leaving
-        if (!isContactSection) {
-          this.resetPill(pillData);
-        }
+        this.resetPill(pillData);
       },
       onEnterBack: () => {
-        if (!pillData.animated) {
-          this.animatePill(pillData);
-        }
+        this.animatePill(pillData);
       },
       onLeaveBack: () => {
-        // Don't reset contact pill when scrolling back up
-        if (!isContactSection) {
-          this.resetPill(pillData);
-        }
+        this.resetPill(pillData);
       }
     });
   }

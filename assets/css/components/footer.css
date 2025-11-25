@@ -10,14 +10,14 @@
   overflow: hidden;
   background: linear-gradient(
     90deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #4b0082,
-    #9400d3,
-    #ff0000
+    var(--rainbow-red),
+    var(--rainbow-orange),
+    var(--rainbow-yellow),
+    var(--rainbow-green),
+    var(--rainbow-blue),
+    var(--rainbow-indigo),
+    var(--rainbow-violet),
+    var(--rainbow-red)
   );
   background-size: 200% 100%;
   animation: rainbowSlide 3s linear infinite, pulse 1.5s ease-in-out infinite;

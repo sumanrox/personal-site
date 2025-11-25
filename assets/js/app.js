@@ -24,7 +24,10 @@ import { initProjects } from './components/projects.js';
 import { initBackToTop } from './components/back-to-top.js';
 import { initPullToRefresh } from './components/pull-to-refresh.js';
 import { initProjectPillAnimation } from './components/projectPillAnimation.js';
-import { initFAQAccordion } from './components/faqAccordion.js';
+import { initRotatingTestimonials } from './components/rotatingTestimonials.js';
+import { initContactEnhancements } from './components/contactEnhancements.js';
+// FAQ accordion now uses inline onclick - no module needed
+// import { initFAQAccordion } from './components/faqAccordion.js';
 import './components/heroThree.js';
 
 (function () {
@@ -59,7 +62,10 @@ import './components/heroThree.js';
       try { initProjectPillAnimation(); } catch (e) { console.error('Error initializing Project Pills:', e); }
       try { initBackToTop(); } catch (e) { console.error('Error initializing Back to Top:', e); }
       try { initPullToRefresh(); } catch (e) { console.error('Error initializing Pull to Refresh:', e); }
-      try { initFAQAccordion(); } catch (e) { console.error('Error initializing FAQ Accordion:', e); }
+      try { initRotatingTestimonials(); } catch (e) { console.error('Error initializing Rotating Testimonials:', e); }
+      try { initContactEnhancements(); } catch (e) { console.error('Error initializing Contact Enhancements:', e); }
+      // FAQ accordion now uses inline onclick - no initialization needed
+      // try { initFAQAccordion(); } catch (e) { console.error('Error initializing FAQ Accordion:', e); }
 
       // Initialize counter animation after a delay to ensure DOM is ready
       setTimeout(() => {
@@ -83,5 +89,20 @@ import './components/heroThree.js';
         }, 500);
       }
     }, 100);
+  });
+
+  // Auto-refresh on window resize
+  let resizeTimeout;
+  let initialWidth = window.innerWidth;
+  
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Only refresh if width actually changed (not just height on mobile address bar)
+      if (Math.abs(window.innerWidth - initialWidth) > 50) {
+        console.log('🔄 Window resized significantly - refreshing page');
+        window.location.reload();
+      }
+    }, 500); // Wait 500ms after user stops resizing
   });
 })();

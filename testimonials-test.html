@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials Design Variations - Test</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Funnel Display', sans-serif;
+        }
+        
+        /* Navigation */
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+            border-bottom: 2px solid #e5e5e5;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #000;
+            transform: translateY(-2px);
+        }
+        
+        /* Variation Labels */
+        .variation-label {
+            background: #000;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        /* Variation 1: Editorial Cards */
+        .editorial-card {
+            border-left: 4px solid #e5e5e5;
+            padding-left: 2rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .editorial-card:hover {
+            border-left-color: #000;
+            transform: translateX(8px);
+        }
+        
+        /* Variation 2: Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Variation 3: Brutalist */
+        .brutal-card {
+            border: 3px solid #000;
+            box-shadow: 8px 8px 0 #000;
+            transition: all 0.2s ease;
+        }
+        
+        .brutal-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 #000;
+        }
+        
+        /* Variation 4: Minimal Lines */
+        .minimal-card {
+            border: none;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+        }
+        
+        .minimal-card:hover .quote-mark {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        
+        /* Variation 5: Card Flip */
+        .flip-card {
+            perspective: 1000px;
+            height: 400px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: #000;
+            color: #fff;
+        }
+        
+        /* Variation 6: Marquee Slider */
+        .marquee-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: flex;
+            animation: marquee 40s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+        
+        /* Variation 7: Bento Grid */
+        .bento-large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        /* Variation 8: Stacked Cards */
+        .stack-container {
+            position: relative;
+            height: 500px;
+        }
+        
+        .stacked-card {
+            position: absolute;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .stacked-card:nth-child(1) { top: 0; left: 0; z-index: 3; }
+        .stacked-card:nth-child(2) { top: 20px; left: 20px; z-index: 2; }
+        .stacked-card:nth-child(3) { top: 40px; left: 40px; z-index: 1; }
+        
+        .stack-container:hover .stacked-card:nth-child(1) {
+            transform: translateY(-20px) rotate(-2deg);
+        }
+        
+        .stack-container:hover .stacked-card:nth-child(2) {
+            transform: translateY(-10px) rotate(1deg);
+        }
+        
+        /* Quote mark styling */
+        .quote-mark {
+            font-size: 4rem;
+            line-height: 0.8;
+            opacity: 0.15;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Sticky Navigation -->
+    <nav class="nav-sticky">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-xl font-bold">Testimonial Variations</h1>
+                <div class="flex gap-6 text-sm">
+                    <a href="#var1" class="nav-link text-gray-600">Editorial</a>
+                    <a href="#var2" class="nav-link text-gray-600">Glass</a>
+                    <a href="#var3" class="nav-link text-gray-600">Brutalist</a>
+                    <a href="#var4" class="nav-link text-gray-600">Minimal</a>
+                    <a href="#var5" class="nav-link text-gray-600">Flip</a>
+                    <a href="#var6" class="nav-link text-gray-600">Marquee</a>
+                    <a href="#var7" class="nav-link text-gray-600">Bento</a>
+                    <a href="#var8" class="nav-link text-gray-600">Stacked</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Variation 1: Editorial Cards with Side Border -->
+    <section id="var1" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <span class="variation-label">Variation 1</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Editorial Cards</h2>
+            <p class="text-gray-600 mb-12 text-lg">Clean side borders with hover animation</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="editorial-card">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                        "Suman's expertise in penetration testing is unmatched. He identified critical vulnerabilities that could have cost us millions. His detailed reporting made remediation straightforward."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold">Michael Chen</p>
+                            <p class="text-sm text-gray-600">CTO, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="editorial-card">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                        "Professional, thorough, and incredibly knowledgeable. The penetration test revealed issues we never knew existed. Worth every penny."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold">Sarah Williams</p>
+                            <p class="text-sm text-gray-600">Head of Security, FinanceHub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 2: Glassmorphism -->
+    <section id="var2" class="py-20 px-6 md:px-12 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="max-w-7xl mx-auto">
+            <span class="variation-label">Variation 2</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Glassmorphism</h2>
+            <p class="text-gray-600 mb-12 text-lg">Modern frosted glass effect</p>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                    </div>
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        "Fast, efficient, and discovered issues that could have been catastrophic. Highly recommended."
+                    </p>
+                    <div>
+                        <p class="font-bold">James Thompson</p>
+                        <p class="text-sm text-gray-600">CEO, DataVault</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                    </div>
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        "Exceptional attention to detail. Clear reports for both technical and non-technical teams."
+                    </p>
+                    <div>
+                        <p class="font-bold">Lisa Anderson</p>
+                        <p class="text-sm text-gray-600">CISO, GlobalRetail</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-purple-500 stroke-purple-500"></i>
+                    </div>
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        "Working with Suman was seamless. Clear action steps and significantly improved security."
+                    </p>
+                    <div>
+                        <p class="font-bold">David Park</p>
+                        <p class="text-sm text-gray-600">VP Eng, CloudScale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 3: Brutalist Design -->
+    <section id="var3" class="py-20 px-6 md:px-12 bg-yellow-100">
+        <div class="max-w-7xl mx-auto">
+            <span class="variation-label">Variation 3</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Brutalist Cards</h2>
+            <p class="text-gray-600 mb-12 text-lg">Bold borders with shadow effects</p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="brutal-card bg-white p-8">
+                    <div class="text-6xl font-bold mb-4">"</div>
+                    <p class="text-xl mb-6 leading-relaxed">
+                        Suman uncovered critical vulnerabilities in our infrastructure that we had completely missed. His detailed reports were invaluable.
+                    </p>
+                    <div class="border-t-2 border-black pt-4">
+                        <p class="font-bold text-lg">Michael Chen</p>
+                        <p class="text-sm uppercase tracking-wider">CTO, TechCorp Inc.</p>
+                    </div>
+                </div>
+                
+                <div class="brutal-card bg-white p-8">
+                    <div class="text-6xl font-bold mb-4">"</div>
+                    <p class="text-xl mb-6 leading-relaxed">
+                        The most comprehensive security assessment we've had. Methodical approach and excellent communication throughout.
+                    </p>
+                    <div class="border-t-2 border-black pt-4">
+                        <p class="font-bold text-lg">Emily Rodriguez</p>
+                        <p class="text-sm uppercase tracking-wider">PM, SecureApps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 4: Minimal Lines -->
+    <section id="var4" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <span class="variation-label">Variation 4</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Minimal Lines</h2>
+            <p class="text-gray-600 mb-12 text-lg">Ultra-clean with subtle dividers</p>
+            
+            <div class="space-y-0">
+                <div class="minimal-card py-12">
+                    <div class="relative">
+                        <div class="quote-mark absolute -left-4 -top-4">"</div>
+                        <p class="text-2xl mb-8 pl-12">
+                            Suman's expertise in penetration testing is unmatched. Critical vulnerabilities found and fixed.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-lg">Michael Chen</p>
+                            <p class="text-gray-600">CTO, TechCorp</p>
+                        </div>
+                        <div class="flex gap-1">
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="minimal-card py-12">
+                    <div class="relative">
+                        <div class="quote-mark absolute -left-4 -top-4">"</div>
+                        <p class="text-2xl mb-8 pl-12">
+                            Professional, thorough, and incredibly knowledgeable. The pen test revealed critical issues we never knew existed.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-lg">Sarah Williams</p>
+                            <p class="text-gray-600">Head of Security, FinanceHub</p>
+                        </div>
+                        <div class="flex gap-1">
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 5: Flip Cards -->
+    <section id="var5" class="py-20 px-6 md:px-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <span class="variation-label">Variation 5</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Interactive Flip Cards</h2>
+            <p class="text-gray-600 mb-12 text-lg">Hover to see more details</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-black">
+                            <div class="flex gap-1 mb-4 justify-center">
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            </div>
+                            <p class="text-center text-3xl font-bold mb-4">"</p>
+                            <p class="text-center px-4">
+                                Outstanding security assessment that uncovered critical vulnerabilities.
+                            </p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-xl font-bold mb-4">Michael Chen</p>
+                            <p class="text-sm mb-6 opacity-80">CTO, TechCorp Inc.</p>
+                            <p class="text-sm leading-relaxed">
+                                Comprehensive report with actionable remediation steps. Professional communication throughout the entire engagement.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-black">
+                            <div class="flex gap-1 mb-4 justify-center">
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            </div>
+                            <p class="text-center text-3xl font-bold mb-4">"</p>
+                            <p class="text-center px-4">
+                                Thorough testing with excellent documentation for our entire team.
+                            </p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-xl font-bold mb-4">Sarah Williams</p>
+                            <p class="text-sm mb-6 opacity-80">Head of Security, FinanceHub</p>
+                            <p class="text-sm leading-relaxed">
+                                Reports were perfect for presenting to both technical teams and executive leadership.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border-2 border-black">
+                            <div class="flex gap-1 mb-4 justify-center">
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-black stroke-black"></i>
+                            </div>
+                            <p class="text-center text-3xl font-bold mb-4">"</p>
+                            <p class="text-center px-4">
+                                Fast, efficient, with issues that could have been catastrophic.
+                            </p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-xl font-bold mb-4">David Park</p>
+                            <p class="text-sm mb-6 opacity-80">VP Engineering, CloudScale</p>
+                            <p class="text-sm leading-relaxed">
+                                Clear action steps made remediation straightforward. Our application is significantly more secure.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 6: Marquee Slider -->
+    <section id="var6" class="py-20 bg-black text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+            <span class="variation-label" style="background: white; color: black;">Variation 6</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Infinite Marquee</h2>
+            <p class="text-gray-400 mb-12 text-lg">Continuous scrolling testimonials</p>
+        </div>
+        
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <!-- First set -->
+                <div class="flex gap-6 px-3">
+                    <div class="bg-white/10 border border-white/20 p-8 rounded-xl min-w-[400px]">
+                        <div class="flex gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                        </div>
+                        <p class="mb-6">Outstanding security assessment with critical findings.</p>
+                        <p class="font-bold">Michael Chen</p>
+                        <p class="text-sm text-gray-400">CTO, TechCorp</p>
+                    </div>
+                    
+                    <div class="bg-white/10 border border-white/20 p-8 rounded-xl min-w-[400px]">
+                        <div class="flex gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                        </div>
+                        <p class="mb-6">Professional testing with excellent documentation.</p>
+                        <p class="font-bold">Sarah Williams</p>
+                        <p class="text-sm text-gray-400">Head of Security</p>
+                    </div>
+                    
+                    <div class="bg-white/10 border border-white/20 p-8 rounded-xl min-w-[400px]">
+                        <div class="flex gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                        </div>
+                        <p class="mb-6">Fast, efficient, and incredibly thorough analysis.</p>
+                        <p class="font-bold">David Park</p>
+                        <p class="text-sm text-gray-400">VP Engineering</p>
+                    </div>
+                </div>
+                
+                <!-- Duplicate set for seamless loop -->
+                <div class="flex gap-6 px-3">
+                    <div class="bg-white/10 border border-white/20 p-8 rounded-xl min-w-[400px]">
+                        <div class="flex gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                        </div>
+                        <p class="mb-6">Outstanding security assessment with critical findings.</p>
+                        <p class="font-bold">Michael Chen</p>
+                        <p class="text-sm text-gray-400">CTO, TechCorp</p>
+                    </div>
+                    
+                    <div class="bg-white/10 border border-white/20 p-8 rounded-xl min-w-[400px]">
+                        <div class="flex gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                        </div>
+                        <p class="mb-6">Professional testing with excellent documentation.</p>
+                        <p class="font-bold">Sarah Williams</p>
+                        <p class="text-sm text-gray-400">Head of Security</p>
+                    </div>
+                    
+                    <div class="bg-white/10 border border-white/20 p-8 rounded-xl min-w-[400px]">
+                        <div class="flex gap-1 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-white stroke-white"></i>
+                        </div>
+                        <p class="mb-6">Fast, efficient, and incredibly thorough analysis.</p>
+                        <p class="font-bold">David Park</p>
+                        <p class="text-sm text-gray-400">VP Engineering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 7: Bento Grid -->
+    <section id="var7" class="py-20 px-6 md:px-12 bg-gradient-to-br from-orange-50 to-pink-50">
+        <div class="max-w-7xl mx-auto">
+            <span class="variation-label">Variation 7</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Bento Grid Layout</h2>
+            <p class="text-gray-600 mb-12 text-lg">Featured testimonial with supporting cards</p>
+            
+            <div class="grid md:grid-cols-4 md:grid-rows-2 gap-4">
+                <!-- Large featured card -->
+                <div class="bento-large bg-white p-12 border-2 border-black rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-7xl font-bold mb-6">"</div>
+                        <p class="text-3xl font-bold leading-tight mb-8">
+                            Suman's expertise is absolutely unmatched in the security field.
+                        </p>
+                        <div class="flex gap-1 mb-8">
+                            <i data-lucide="star" class="w-6 h-6 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-black stroke-black"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-black stroke-black"></i>
+                        </div>
+                    </div>
+                    <div class="border-t-2 border-black pt-6">
+                        <p class="font-bold text-2xl mb-2">Michael Chen</p>
+                        <p class="text-gray-600 text-lg">CTO, TechCorp Inc.</p>
+                    </div>
+                </div>
+                
+                <!-- Small cards -->
+                <div class="bg-white p-6 border-2 border-gray-200 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                    </div>
+                    <p class="mb-4 text-sm">Professional and thorough assessment.</p>
+                    <p class="font-bold text-sm">Sarah W.</p>
+                </div>
+                
+                <div class="bg-white p-6 border-2 border-gray-200 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                    </div>
+                    <p class="mb-4 text-sm">Outstanding results and clear reporting.</p>
+                    <p class="font-bold text-sm">David P.</p>
+                </div>
+                
+                <div class="bg-white p-6 border-2 border-gray-200 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                    </div>
+                    <p class="mb-4 text-sm">Exceptional attention to detail.</p>
+                    <p class="font-bold text-sm">Lisa A.</p>
+                </div>
+                
+                <div class="bg-white p-6 border-2 border-gray-200 rounded-2xl">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-black stroke-black"></i>
+                    </div>
+                    <p class="mb-4 text-sm">Fast and efficient process.</p>
+                    <p class="font-bold text-sm">James T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Variation 8: Stacked Cards -->
+    <section id="var8" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <span class="variation-label">Variation 8</span>
+            <h2 class="text-5xl md:text-6xl font-bold mb-4">Stacked Cards</h2>
+            <p class="text-gray-600 mb-12 text-lg">Layered design with depth</p>
+            
+            <div class="stack-container">
+                <div class="stacked-card bg-gradient-to-br from-purple-500 to-pink-500 text-white p-12 rounded-3xl shadow-2xl">
+                    <div class="flex gap-1 mb-6">
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                    </div>
+                    <p class="text-2xl mb-8 leading-relaxed">
+                        "Suman uncovered critical vulnerabilities that could have cost us millions. His expertise is unmatched."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-white/20 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-xl">Michael Chen</p>
+                            <p class="opacity-90">CTO, TechCorp Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stacked-card bg-gradient-to-br from-blue-500 to-cyan-500 text-white p-12 rounded-3xl shadow-2xl">
+                    <div class="flex gap-1 mb-6">
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                    </div>
+                    <p class="text-2xl mb-8 leading-relaxed">
+                        "Professional, thorough, and incredibly knowledgeable. The penetration test revealed critical issues."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-white/20 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-xl">Sarah Williams</p>
+                            <p class="opacity-90">Head of Security, FinanceHub</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stacked-card bg-gradient-to-br from-orange-500 to-red-500 text-white p-12 rounded-3xl shadow-2xl">
+                    <div class="flex gap-1 mb-6">
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-white stroke-white"></i>
+                    </div>
+                    <p class="text-2xl mb-8 leading-relaxed">
+                        "Working with Suman was seamless. Clear action steps and significantly improved security posture."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-white/20 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-xl">David Park</p>
+                            <p class="opacity-90">VP Engineering, CloudScale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 text-center">
+        <p class="text-sm opacity-60">Test File - Testimonial Design Variations</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate sections on scroll
+        gsap.utils.toArray('section').forEach((section) => {
+            gsap.from(section.querySelectorAll('.variation-label, h2, p'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power3.out'
+            });
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,129 +1,90 @@
-<!-- FAQ Section -->
-<section id="faq" class="bg-black text-white px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-32">
-  <div class="max-w-5xl w-full mx-auto">
+<!-- FAQ Section - Minimalist Brutalist Style -->
+<section id="faq" class="relative w-full pt-16 pb-10 md:pt-20 md:pb-12 px-6 md:px-12 lg:px-16 xl:px-24 z-10">
+  <div class="max-w-7xl w-full mx-auto">
     
     <!-- Section Header -->
-    <div class="mb-16 md:mb-20 text-center">
-      <span class="pill-header text-xs uppercase tracking-widest font-bold text-white/40 mb-4 inline-block">
-        <span class="pill-bracket">[</span>
-        <span class="pill-text">FAQ</span>
-        <span class="pill-bracket">]</span>
-      </span>
-      <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+    <div class="mb-10 md:mb-14">
+      <div id="faq-pill-container" class="mb-6">
+        <div class="pill-section-header" data-text="FAQ">
+          <div class="pill-content">
+            <span id="faq-triangle" class="pill-element triangle">▶</span>
+            <span id="faq-open-bracket" class="pill-element bracket">[</span>
+            <span id="faq-pill-text" class="pill-element text">FAQ</span>
+            <span id="faq-close-bracket" class="pill-element bracket">]</span>
+          </div>
+        </div>
+      </div>
+      <h2 class="text-5xl md:text-6xl font-bold leading-[0.9] tracking-tighter text-black mb-4">
         Frequently Asked<br/>Questions
       </h2>
+      <p class="text-base text-gray-600 max-w-xl leading-relaxed">
+        Everything you need to know about my security services
+      </p>
     </div>
 
-    <!-- FAQ Items -->
+    <!-- FAQ Items - Brutalist Style -->
     <div class="space-y-4">
       
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            What types of security testing do you offer?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            I offer comprehensive security assessments including web application penetration testing, network security audits, API security testing, mobile application testing, and cloud infrastructure security reviews. Each engagement is customized to your specific needs and infrastructure.
-          </div>
+      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-bold pr-4">What services do you offer?</h3>
+          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+        </div>
+        <div class="faq-answer" style="display: none; padding-top: 1rem;">
+          <p class="text-lg leading-relaxed opacity-80">I specialize in penetration testing, vulnerability assessments, bug bounty hunting, and security audits. I work with web applications, APIs, cloud infrastructure, and mobile applications.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-bold pr-4">How do I engage your services?</h3>
+          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+        </div>
+        <div class="faq-answer" style="display: none; padding-top: 1rem;">
+          <p class="text-lg leading-relaxed opacity-80">Contact me via the form below or email directly. We'll schedule a consultation to discuss your security needs, scope, timeline, and deliverables. All engagements include a detailed report with findings and remediation steps.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-bold pr-4">What is your typical turnaround time?</h3>
+          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+        </div>
+        <div class="faq-answer" style="display: none; padding-top: 1rem;">
+          <p class="text-lg leading-relaxed opacity-80">Project timelines vary based on scope. A typical web application assessment takes 1-2 weeks. Smaller bug bounty-style tests can be completed within days. Rush projects can be accommodated with advance notice.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-bold pr-4">Do you sign NDAs?</h3>
+          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+        </div>
+        <div class="faq-answer" style="display: none; padding-top: 1rem;">
+          <p class="text-lg leading-relaxed opacity-80">Yes, absolutely. All client information and findings are kept strictly confidential. I'm happy to sign NDAs and work agreements before any engagement begins.</p>
         </div>
       </div>
 
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            How long does a typical security assessment take?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            The duration varies based on scope and complexity. A standard vulnerability assessment typically takes 1-2 weeks, while a comprehensive penetration test usually requires 2-4 weeks. Larger enterprise engagements may extend longer. I'll provide a detailed timeline during the initial consultation.
-          </div>
+      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-bold pr-4">What information will I receive in the final report?</h3>
+          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+        </div>
+        <div class="faq-answer" style="display: none; padding-top: 1rem;">
+          <p class="text-lg leading-relaxed opacity-80">You'll receive a comprehensive report including an executive summary, detailed findings with CVSS scores, proof-of-concept exploits, risk assessments, and actionable remediation recommendations. All findings are prioritized by severity and business impact.</p>
         </div>
       </div>
 
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            What information will I receive in the final report?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            You'll receive a comprehensive report including an executive summary, detailed findings with CVSS scores, proof-of-concept exploits, risk assessments, and actionable remediation recommendations. All findings are prioritized by severity and business impact. I also provide a debriefing session to walk through the report.
-          </div>
+      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-bold pr-4">Do you provide remediation support?</h3>
+          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+        </div>
+        <div class="faq-answer" style="display: none; padding-top: 1rem;">
+          <p class="text-lg leading-relaxed opacity-80">Yes! I provide technical guidance, code reviews for fixes, and retesting services to verify vulnerabilities have been properly addressed. Extended support packages are also available for ongoing security consultation.</p>
         </div>
       </div>
 
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            Do you sign NDAs and confidentiality agreements?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            Absolutely. I understand the sensitive nature of security assessments and am happy to sign NDAs before any engagement begins. All findings and client information are kept strictly confidential and securely stored. I follow industry best practices for data protection.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            What is your approach to responsible disclosure?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            I strictly follow responsible disclosure practices. All vulnerabilities found during engagements are reported directly and exclusively to you. I never publicly disclose client vulnerabilities without explicit written permission. For independent research, I follow coordinated disclosure timelines with affected vendors.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            Do you provide remediation support after the assessment?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            Yes! All packages include follow-up consultation to help your team understand and remediate findings. I can provide technical guidance, code reviews for fixes, and retesting services to verify vulnerabilities have been properly addressed. Extended support packages are also available.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item border-b border-white/10">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center group" aria-expanded="false">
-          <span class="text-xl md:text-2xl font-bold group-hover:text-white/80 transition-colors pr-4">
-            What makes your services different from automated scanners?
-          </span>
-          <i data-lucide="plus" class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300"></i>
-        </button>
-        <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-          <div class="pb-6 text-white/70 text-base md:text-lg leading-relaxed">
-            While I do use industry-standard tools as part of my methodology, the real value comes from manual testing and creative exploitation techniques. I can identify complex business logic flaws, chain multiple vulnerabilities together, and think like a real attacker—something automated tools simply cannot do. You get human expertise, not just a scan report.
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- CTA -->
-    <div class="mt-16 text-center">
-      <p class="text-white/60 mb-6 text-lg">Still have questions?</p>
-      <a href="#contact" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold hover:bg-white/90 transition-all duration-300 group">
-        <span>Schedule a Consultation</span>
-        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-      </a>
     </div>
 
   </div>

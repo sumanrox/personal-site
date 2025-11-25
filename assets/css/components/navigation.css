@@ -1,18 +1,16 @@
 /* Navigation Styles - Elegant & Minimalist */
 
-/* Polygon button for Contact CTA */
+/* Rounded button for Contact CTA */
 .polygon-btn {
-  clip-path: polygon(0 35%,
-      10.7% 0,
-      100% 0,
-      100% 65%,
-      89.3% 100%,
-      0% 100%);
-  border: none !important;
+  border-radius: 0;
+  border: 2px solid var(--text-white) !important;
+  box-shadow: var(--shadow-nav);
+  transition: all 0.2s ease;
 }
 
 .polygon-btn:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-nav-sm) !important;
 }
 
 /* Navigation Container */
@@ -23,34 +21,24 @@
 /* Navigation Bar */
 .nav-bar {
   transition: all 0.3s ease;
-  background: rgb(0, 0, 0);
+  background: var(--text-primary);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  --nav-clip-depth: 25px;
-  clip-path: polygon(0 var(--nav-clip-depth),
-      20px 0,
-      100% 0,
-      100% calc(100% - var(--nav-clip-depth)),
-      calc(100% - 20px) 100%,
-      0 100%);
+  border-bottom: 1px solid var(--bg-white-10);
+  border-radius: 0;
 }
 
 .nav-scrolled .nav-bar {
   /* Maintains same solid black background on scroll */
-  background: rgb(0, 0, 0);
+  background: var(--text-primary);
 }
 
 /* Logo */
 .nav-logo {
-  transition: opacity 0.3s ease;
-}
-
-.nav-logo:hover {
-  opacity: 0.8;
+  /* No hover effects on branding */
 }
 
 .logo-icon {
-  transition: all 0.3s ease;
+  /* No transitions needed */
 }
 
 /* Navigation Links with Pill Animation */
@@ -71,7 +59,7 @@
 .nav-close-bracket {
   transition: opacity 0.2s ease;
   font-weight: bold;
-  color: #fff;
+  color: var(--text-white);
 }
 
 .nav-text {
@@ -79,7 +67,7 @@
 }
 
 .nav-link-item:hover .nav-text {
-  color: #fff;
+  color: var(--text-white);
 }
 
 /* CTA Button */
@@ -96,7 +84,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: var(--overlay-white-gradient);
   transition: left 0.5s ease;
 }
 
@@ -111,7 +99,7 @@
 }
 
 .mobile-menu-btn:hover {
-  background: rgba(31, 41, 55, 0.05);
+  background: var(--overlay-dark);
   transform: scale(1.05);
 }
 
@@ -146,7 +134,7 @@
 }
 
 .mobile-link:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg-white-10);
   transform: translateX(8px);
 }
 

@@ -8,6 +8,9 @@
  * - Import order matters (base styles first)
  */
 
+/* Theme configuration - MUST BE FIRST */
+@import url('theme.css');
+
 /* Base styles & reset */
 @import url('components/base.css');
 
@@ -26,10 +29,12 @@
 @import url('components/timeline.css');
 @import url('components/footer.css');
 @import url('components/animations.css');
-@import url('components/projects.css');
+@import url('components/projects.css?v=7');
+@import url('components/testimonials.css');
 @import url('components/pill-headers.css');
 @import url('components/logo-carousel.css');
 @import url('components/work.css');
+@import url('components/faq.css');
 @import url('components/contact.css');
 @import url('components/back-to-top.css');
 @import url('components/pull-to-refresh.css');
