@@ -1,209 +1,219 @@
-<!-- Work Section - Split View with Sticky Sidebar -->
-<section id="work" class="relative w-full">
-
-    <!-- Background Pattern -->
-    <div class="work-bg-pattern"></div>
-
-    <!-- Horizontal Scroll Container -->
-    <!-- Added max-width and padding classes to match site standard -->
-    <div class="horizontal-scroll-container max-w-7xl w-full mx-auto px-6 md:px-12 lg:px-20 xl:px-32">
-
-        <!-- Sticky Header Area with Glassmorphism -->
-        <div class="work-header-container">
-            <div class="work-header-content">
-                <div id="work-pill-container" class="mb-6">
-                    <div class="pill-section-header" data-text="RESEARCH">
-                        <div class="pill-content">
-                            <span id="work-triangle" class="pill-element triangle">▶</span>
-                            <span id="work-open-bracket" class="pill-element bracket">[</span>
-                            <span id="work-pill-text" class="pill-element text">RESEARCH</span>
-                            <span id="work-close-bracket" class="pill-element bracket">]</span>
-                        </div>
+<!-- Work Section - Studio Grade Research Showcase -->
+<section id="work" class="relative w-full py-16 md:py-20 px-6 md:px-12 lg:px-16 xl:px-24 overflow-hidden">
+    
+    <!-- Three.js Canvas Background -->
+    <canvas id="work-three-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity: 0.4;"></canvas>
+    
+    <!-- Premium Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+    <div class="absolute inset-0 opacity-[0.015]" style="background-image: url('data:image/svg+xml,%3Csvg width=%2760%27 height=%2760%27 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cg fill=%27none%27 fill-rule=%27evenodd%27%3E%3Cg fill=%27%23000000%27 fill-opacity=%271%27%3E%3Cpath d=%27M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    
+    <div class="relative max-w-7xl w-full mx-auto">
+        
+        <!-- Header -->
+        <div class="mb-20">
+            <div id="work-pill-container" class="mb-8">
+                <div class="pill-section-header" data-text="RESEARCH">
+                    <div class="pill-content">
+                        <span id="work-triangle" class="pill-element triangle">▶</span>
+                        <span id="work-open-bracket" class="pill-element bracket">[</span>
+                        <span id="work-pill-text" class="pill-element text">RESEARCH</span>
+                        <span id="work-close-bracket" class="pill-element bracket">]</span>
                     </div>
                 </div>
-                <h2 class="text-5xl md:text-7xl font-bold leading-[0.9] tracking-tighter text-black mb-6">
-                    Vulnerability<br>Research
-                </h2>
-                <p class="text-lg text-gray-500 max-w-xs leading-relaxed">
-                    Critical security flaws discovered in major platforms and responsibly disclosed.
-                </p>
             </div>
+            <h2 class="text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.85] tracking-tighter text-black mb-6">
+                Vulnerability<br/>Research
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-500 max-w-2xl leading-relaxed font-light">
+                Critical security vulnerabilities discovered across enterprise platforms, cloud infrastructure, and financial systems.
+            </p>
         </div>
 
-        <!-- Scroll Wrapper -->
-        <div class="horizontal-scroll-wrapper">
-
-            <!-- Finding 1 -->
-            <div class="research-card-h w-[85vw] md:w-[400px] lg:w-[450px] p-8 shrink-0">
-                <div class="card-header">
-                    <div class="card-meta">
-                        <div class="severity-indicator severity-critical">
-                            <span class="severity-dot"></span>
-                            <span class="severity-text">Critical</span>
+        <!-- Research Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            
+            <!-- Card 1 - Featured Large -->
+            <div class="lg:col-span-2 group">
+                <div class="relative bg-black text-white p-10 md:p-14 overflow-hidden transition-all duration-700 hover:shadow-2xl">
+                    <!-- Animated Background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap items-center gap-4 mb-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-red-500 text-white text-xs font-bold tracking-wider">
+                                <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                                CRITICAL
+                            </div>
+                            <span class="text-sm text-gray-400 font-mono">CVE-2024-XXXXX</span>
+                            <span class="text-sm text-gray-400">•</span>
+                            <span class="text-sm text-gray-400">2024</span>
                         </div>
-                        <span class="year-badge">2024</span>
+                        
+                        <h3 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                            Remote Code Execution<br/>Enterprise CMS Platform
+                        </h3>
+                        
+                        <p class="text-lg text-gray-300 mb-8 max-w-3xl leading-relaxed">
+                            Discovered a critical zero-day RCE vulnerability affecting 50,000+ enterprise installations. Successfully chained SQL injection with deserialization flaws to achieve unauthenticated remote code execution, leading to complete system compromise.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1 uppercase tracking-wider">Bounty</div>
+                                <div class="text-3xl font-bold text-green-400">$15,000</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1 uppercase tracking-wider">CVSS Score</div>
+                                <div class="text-3xl font-bold">9.8</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1 uppercase tracking-wider">Impact</div>
+                                <div class="text-3xl font-bold">50K+</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 mb-1 uppercase tracking-wider">Platform</div>
+                                <div class="text-3xl font-bold">H1</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="inline-flex items-center gap-3 text-white font-semibold group/btn">
+                            <span class="border-b-2 border-white/50 group-hover/btn:border-white transition-colors">Read Full Report</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
-                    <h3 class="card-title">CVE-2024-XXXXX</h3>
-                    <p class="card-subtitle">Remote Code Execution in Enterprise CMS</p>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-description">
-                        Discovered a critical RCE vulnerability affecting 50,000+ installations. Chained SQL injection
-                        with a deserialization flaw to achieve unauthenticated remote code execution on the target
-                        system.
-                    </p>
-                </div>
-
-                <div class="card-footer">
-                    <div class="data-grid">
-                        <div class="data-item">
-                            <span class="data-label">Bounty</span>
-                            <span class="data-value bounty-value">$15,000</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">CVSS</span>
-                            <span class="data-value">9.8</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Platform</span>
-                            <span class="data-value">H1</span>
-                        </div>
-                    </div>
-                    <a href="#" class="view-report-btn group">
-                        <span>Read Report</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- Finding 2 -->
-            <div class="research-card-h w-[85vw] md:w-[400px] lg:w-[450px] p-8 shrink-0">
-                <div class="card-header">
-                    <div class="card-meta">
-                        <div class="severity-indicator severity-high">
-                            <span class="severity-dot"></span>
-                            <span class="severity-text">High</span>
+            <!-- Card 2 -->
+            <div class="group">
+                <div class="relative bg-white border-4 border-black p-8 md:p-10 transition-all duration-500 hover:shadow-xl hover:translate-y-[-8px]">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500 text-white text-xs font-bold tracking-wider">
+                                <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+                                HIGH
+                            </div>
+                            <span class="text-sm text-gray-500 font-mono">2023</span>
                         </div>
-                        <span class="year-badge">2023</span>
+                        
+                        <h3 class="text-3xl font-bold mb-3 tracking-tight">
+                            Authentication Bypass
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-2 font-medium">Mobile Banking Application</p>
+                        
+                        <p class="text-base text-gray-600 mb-6 leading-relaxed">
+                            Logic flaw in JWT implementation enabling complete account takeover. Bypassed MFA through weak token validation affecting 2M+ users.
+                        </p>
+                        
+                        <div class="flex items-center gap-6 mb-6 pb-6 border-b-2 border-gray-100">
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider">Bounty</div>
+                                <div class="text-2xl font-bold text-green-600">$10,000</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider">Impact</div>
+                                <div class="text-2xl font-bold">2M+</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider">Type</div>
+                                <div class="text-2xl font-bold">Logic</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="inline-flex items-center gap-2 text-black font-bold group/btn">
+                            <span class="border-b-2 border-black/30 group-hover/btn:border-black transition-colors">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
-                    <h3 class="card-title">Auth Bypass</h3>
-                    <p class="card-subtitle">Mobile Banking Application</p>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-description">
-                        Identified a logic flaw in the JWT implementation allowing full account takeover. Exploited weak
-                        token validation to bypass Multi-Factor Authentication (MFA) and access user accounts.
-                    </p>
-                </div>
-
-                <div class="card-footer">
-                    <div class="data-grid">
-                        <div class="data-item">
-                            <span class="data-label">Bounty</span>
-                            <span class="data-value bounty-value">$10,000</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Users</span>
-                            <span class="data-value">2M+</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Platform</span>
-                            <span class="data-value">Bugcrowd</span>
-                        </div>
-                    </div>
-                    <a href="#" class="view-report-btn group">
-                        <span>Read Report</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- Finding 3 -->
-            <div class="research-card-h w-[85vw] md:w-[400px] lg:w-[450px] p-8 shrink-0">
-                <div class="card-header">
-                    <div class="card-meta">
-                        <div class="severity-indicator severity-high">
-                            <span class="severity-dot"></span>
-                            <span class="severity-text">High</span>
+            <!-- Card 3 -->
+            <div class="group">
+                <div class="relative bg-white border-4 border-black p-8 md:p-10 transition-all duration-500 hover:shadow-xl hover:translate-y-[-8px]">
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/5 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500 text-white text-xs font-bold tracking-wider">
+                                <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+                                HIGH
+                            </div>
+                            <span class="text-sm text-gray-500 font-mono">2023</span>
                         </div>
-                        <span class="year-badge">2023</span>
+                        
+                        <h3 class="text-3xl font-bold mb-3 tracking-tight">
+                            XSS to CSRF Chain
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-2 font-medium">SaaS Admin Panel</p>
+                        
+                        <p class="text-base text-gray-600 mb-6 leading-relaxed">
+                            Chained stored XSS with CSRF to achieve admin account takeover. Demonstrated enterprise-wide impact through privilege escalation.
+                        </p>
+                        
+                        <div class="flex items-center gap-6 mb-6 pb-6 border-b-2 border-gray-100">
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider">Bounty</div>
+                                <div class="text-2xl font-bold text-green-600">$8,500</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider">Type</div>
+                                <div class="text-2xl font-bold">Chain</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider">Scope</div>
+                                <div class="text-2xl font-bold">Admin</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="inline-flex items-center gap-2 text-black font-bold group/btn">
+                            <span class="border-b-2 border-black/30 group-hover/btn:border-black transition-colors">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
-                    <h3 class="card-title">XSS Chain</h3>
-                    <p class="card-subtitle">SaaS Platform Admin Panel</p>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-description">
-                        Chained a stored Cross-Site Scripting (XSS) vulnerability with CSRF to achieve full account
-                        takeover of administrator accounts. Demonstrated significant impact on enterprise customers.
-                    </p>
-                </div>
-
-                <div class="card-footer">
-                    <div class="data-grid">
-                        <div class="data-item">
-                            <span class="data-label">Bounty</span>
-                            <span class="data-value bounty-value">$8,500</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Type</span>
-                            <span class="data-value">Chain</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Platform</span>
-                            <span class="data-value">Private</span>
-                        </div>
-                    </div>
-                    <a href="#" class="view-report-btn group">
-                        <span>Read Report</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- Finding 4 -->
-            <div class="research-card-h w-[85vw] md:w-[400px] lg:w-[450px] p-8 shrink-0">
-                <div class="card-header">
-                    <div class="card-meta">
-                        <div class="severity-indicator severity-research">
-                            <span class="severity-dot"></span>
-                            <span class="severity-text">Research</span>
+            <!-- Card 4 - Research Highlight -->
+            <div class="lg:col-span-2 group">
+                <div class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white p-10 md:p-12 overflow-hidden transition-all duration-700 hover:shadow-2xl">
+                    <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=%2740%27 height=%2740%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M0 0h20v20H0V0zm20 20h20v20H20V20z%27 fill=%27%23ffffff%27 fill-opacity=%270.1%27/%3E%3C/svg%3E');"></div>
+                    
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-start">
+                        <div class="flex-1">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white text-xs font-bold tracking-wider mb-6">
+                                <span class="w-2 h-2 bg-white rounded-full"></span>
+                                RESEARCH
+                            </div>
+                            
+                            <h3 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                                AWS Cloud Security<br/>Mass Reconnaissance
+                            </h3>
+                            
+                            <p class="text-lg text-gray-300 mb-6 max-w-2xl leading-relaxed">
+                                Large-scale security research identifying 200+ misconfigured S3 buckets exposing sensitive PII data. Developed automated scanning framework for continuous detection.
+                            </p>
+                            
+                            <a href="#" class="inline-flex items-center gap-3 text-white font-semibold group/btn">
+                                <span class="border-b-2 border-white/50 group-hover/btn:border-white transition-colors">Read Research Paper</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
-                        <span class="year-badge">2022</span>
+                        
+                        <div class="flex md:flex-col gap-6">
+                            <div class="text-center md:text-right">
+                                <div class="text-sm text-gray-500 mb-2 uppercase tracking-wider">Findings</div>
+                                <div class="text-5xl font-bold">200+</div>
+                            </div>
+                            <div class="text-center md:text-right">
+                                <div class="text-sm text-gray-500 mb-2 uppercase tracking-wider">Method</div>
+                                <div class="text-2xl font-bold">Automated</div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="card-title">AWS Exposure</h3>
-                    <p class="card-subtitle">Cloud Security Research</p>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-description">
-                        Conducted large-scale reconnaissance identifying 200+ misconfigured S3 buckets exposing
-                        Personally Identifiable Information (PII). Developed an automated scanning framework for
-                        detection.
-                    </p>
-                </div>
-
-                <div class="card-footer">
-                    <div class="data-grid">
-                        <div class="data-item">
-                            <span class="data-label">Findings</span>
-                            <span class="data-value">200+</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Type</span>
-                            <span class="data-value">Cloud</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="data-label">Method</span>
-                            <span class="data-value">Auto</span>
-                        </div>
-                    </div>
-                    <a href="#" class="view-report-btn group">
-                        <span>Read Report</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
                 </div>
             </div>
 

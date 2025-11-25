@@ -26,6 +26,7 @@ import { initPullToRefresh } from './components/pull-to-refresh.js';
 import { initProjectPillAnimation } from './components/projectPillAnimation.js';
 import { initRotatingTestimonials } from './components/rotatingTestimonials.js';
 import { initContactEnhancements } from './components/contactEnhancements.js';
+import { initWorkThreeBackground } from './components/workThreeBackground.js';
 // FAQ accordion now uses inline onclick - no module needed
 // import { initFAQAccordion } from './components/faqAccordion.js';
 import './components/heroThree.js';
@@ -64,6 +65,7 @@ import './components/heroThree.js';
       try { initPullToRefresh(); } catch (e) { console.error('Error initializing Pull to Refresh:', e); }
       try { initRotatingTestimonials(); } catch (e) { console.error('Error initializing Rotating Testimonials:', e); }
       try { initContactEnhancements(); } catch (e) { console.error('Error initializing Contact Enhancements:', e); }
+      try { initWorkThreeBackground(); } catch (e) { console.error('Error initializing Work Three Background:', e); }
       // FAQ accordion now uses inline onclick - no initialization needed
       // try { initFAQAccordion(); } catch (e) { console.error('Error initializing FAQ Accordion:', e); }
 
