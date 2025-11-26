@@ -43,7 +43,8 @@
   <!-- Google Fonts - Funnel Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind CSS -->
@@ -53,7 +54,8 @@
       theme: {
         extend: {
           fontFamily: {
-            funnel: ['Funnel Display', 'sans-serif'],
+            funnel: ['Manrope', 'sans-serif'],
+            manrope: ['Manrope', 'sans-serif'],
           },
         }
       }
@@ -88,8 +90,8 @@
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
 
   <!-- Three.js for 3D animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" 
-    integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+    integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
   <!-- Notyf - Toast Notifications -->
@@ -97,10 +99,80 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
 
   <!-- Modular CSS -->
-  <link rel="stylesheet" href="assets/css/main-modular.css?v=16" />
+    <link rel="stylesheet" href="assets/css/main-modular.css?v=24" />  <!-- Global FAQ Toggle Function -->
+  <script>
+    // FAQ Toggle Function - Must be global and available before components load
+    window.toggleFAQ = function(clickedElement) {
+      // Bring clicked card to front
+      clickedElement.style.position = 'relative';
+      clickedElement.style.zIndex = '10';
+      
+      // Use specific selectors within this exact card only
+      const answer = clickedElement.querySelector(':scope > .p-8 > .faq-answer');
+      
+      // Icon could be <i> or SVG after Lucide renders - use :scope to limit to this card only
+      let icon = clickedElement.querySelector(':scope > .p-8 > div > .faq-icon');
+      if (!icon) {
+        // Try SVG if Lucide has already rendered
+        icon = clickedElement.querySelector(':scope > .p-8 > div > svg.faq-icon');
+      }
+      if (!icon) {
+        // Fallback to any SVG in the header
+        icon = clickedElement.querySelector(':scope > .p-8 > div > svg');
+      }
+      
+      // Safety check
+      if (!answer || !icon) {
+        console.warn('FAQ elements not found in clicked card:', { 
+          answer: !!answer, 
+          icon: !!icon,
+          cardId: clickedElement.getAttribute('data-faq-id')
+        });
+        return;
+      }
+      
+      const isCurrentlyOpen = !answer.classList.contains('hidden');
+
+      // Close all other FAQ cards and reset their z-index
+      const allFaqCards = document.querySelectorAll('.faq-card');
+      allFaqCards.forEach(card => {
+        if (card !== clickedElement) {
+          const cardAnswer = card.querySelector(':scope > .p-8 > .faq-answer');
+          let cardIcon = card.querySelector(':scope > .p-8 > div > .faq-icon');
+          if (!cardIcon) {
+            cardIcon = card.querySelector(':scope > .p-8 > div > svg');
+          }
+          
+          if (cardAnswer && cardIcon) {
+            cardAnswer.classList.add('hidden');
+            cardIcon.classList.remove('rotate-45');
+            card.classList.remove('border-black');
+            card.classList.remove('shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]');
+            card.style.zIndex = '1';
+          }
+        }
+      });
+
+      // Toggle the clicked card
+      if (isCurrentlyOpen) {
+        answer.classList.add('hidden');
+        icon.classList.remove('rotate-45');
+        clickedElement.classList.remove('border-black');
+        clickedElement.classList.remove('shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]');
+        clickedElement.style.zIndex = '1';
+      } else {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-45');
+        clickedElement.classList.add('border-black');
+        clickedElement.classList.add('shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]');
+        clickedElement.style.zIndex = '10';
+      }
+    };
+  </script>
 </head>
 
-<body class="font-funnel text-black antialiased overflow-x-hidden" style="background: var(--bg-gradient-start); background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27100%27 height=%27100%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.05%27/%3E%3C/svg%3E');">
+<body class="font-manrope text-black antialiased overflow-x-hidden"
+  style="background: var(--bg-gradient-start); background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27100%27 height=%27100%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.05%27/%3E%3C/svg%3E');">
 
   <!-- Pull to Refresh Indicator -->
   <div id="pull-to-refresh">
@@ -110,9 +182,10 @@
   <!-- SEO: Hidden H1 for search engines -->
   <h1 class="sr-only">Suman Roy - Security Researcher | Penetration Testing & Bug Bounty Hunter</h1>
 
-  <!-- Loading Screen with 3D Orb Animation -->
+  <!-- Loading Screen with 3D Orb Animation - DISABLED -->
   <div id="page-loader"
-    class="fixed inset-0 bg-black z-[9999] flex items-center justify-center transition-opacity duration-500">
+    class="fixed inset-0 bg-black z-[9999] flex items-center justify-center transition-opacity duration-500"
+    style="display: none;">
     <div class="loader-orb-wrap"></div>
     <div id="loader-text" class="loader-text">DECRYPTING</div>
   </div>
@@ -125,9 +198,6 @@
   <!-- Film grain overlay -->
   <div class="film-grain" aria-hidden="true"></div>
 
-  <!-- Navigation Component - Outside scroll container to stay fixed -->
-  <div id="nav-placeholder"></div>
-
   <!-- Locomotive Scroll Container -->
   <div data-scroll-container>
 
@@ -139,18 +209,19 @@
 
       <!-- Hero Component -->
       <div id="hero-placeholder"></div>
-      
-      
+
+
       <!-- Sections Wrapper with Gradient Background -->
-      <div class="sections-wrapper relative" style="background: #f0ece8;">
+      <div class="sections-wrapper relative"
+        style="background: #FAF9F6; background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Cfilter id=%27noise%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.65%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23noise)%27 opacity=%270.015%27/%3E%3C/svg%3E');">
         <!-- Logo Carousel Component -->
         <div id="logo-carousel-placeholder" class="relative"></div>
         <!-- About Component -->
         <div id="about-placeholder"></div>
-        
+
         <!-- Experience Component -->
         <div id="experience-placeholder"></div>
-        
+
         <!-- Work Component -->
         <div id="work-placeholder"></div>
 
@@ -182,156 +253,11 @@
   <!-- Component Loader -->
   <script src="load-components.js" defer></script>
 
-  <!-- FAQ Toggle Function - Must be global and available immediately -->
-  <script>
-    window.toggleFAQ = function(element) {
-      console.log('FAQ clicked!', element);
-      const answer = element.querySelector('.faq-answer');
-      const icon = element.querySelector('.faq-icon');
-      const isOpen = answer && answer.style.display === 'block';
-      
-      // Close all FAQs
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
-        const ans = item.querySelector('.faq-answer');
-        const ico = item.querySelector('.faq-icon');
-        if (ans) ans.style.display = 'none';
-        if (ico) ico.style.transform = 'rotate(0deg)';
-        item.style.background = 'white';
-        item.style.color = 'black';
-      });
-      
-      // Open this FAQ if it was closed
-      if (!isOpen) {
-        element.classList.add('active');
-        if (answer) answer.style.display = 'block';
-        if (icon) icon.style.transform = 'rotate(180deg)';
-        element.style.background = 'black';
-        element.style.color = 'white';
-      }
-    };
-    console.log('✅ toggleFAQ function defined globally');
-  </script>
+  <!-- Loader Animation Module - DISABLED -->
+  <!-- <script type="module" src="./assets/js/components/loaderAnimation.js"></script> -->
 
-  <!-- Main App Script -->
+  <!-- Main App Initialization -->
   <script type="module">
-    // Generate 300 particles for the 3D orb loader
-    const orbWrap = document.querySelector('.loader-orb-wrap');
-    if (orbWrap) {
-      const totalParticles = 300;
-      const baseHue = 0;
-      let cssStyles = '';
-
-      // Create a document fragment for better performance
-      const fragment = document.createDocumentFragment();
-
-      for (let i = 0; i < totalParticles; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'loader-particle';
-        particle.style.animationDelay = `${i * 0.003}s`;
-
-        // Calculate random angles and hue
-        const z = Math.random() * 360;
-        const y = Math.random() * 360;
-        const hue = ((40 / totalParticles * i) + baseHue);
-
-        particle.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
-        particle.setAttribute('data-z', z);
-        particle.setAttribute('data-y', y);
-
-        // Create unique animation
-        const animName = `orbit-${i}`;
-        cssStyles += `
-            @keyframes ${animName} {
-              2% { opacity: 1; }
-              5% { transform: rotateZ(-${z}deg) rotateY(${y}deg) translateX(100px) rotateZ(${z}deg); }
-              95% { 
-                transform: rotateZ(-${z}deg) rotateY(${y}deg) translateX(100px) rotateZ(${z}deg);
-                opacity: 1;
-              }
-              100% { transform: rotateZ(-${z}deg) rotateY(${y}deg) translateX(300px) rotateZ(${z}deg); }
-            }
-          `;
-
-        particle.style.animation = `${animName} 60s infinite`;
-        fragment.appendChild(particle);
-      }
-
-      // Inject all styles at once
-      const style = document.createElement('style');
-      style.textContent = cssStyles;
-      document.head.appendChild(style);
-
-      // Append all particles at once
-      orbWrap.appendChild(fragment);
-    }
-
-    // Decryption text effect
-    const loaderText = document.getElementById('loader-text');
-    if (loaderText) {
-      const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const originalText = 'DECRYPTING';
-      const finalText = 'ACCESS GRANTED';
-      let frame = 0;
-      const totalFrames = 4; // 0.13 seconds at 30fps
-
-      // Decryption effect for initial text
-      const decryptInterval = setInterval(() => {
-        if (frame < totalFrames) {
-          let displayText = '';
-          for (let i = 0; i < originalText.length; i++) {
-            if (frame / totalFrames > i / originalText.length) {
-              displayText += originalText[i];
-            } else {
-              displayText += chars[Math.floor(Math.random() * chars.length)];
-            }
-          }
-          loaderText.textContent = displayText;
-          frame++;
-        } else {
-          loaderText.textContent = originalText;
-          clearInterval(decryptInterval);
-
-          // Change to ACCESS GRANTED after orb forms (0.13 seconds)
-          setTimeout(() => {
-            let grantedFrame = 0;
-            const grantedFrames = 6; // 0.2 seconds at 30fps
-
-            const grantedInterval = setInterval(() => {
-              if (grantedFrame < grantedFrames) {
-                let displayText = '';
-                for (let i = 0; i < finalText.length; i++) {
-                  if (grantedFrame / grantedFrames > i / finalText.length) {
-                    displayText += finalText[i];
-                  } else {
-                    displayText += chars[Math.floor(Math.random() * chars.length)];
-                  }
-                }
-                loaderText.textContent = displayText;
-                grantedFrame++;
-              } else {
-                loaderText.textContent = finalText;
-                clearInterval(grantedInterval);
-              }
-            }, 1000 / 30);
-          }, 130);
-        }
-      }, 1000 / 30);
-    }
-
-    // Hide loader when page is ready
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('page-loader');
-      if (loader) {
-        setTimeout(() => {
-          loader.style.opacity = '0';
-          setTimeout(() => {
-            loader.style.display = 'none';
-          }, 500);
-        }, 3000); // Show orb for at least 3 seconds
-      }
-    });
-
     // Wait for components to load before initializing app
     window.initializeApp = async function () {
       const { default: initApp } = await import('./assets/js/app.js');

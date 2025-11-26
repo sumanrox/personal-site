@@ -1,4 +1,4 @@
-/* Projects Section - Minimal Brutalist */
+/* About Section - Minimal Brutalist */
 
 /* Entry Animation */
 @keyframes fadeInUp {
@@ -40,4 +40,9 @@
 
 .no-auto-anim>div:nth-child(6) {
     animation-delay: 0.6s;
+}
+
+/* Skill Bar Animation */
+.skill-bar {
+    transition: width 1s ease-out;
 }

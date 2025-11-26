@@ -10,12 +10,29 @@ async function loadComponent(placeholder, componentPath) {
     const response = await fetch(componentPath + cacheBuster);
     if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
     const html = await response.text();
-    
+
     const element = document.querySelector(placeholder);
     if (element) {
       // Security: Use textContent for placeholder, then set innerHTML
       // This prevents any XSS if placeholder selector is ever user-controlled
       element.innerHTML = html;
+
+      // Execute any inline scripts in the loaded component
+      const scripts = element.querySelectorAll('script');
+      scripts.forEach(script => {
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        // Replace the original script tag with the new one to ensure execution
+        script.parentNode.replaceChild(newScript, script);
+      });
+
+      console.log(`✅ Loaded component: ${componentPath}`);
+    } else {
+      console.warn(`⚠️ Placeholder not found: ${placeholder}`);
     }
   } catch (error) {
     console.error(`Error loading component ${componentPath}:`, error);
@@ -24,7 +41,6 @@ async function loadComponent(placeholder, componentPath) {
 
 async function loadAllComponents() {
   const components = [
-    { placeholder: '#nav-placeholder', path: 'components/navigation.html' },
     { placeholder: '#hero-placeholder', path: 'components/hero.html' },
     { placeholder: '#about-placeholder', path: 'components/about.html' },
     { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },

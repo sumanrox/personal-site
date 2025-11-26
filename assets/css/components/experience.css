@@ -1,4 +1,4 @@
-/* Projects Section - Minimal Brutalist */
+/* Experience Section Styles - Minimal Brutalist */
 
 /* Entry Animation */
 @keyframes fadeInUp {
@@ -16,6 +16,7 @@
 .no-auto-anim>div {
     animation: fadeInUp 0.6s ease-out forwards;
     opacity: 0;
+    /* Start hidden */
 }
 
 .no-auto-anim>div:nth-child(1) {
@@ -34,10 +35,21 @@
     animation-delay: 0.4s;
 }
 
-.no-auto-anim>div:nth-child(5) {
-    animation-delay: 0.5s;
+/* Rainbow Animation for Current Role */
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.no-auto-anim>div:nth-child(6) {
-    animation-delay: 0.6s;
+.animate-rainbow {
+    animation: rainbow 3s ease-in-out infinite;
 }

@@ -4,13 +4,9 @@
  */
 
 export function initCounterAnimation() {
-  console.log('initCounterAnimation called');
-  
-  const counters = document.querySelectorAll('.counter');
-  console.log('Found counters:', counters.length);
+  const counters = document.querySelectorAll('[data-counter]');
   
   if (counters.length === 0) {
-    console.warn('No counters found');
     return;
   }
 

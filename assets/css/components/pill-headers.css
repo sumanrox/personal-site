@@ -15,14 +15,12 @@
   max-width: 90vw;
   height: clamp(40px, 8vw, 48px);
   opacity: 0;
-  clip-path: polygon(
-    0 35%,
-    10.7% 0,
-    100% 0,
-    100% 65%,
-    89.3% 100%,
-    0% 100%
-  );
+  clip-path: polygon(0 35%,
+      10.7% 0,
+      100% 0,
+      100% 65%,
+      89.3% 100%,
+      0% 100%);
   box-shadow: var(--shadow-sm);
   margin-bottom: 1rem;
 }
@@ -38,7 +36,8 @@
 .pill-element {
   color: var(--text-white);
   display: inline-block;
-  opacity: 0; /* Start hidden for animation */
+  opacity: 0;
+  /* Start hidden for animation */
 }
 
 .pill-element.text {
@@ -64,11 +63,11 @@
     min-width: 140px;
     height: 40px;
   }
-  
+
   .pill-element.triangle {
     font-size: 16px;
   }
-  
+
   .pill-element.bracket {
     font-size: 18px;
   }
@@ -96,5 +95,20 @@
 }
 
 #contact-pill-container .pill-element.text {
+  color: var(--text-white);
+}
+
+/* FAQ section specific styling - ensure visibility */
+#faq-pill-container .pill-section-header {
+  background: var(--text-primary);
+  color: var(--text-white);
+  box-shadow: var(--shadow-md);
+}
+
+#faq-pill-container .pill-element {
+  color: var(--text-white);
+}
+
+#faq-pill-container .pill-element.text {
   color: var(--text-white);
 }

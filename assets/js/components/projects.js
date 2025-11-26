@@ -1,4 +1,6 @@
 import { getConfig } from '../config.js';
+import { logger } from '../utils/logger.js';
+import { escapeHTML, sanitizeURL } from '../utils/domSanitizer.js';
 
 export function initProjects() {
     const projectsContainer = document.querySelector('#projects-grid');
@@ -19,7 +21,16 @@ export function initProjects() {
 }
 
 function renderProjects(container, projects) {
-    container.innerHTML = projects.map((project, index) => {
+    // Sanitize project data before rendering
+    const sanitizedProjects = projects.map(project => ({
+        ...project,
+        name: escapeHTML(project.name || ''),
+        description: escapeHTML(project.description || ''),
+        github: sanitizeURL(project.github) || '#',
+        tags: (project.tags || []).map(tag => escapeHTML(tag))
+    }));
+    
+    container.innerHTML = sanitizedProjects.map((project, index) => {
         // Pattern: 8, 4, 6, 6 for visual variety
         let colSpanClass = 'md:col-span-6 lg:col-span-6';
         if (index % 4 === 0) colSpanClass = 'md:col-span-6 lg:col-span-8';
@@ -182,7 +193,7 @@ function initMagneticEffect() {
 }
 
 function renderPlaceholders(container) {
-    console.warn('No projects found in config');
+    logger.warn('No projects found in config');
 }
 
 function getIconForTags(tags) {

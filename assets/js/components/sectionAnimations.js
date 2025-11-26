@@ -24,7 +24,7 @@ export function initSectionAnimations() {
     if (section.id === 'experience') return;
 
     // Section fade and slide animation with proper opacity handling
-    gsap.fromTo(section, 
+    gsap.fromTo(section,
       {
         opacity: 1, // Start fully visible to prevent white flashes
         y: 50
@@ -86,8 +86,8 @@ export function initSectionAnimations() {
     });
   });
 
-  // Animate grid items with fast stagger (EXCLUDING the outer grid containers)
-  const gridContainers = gsap.utils.toArray('.grid:not(.md\\:grid-cols-12)');
+  // Animate grid items with fast stagger (EXCLUDING the outer grid containers and manually excluded grids)
+  const gridContainers = gsap.utils.toArray('.grid:not(.md\\:grid-cols-12):not(.no-auto-anim)');
   gridContainers.forEach(container => {
     // Skip if this grid is inside the experience section
     const inExperience = container.closest('#experience');

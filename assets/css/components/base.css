@@ -32,6 +32,30 @@ body::-webkit-scrollbar {
   /* Chrome, Safari, Opera */
 }
 
+/* Hide Locomotive Scroll scrollbar */
+.c-scrollbar {
+  display: none !important;
+}
+
+.c-scrollbar_thumb {
+  display: none !important;
+}
+
+html,
+body,
+[data-scroll-container] {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+[data-scroll-container]::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 /* Noise Texture Overlay - Film Grain Effect */
 body::before {
   content: '';

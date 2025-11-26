@@ -75,22 +75,22 @@
 
             <div class="grid md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Name</label>
-                <input type="text" name="name" required
+                <label for="contact-name" class="text-xs font-mono font-bold uppercase tracking-wider text-black">Name</label>
+                <input type="text" id="contact-name" name="name" required
                   class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-gray-400"
                   placeholder="John Doe">
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Email</label>
-                <input type="email" name="email" required
+                <label for="contact-email" class="text-xs font-mono font-bold uppercase tracking-wider text-black">Email</label>
+                <input type="email" id="contact-email" name="email" required
                   class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-gray-400"
                   placeholder="john@example.com">
               </div>
             </div>
 
             <div class="space-y-2">
-              <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Project Type</label>
-              <select required
+              <label for="contact-project-type" class="text-xs font-mono font-bold uppercase tracking-wider text-black">Project Type</label>
+              <select id="contact-project-type" name="project-type" required
                 class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all appearance-none cursor-pointer">
                 <option value="">Select a service...</option>
                 <option>Penetration Testing</option>
@@ -102,15 +102,18 @@
             </div>
 
             <div class="space-y-2">
-              <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Message</label>
-              <textarea name="message" rows="5" required
+              <label for="contact-message" class="text-xs font-mono font-bold uppercase tracking-wider text-black">Message</label>
+              <textarea id="contact-message" name="message" rows="5" required
                 class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-gray-400 resize-none"
                 placeholder="Tell me about your project..."></textarea>
             </div>
 
-            <button type="submit"
+            <!-- Honeypot field (hidden from users, catches bots) -->
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position: absolute; left: -5000px;" aria-hidden="true">
+
+            <button type="submit" id="contact-submit-btn"
               class="w-full bg-black text-white font-bold text-lg py-4 border-2 border-black hover:bg-white hover:text-black transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wider flex items-center justify-center gap-2 group">
-              Send Message
+              <span id="submit-text">Send Message</span>
               <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
             </button>
 

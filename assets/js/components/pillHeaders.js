@@ -8,12 +8,14 @@ export class PillHeadersController {
   initializePills() {
     const pillContainers = [
       'about-pill-container',
-      'experience-pill-container', 
+      'experience-pill-container',
       'projects-pill-container',
       'skills-pill-container',
       'work-pill-container',
       'testimonials-pill-container',
-      'contact-pill-container'
+      'faq-pill-container',
+      'contact-pill-container',
+      'footer-pill-container'
     ];
 
     pillContainers.forEach(containerId => {
@@ -54,7 +56,7 @@ export class PillHeadersController {
   animatePill(pillData) {
     // Skip if already animated
     if (pillData.animated || pillData.isAnimating) return;
-    
+
     pillData.isAnimating = true;
 
     // Kill any existing timeline
@@ -70,7 +72,7 @@ export class PillHeadersController {
     const pillHeader = pillData.container.querySelector('.pill-section-header');
 
     // Step 0: Diagonal fill animation of the polygon
-    pillData.timeline.fromTo(pillHeader, 
+    pillData.timeline.fromTo(pillHeader,
       {
         opacity: 0,
         clipPath: 'polygon(0 35%, 0 0, 0 0, 0 65%, 0 100%, 0 100%)'
@@ -93,7 +95,7 @@ export class PillHeadersController {
 
     // Step 2: Close bracket slides from left to right, revealing text
     const textWidth = this.getElementWidth(pillData.text);
-    
+
     // Position close bracket at open bracket position initially
     pillData.timeline.set(pillData.closeBracket, {
       x: -(textWidth + 8),
@@ -124,7 +126,7 @@ export class PillHeadersController {
 
   getElementWidth(element) {
     if (!element) return 0;
-    
+
     const clone = element.cloneNode(true);
     clone.style.position = 'absolute';
     clone.style.visibility = 'hidden';
@@ -137,19 +139,19 @@ export class PillHeadersController {
 
   resetPill(pillData) {
     if (pillData.timeline) pillData.timeline.kill();
-    
+
     const pillHeader = pillData.container.querySelector('.pill-section-header');
-    
+
     gsap.set(pillHeader, {
       opacity: 0,
       clipPath: 'polygon(0 35%, 0 0, 0 0, 0 65%, 0 100%, 0 100%)'
     });
-    
+
     gsap.set([pillData.triangle, pillData.openBracket, pillData.closeBracket, pillData.text], {
       opacity: 0,
       x: 0
     });
-    
+
     pillData.animated = false;
     pillData.isAnimating = false;
   }
@@ -164,23 +166,40 @@ export class PillHeadersController {
 
   isPillInViewport(pillData) {
     if (!pillData.container) return false;
-    
+
     const rect = pillData.container.getBoundingClientRect();
     const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    
+
     // Check if pill is in the "trigger zone" (same as ScrollTrigger settings)
     const triggerStart = windowHeight * 0.8; // 80% from top
     const triggerEnd = windowHeight * 0.2; // 20% from bottom
-    
+
     return (
-      rect.top < triggerStart && 
+      rect.top < triggerStart &&
       rect.bottom > triggerEnd
     );
   }
 
   setupScrollTrigger(pillData) {
-    const section = pillData.container.closest('section');
-    
+    const section = pillData.container.closest('section') || pillData.container.closest('footer');
+
+    // Special handling for footer which is outside the scroll container
+    if (pillData.sectionName === 'footer') {
+      // Use regular window scroll for footer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !pillData.animated) {
+            this.animatePill(pillData);
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+
+      observer.observe(section);
+      return;
+    }
+
     ScrollTrigger.create({
       trigger: section,
       start: "top 80%",

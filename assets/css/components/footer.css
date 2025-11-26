@@ -8,17 +8,15 @@
   width: 5rem;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    90deg,
-    var(--rainbow-red),
-    var(--rainbow-orange),
-    var(--rainbow-yellow),
-    var(--rainbow-green),
-    var(--rainbow-blue),
-    var(--rainbow-indigo),
-    var(--rainbow-violet),
-    var(--rainbow-red)
-  );
+  background: linear-gradient(90deg,
+      var(--rainbow-red),
+      var(--rainbow-orange),
+      var(--rainbow-yellow),
+      var(--rainbow-green),
+      var(--rainbow-blue),
+      var(--rainbow-indigo),
+      var(--rainbow-violet),
+      var(--rainbow-red));
   background-size: 200% 100%;
   animation: rainbowSlide 3s linear infinite, pulse 1.5s ease-in-out infinite;
 }
@@ -27,16 +25,20 @@
   0% {
     background-position: 0% 0%;
   }
+
   100% {
     background-position: 200% 0%;
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scaleY(1);
   }
+
   50% {
     opacity: 0.7;
     transform: scaleY(1.2);
@@ -48,3 +50,22 @@
     width: 8rem;
   }
 }
+
+/* Floating Animation for Circle Button */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float:hover {

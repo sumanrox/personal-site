@@ -19,6 +19,7 @@ export async function loadConfig() {
     portfolioConfig = await response.json();
     return portfolioConfig;
   } catch (error) {
+    // Always log config errors
     console.error('Error loading portfolio config:', error);
     return null;
   }
@@ -29,7 +30,7 @@ export async function loadConfig() {
  */
 export function getConfig(path) {
   if (!portfolioConfig) {
-    console.warn('Config not loaded. Call loadConfig() first.');
+    console.error('Config not loaded. Call loadConfig() first.');
     return null;
   }
   

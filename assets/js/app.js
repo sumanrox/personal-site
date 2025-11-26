@@ -9,7 +9,6 @@ import { initScrollProgress } from './components/scrollProgress.js';
 import { initTextHighlight } from './components/textHighlight.js';
 import { initLinkAnimations } from './components/linkAnimations.js';
 import { initSectionAnimations } from './components/sectionAnimations.js';
-import { initNavigation } from './components/navigation.js';
 import { initCounterAnimation } from './components/counterAnimation.js';
 import { initWorkCardHover } from './components/workCardHover.js';
 import { initTimelineAnimation } from './components/timelineAnimation.js';
@@ -27,8 +26,9 @@ import { initProjectPillAnimation } from './components/projectPillAnimation.js';
 import { initRotatingTestimonials } from './components/rotatingTestimonials.js';
 import { initContactEnhancements } from './components/contactEnhancements.js';
 import { initWorkThreeBackground } from './components/workThreeBackground.js';
-// FAQ accordion now uses inline onclick - no module needed
-// import { initFAQAccordion } from './components/faqAccordion.js';
+import { initFAQPillHeader } from './components/faqPillHelper.js';
+import { initFooterCtaAnimation } from './components/footerCtaAnimation.js';
+// FAQ toggle is now inline in the FAQ component
 import './components/heroThree.js';
 
 (function () {
@@ -46,7 +46,6 @@ import './components/heroThree.js';
     // Wait a bit for Locomotive to fully initialize before starting other components
     setTimeout(() => {
       // Initialize all components after Locomotive is ready
-      initNavigation();
       initScrollProgress();
       initTextHighlight();
       initLinkAnimations();
@@ -66,8 +65,8 @@ import './components/heroThree.js';
       try { initRotatingTestimonials(); } catch (e) { console.error('Error initializing Rotating Testimonials:', e); }
       try { initContactEnhancements(); } catch (e) { console.error('Error initializing Contact Enhancements:', e); }
       try { initWorkThreeBackground(); } catch (e) { console.error('Error initializing Work Three Background:', e); }
-      // FAQ accordion now uses inline onclick - no initialization needed
-      // try { initFAQAccordion(); } catch (e) { console.error('Error initializing FAQ Accordion:', e); }
+      // Footer CTA Animation initialized with delay (line ~73)
+      // FAQ toggle is now inline in the FAQ component - no initialization needed
 
       // Initialize counter animation after a delay to ensure DOM is ready
       setTimeout(() => {
@@ -77,7 +76,14 @@ import './components/heroThree.js';
       // Initialize pill headers
       setTimeout(() => {
         window.pillHeaders = new PillHeadersController();
+        // Initialize FAQ pill header helper
+        initFAQPillHeader();
       }, 200);
+
+      // Initialize footer CTA animation after components are loaded
+      setTimeout(() => {
+        initFooterCtaAnimation();
+      }, 800);
 
       // Update Locomotive after everything is initialized
       if (locomotiveScroll) {
@@ -96,7 +102,7 @@ import './components/heroThree.js';
   // Auto-refresh on window resize
   let resizeTimeout;
   let initialWidth = window.innerWidth;
-  
+
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {

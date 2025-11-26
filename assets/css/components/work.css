@@ -1,318 +1,68 @@
-/* Work/Research Section Styles */
+/* Work/Research Section Styles - Minimal Brutalist */
 
-/* Container Setup */
 #work {
     position: relative;
-    overflow: hidden;
+    /* Background grid is handled by utility classes in HTML */
 }
 
-/* Background Pattern */
-.work-bg-pattern {
-    display: none;
-}
-
-/* Horizontal Scroll Container */
-.horizontal-scroll-container {
-    /* Width and padding handled by utility classes in HTML now */
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    /* Clips content to the max-width container */
-    z-index: 1;
-}
-
-.horizontal-scroll-wrapper {
-    display: flex;
-    gap: 4rem;
-    /* Adjusted padding: Header takes ~35-40%, so we start cards after that */
-    padding-left: 40%;
-    /* Add right padding to ensure last card is fully visible */
-    padding-right: 10vw;
-    will-change: transform;
-    height: 70vh;
-    align-items: center;
-}
-
-/* Sticky Header Area - Only covers left 40% */
-.work-header-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 40%;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    pointer-events: none;
-    background: linear-gradient(90deg,
-            var(--bg-research-overlay-solid) 0%,
-            var(--bg-research-overlay-solid) 70%,
-            var(--bg-research-overlay-98) 73%,
-            var(--bg-research-overlay-95) 76%,
-            var(--bg-research-overlay-91) 79%,
-            var(--bg-research-overlay-86) 82%,
-            var(--bg-research-overlay-80) 85%,
-            var(--bg-research-overlay-73) 88%,
-            var(--bg-research-overlay-65) 91%,
-            var(--bg-research-overlay-56) 94%,
-            var(--bg-research-overlay-47) 97%,
-            var(--bg-research-overlay-transparent) 100%);
-    mix-blend-mode: normal;
-}
-
-.work-header-content {
-    position: relative;
-    z-index: 20;
-    pointer-events: auto;
-    mix-blend-mode: normal;
-    padding-right: 3rem;
-}
-
-/* Research Card Design - "Data Deck" Aesthetic */
-.research-card-h {
-    position: relative;
-    background: var(--bg-white-70);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-light);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow-card);
-}
-
-/* Hover Effect: Lift & Shadow */
-.research-card-h:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--border-primary);
-    z-index: 5;
-}
-
-/* Card Header Area */
-.card-header {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-lightest);
-    margin-bottom: 1.5rem;
-}
-
-.card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.year-badge {
-    font-family: 'Funnel Display', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    border: 1px solid var(--border-lighter);
-    padding: 0.25rem 0.6rem;
-    background: var(--bg-light-gray);
-}
-
-/* Severity Indicators */
-.severity-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    background: var(--bg-medium-gray);
-}
-
-.severity-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-}
-
-.severity-critical .severity-dot {
-    background-color: var(--severity-critical);
-    box-shadow: 0 0 8px var(--severity-critical-glow);
-}
-
-.severity-critical {
-    color: var(--severity-critical);
-    background: var(--severity-critical-bg);
-}
-
-.severity-high .severity-dot {
-    background-color: var(--severity-high);
-    box-shadow: 0 0 8px var(--severity-high-glow);
-}
-
-.severity-high {
-    color: var(--severity-high);
-    background: var(--severity-high-bg);
-}
-
-.severity-medium .severity-dot {
-    background-color: var(--severity-medium);
-}
-
-.severity-medium {
-    color: var(--severity-medium-text);
-    background: var(--severity-medium-bg);
-}
-
-.severity-research .severity-dot {
-    background-color: var(--severity-research);
-}
-
-.severity-research {
-    color: var(--severity-research);
-    background: var(--severity-research-bg);
-}
-
-/* Typography */
-.card-title {
-    font-family: 'Funnel Display', sans-serif;
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-}
-
-.card-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    line-height: 1.4;
-}
-
-/* Description */
-.card-body {
-    flex-grow: 1;
-}
-
-.card-description {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-tertiary);
-}
-
-/* Data Grid Footer */
-.card-footer {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-lightest);
-}
-
-.data-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.data-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.data-label {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-subtle);
-    font-weight: 700;
-}
-
-.data-value {
-    font-family: 'Funnel Display', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.bounty-value {
-    color: var(--color-success);
-    /* Success Green */
-}
-
-/* Action Button */
-.view-report-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    background: var(--text-primary);
-    color: var(--text-white);
-    font-weight: 600;
-    font-size: 0.875rem;
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    cursor: pointer;
-    text-decoration: none;
-    border: 1px solid var(--border-primary);
-}
-
-.view-report-btn:hover {
-    background: var(--bg-white-90);
-    color: var(--text-primary);
+/* Card Hover Effects */
+.group:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-card-active);
 }
 
-.view-report-btn i {
-    transition: transform 0.3s ease;
+/* Typography Refinements */
+.font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-.view-report-btn:hover i {
-    transform: translateX(4px);
+/* Custom Scrollbar for this section if needed */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .horizontal-scroll-container {
-        height: auto;
-        display: block;
-        overflow: visible;
-        padding: 4rem 1.5rem;
-        /* Reset padding for mobile */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Entry Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    .work-bg-pattern {
-        display: none;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .work-header-container {
-        position: relative;
-        width: 100%;
-        height: auto;
-        padding: 0;
-        margin-bottom: 3rem;
-        background: none;
-        backdrop-filter: none;
-        mask-image: none;
-    }
+.no-auto-anim>div {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    /* Start hidden */
+}
 
-    .horizontal-scroll-wrapper {
-        flex-direction: column;
-        padding: 0;
-        gap: 2rem;
-        height: auto;
-        transform: none !important;
-    }
+.no-auto-anim>div:nth-child(1) {
+    animation-delay: 0.1s;
+}
 
-    .research-card-h {
-        min-width: 100%;
-        max-width: 100%;
-    }
+.no-auto-anim>div:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.no-auto-anim>div:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.no-auto-anim>div:nth-child(4) {
+    animation-delay: 0.4s;
 }

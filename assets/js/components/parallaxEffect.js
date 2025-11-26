@@ -4,13 +4,10 @@
  */
 
 export function initParallaxEffect() {
-  console.log('🎬 Initializing parallax effects...');
-  
   const heroSection = document.getElementById('hero-section');
   const aboutSection = document.getElementById('about');
   
   if (!heroSection || !aboutSection) {
-    console.warn('Hero or About section not found for parallax');
     return;
   }
   
@@ -35,6 +32,4 @@ export function initParallaxEffect() {
       }
     }
   });
-  
-  console.log('✅ Parallax effects initialized');
 }

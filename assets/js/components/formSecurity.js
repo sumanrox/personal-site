@@ -157,14 +157,16 @@ export function initFormSecurity() {
 
   // Real-time email validation
   const emailInput = contactForm.querySelector('#contact-email');
-  emailInput.addEventListener('blur', () => {
-    const email = emailInput.value.trim();
-    if (email && !isValidEmail(email)) {
-      emailInput.classList.add('border-red-500');
-    } else {
-      emailInput.classList.remove('border-red-500');
-    }
-  });
+  if (emailInput) {
+    emailInput.addEventListener('blur', () => {
+      const email = emailInput.value.trim();
+      if (email && !isValidEmail(email)) {
+        emailInput.classList.add('border-red-500');
+      } else {
+        emailInput.classList.remove('border-red-500');
+      }
+    });
+  }
 
   // Text Scramble Effect
   const scrambleText = (element, finalText) => {
