@@ -85,13 +85,11 @@ function renderProjects(container, projects) {
 
 function initEntranceAnimation() {
     const cards = document.querySelectorAll('.project-card');
-    const scrollContainer = document.querySelector('[data-scroll-container]');
 
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.from(cards, {
             scrollTrigger: {
                 trigger: '#projects-grid',
-                scroller: scrollContainer || window, // Use Locomotive Scroll container
                 start: 'top 85%',
                 toggleActions: 'play none none reverse'
             },

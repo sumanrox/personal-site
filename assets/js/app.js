@@ -5,7 +5,8 @@
 
 import { initializeContent } from './config.js';
 import { initNavigation } from './components/navigation.js';
-import { initLocomotiveScroll } from './components/locomotiveScroll.js';
+// DISABLED: Locomotive Scroll causing issues
+// import { initLocomotiveScroll } from './components/locomotiveScroll.js';
 import { initScrollProgress } from './components/scrollProgress.js';
 import { initTextHighlight } from './components/textHighlight.js';
 import { initLinkAnimations } from './components/linkAnimations.js';
@@ -14,7 +15,8 @@ import { initCounterAnimation } from './components/counterAnimation.js';
 import { initWorkCardHover } from './components/workCardHover.js';
 import { initTimelineAnimation } from './components/timelineAnimation.js';
 import { initLogoCarousel } from './components/logoCarousel.js';
-import { initParallaxEffect } from './components/parallaxEffect.js';
+// DISABLED: Parallax causing stuttering
+// import { initParallaxEffect } from './components/parallaxEffect.js';
 import { initWorkScrollLock } from './components/workScrollLock.js';
 import { initMagazineAbout } from './components/magazineAbout.js';
 import { initHorizontalScrollWork } from './components/horizontalScrollWork.js';
@@ -36,18 +38,26 @@ import './components/heroThree.js';
   // Register GSAP plugins
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+  // Define global initialization function for components that need to run after HTML loads
+  window.initializeApp = function() {
+    console.log('🚀 Initializing app after components loaded');
+    // Initialize navigation after DOM is ready
+    setTimeout(() => {
+      initNavigation();
+      console.log('✅ Navigation initialized');
+    }, 100);
+  };
+
   // Initialize portfolio content from config
   initializeContent().then(() => {
-    // Initialize Locomotive Scroll first and wait for it
-    const locomotiveScroll = initLocomotiveScroll();
+    // DISABLED: Locomotive Scroll causing issues with hero section
+    // const locomotiveScroll = initLocomotiveScroll();
+    // window.locomotiveScroll = locomotiveScroll;
+    console.log('⚡ Locomotive Scroll disabled - using native scroll');
 
-    // Store globally for debugging and component access
-    window.locomotiveScroll = locomotiveScroll;
-
-    // Wait a bit for Locomotive to fully initialize before starting other components
+    // Initialize all components immediately with native scroll
     setTimeout(() => {
-      // Initialize all components after Locomotive is ready
-      initNavigation();
+      // Navigation will be initialized via window.initializeApp after components load
       initScrollProgress();
       initTextHighlight();
       initLinkAnimations();
@@ -55,7 +65,7 @@ import './components/heroThree.js';
       initWorkCardHover();
       initTimelineAnimation();
       initLogoCarousel();
-      initParallaxEffect();
+      // initParallaxEffect(); // DISABLED - causing stuttering
       initWorkScrollLock();
       initMagazineAbout();
       try { initFormSecurity(); } catch (e) { console.error('Error initializing Form Security:', e); }
@@ -87,17 +97,13 @@ import './components/heroThree.js';
         initFooterCtaAnimation();
       }, 800);
 
-      // Update Locomotive after everything is initialized
-      if (locomotiveScroll) {
-        setTimeout(() => {
-          locomotiveScroll.update();
-          if (typeof ScrollTrigger !== 'undefined') {
-            ScrollTrigger.refresh();
-            console.log('🔄 ScrollTrigger refreshed');
-          }
-          console.log('🚂 Locomotive Scroll updated after component initialization');
-        }, 500);
-      }
+      // Refresh ScrollTrigger after everything is initialized
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+          console.log('🔄 ScrollTrigger refreshed');
+        }
+      }, 500);
     }, 100);
   });
 

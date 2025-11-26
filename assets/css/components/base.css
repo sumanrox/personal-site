@@ -1,8 +1,38 @@
 /* Base Styles & Reset */
 
+/* Performance optimizations for mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
 /* Smooth Scrolling & Hide Scrollbar */
 html {
   overflow-x: hidden;
+  /* Better font rendering on mobile */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Force native scroll on mobile - no interference */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth !important;
+    overflow-y: auto !important;
+  }
+  
+  html.has-scroll-smooth {
+    overflow: auto !important;
+  }
+  
+  body {
+    overflow-y: auto !important;
+  }
+  
+  .has-scroll-smooth body {
+    overflow: auto !important;
+  }
 }
 
 html.has-scroll-smooth {

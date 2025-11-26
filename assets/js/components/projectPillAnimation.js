@@ -57,7 +57,6 @@ export function initProjectPillAnimation() {
         ScrollTrigger.create({
             trigger: item,
             start: "top 80%",
-            scroller: document.querySelector('[data-scroll-container]'),
             once: true,
             onEnter: () => {
                 setTimeout(() => {

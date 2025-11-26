@@ -1,14 +1,14 @@
 /**
- * Locomotive Scroll Integration
- * Battle-tested smooth scrolling library
+ * GSAP ScrollSmoother Integration
+ * Smooth scrolling with GSAP - more stable and better integrated
  */
 
 export function initLocomotiveScroll() {
-  console.log('Initializing Locomotive Scroll...');
+  console.log('Initializing GSAP ScrollSmoother...');
 
-  // Wait for Locomotive Scroll to be available
-  if (typeof LocomotiveScroll === 'undefined') {
-    console.warn('Locomotive Scroll not loaded yet, retrying...');
+  // Wait for GSAP and ScrollSmoother to be available
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof ScrollSmoother === 'undefined') {
+    console.warn('GSAP ScrollSmoother not loaded yet, retrying...');
     setTimeout(initLocomotiveScroll, 100);
     return null;
   }
@@ -19,94 +19,115 @@ export function initLocomotiveScroll() {
     return null;
   }
 
+  // Add required wrapper structure for ScrollSmoother
+  const wrapper = document.querySelector('#smooth-wrapper');
+  const content = document.querySelector('#smooth-content');
+  
+  if (!wrapper || !content) {
+    console.error('ScrollSmoother requires #smooth-wrapper and #smooth-content elements');
+    return null;
+  }
+
   // Detect if mobile/tablet
   const isMobile = window.innerWidth <= 768;
   const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
 
-  // Initialize Locomotive Scroll
-  const locoScroll = new LocomotiveScroll({
-    el: scrollContainer,
-    smooth: true, // Enable smooth scroll on all devices
-    smartphone: {
-      smooth: true, // Enable smooth scroll on mobile
-      lerp: 0.15, // Responsive smooth scrolling on mobile
-      breakpoint: 768
-    },
-    tablet: {
-      smooth: true,
-      lerp: 0.15, // Faster response on tablet
-      multiplier: 1.1
-    },
-    // Multiplier for scroll speed
-    multiplier: isMobile ? 1.0 : (isTablet ? 1.1 : 1.0),
-    // Class to add when scrolling
-    class: 'is-inview',
-    // Repeat animations on scroll up
-    repeat: false,
-    // Mobile orientation
-    getDirection: true,
-    getSpeed: true,
-    // Smooth scrolling easing
-    lerp: isMobile ? 0.15 : (isTablet ? 0.15 : 0.1), // Smooth on all devices
-    reloadOnContextChange: false, // Disable to improve performance
-    touchMultiplier: 2.5, // Increase touch sensitivity
-    firefoxMultiplier: 50 // Better Firefox performance
-  });
+  // Register ScrollSmoother plugin
+  gsap.registerPlugin(ScrollSmoother);
 
-  // Update ScrollTrigger when Locomotive Scroll updates
-  locoScroll.on('scroll', () => {
-    if (typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.update();
-    }
-  });
-
-  // Sync Locomotive Scroll with ScrollTrigger
-  if (typeof ScrollTrigger !== 'undefined') {
-    ScrollTrigger.scrollerProxy(scrollContainer, {
-      scrollTop(value) {
-        return arguments.length
-          ? locoScroll.scrollTo(value, 0, 0)
-          : locoScroll.scroll.instance.scroll.y;
+  // On mobile: disable ScrollSmoother completely for native scrolling
+  if (isMobile) {
+    console.log('⚡ Mobile detected - using native scroll for best performance');
+    
+    // Create compatibility layer without actual ScrollSmoother
+    window.locomotiveScroll = {
+      scrollTo: (target, options = {}) => {
+        if (typeof target === 'number') {
+          window.scrollTo({ top: target, behavior: 'smooth' });
+        } else {
+          const element = typeof target === 'string' ? document.querySelector(target) : target;
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight
-        };
+      scroll: {
+        instance: {
+          scroll: {
+            get y() {
+              return window.pageYOffset || window.scrollY;
+            }
+          }
+        }
       },
-      pinType: scrollContainer.style.transform ? 'transform' : 'fixed'
-    });
-
-    // Update on ScrollTrigger refresh
-    ScrollTrigger.addEventListener('refresh', () => locoScroll.update());
-    ScrollTrigger.refresh();
+      on: (event, callback) => {
+        if (event === 'scroll') {
+          window.addEventListener('scroll', () => callback({ scroll: { y: window.pageYOffset } }));
+        }
+      },
+      update: () => {
+        ScrollTrigger.refresh();
+      }
+    };
+    
+    return null;
   }
 
-  // Update on window resize
+  // Desktop only: Initialize ScrollSmoother with minimal settings
+  const smoother = ScrollSmoother.create({
+    wrapper: '#smooth-wrapper',
+    content: '#smooth-content',
+    smooth: 1.2, // Lighter smooth for desktop
+    effects: false, // Disable all parallax effects
+    smoothTouch: false, // Never smooth on touch
+    normalizeScroll: false, // Don't normalize
+    ignoreMobileResize: true,
+  });
+
+  // Store globally for compatibility with existing code
+  window.locomotiveScroll = {
+    scrollTo: (target, options = {}) => {
+      if (typeof target === 'number') {
+        smoother.scrollTo(target, options.duration !== undefined ? options.duration / 1000 : true);
+      } else {
+        smoother.scrollTo(target, true, options.offset ? `top ${options.offset}px` : 'top top');
+      }
+    },
+    scroll: {
+      instance: {
+        scroll: {
+          get y() {
+            return smoother.scrollTop();
+          }
+        }
+      }
+    },
+    on: (event, callback) => {
+      if (event === 'scroll') {
+        ScrollTrigger.addEventListener('scrollEnd', () => callback({ scroll: { y: smoother.scrollTop() } }));
+      }
+    },
+    update: () => {
+      ScrollTrigger.refresh();
+    }
+  };
+
+  // Update ScrollTrigger on resize
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      locoScroll.update();
+      ScrollTrigger.refresh();
     }, 250);
   });
 
-  // Update on orientation change
-  window.addEventListener('orientationchange', () => {
-    setTimeout(() => {
-      locoScroll.update();
-    }, 100);
-  });
-
-  console.log('✅ Locomotive Scroll initialized');
-  return locoScroll;
+  console.log('✅ GSAP ScrollSmoother initialized');
+  return smoother;
 }
 
-export function destroyLocomotiveScroll(locoScroll) {
-  if (locoScroll) {
-    locoScroll.destroy();
-    console.log('Locomotive Scroll destroyed');
+export function destroyLocomotiveScroll(smoother) {
+  if (smoother && smoother.kill) {
+    smoother.kill();
+    console.log('ScrollSmoother destroyed');
   }
 }

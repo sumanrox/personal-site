@@ -1,5 +1,29 @@
 /* Contact Section - Minimal Brutalist */
 
+/* Prevent content cutoff */
+#contact {
+    overflow: visible;
+}
+
+#contact .space-y-8 {
+    overflow: visible;
+}
+
+/* Social Links Container */
+.group .flex.gap-3 {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.group .flex.gap-3 a {
+    flex-shrink: 0;
+}
+
+/* Ensure SVG icons are properly centered and not clipped */
+.group .flex.gap-3 a svg {
+    display: block;
+}
+
 /* Custom Select Arrow */
 select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23000000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");

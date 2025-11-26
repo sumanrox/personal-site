@@ -22,9 +22,11 @@ export function initNavigation() {
   if (mobileToolsTrigger && mobileToolsContent) {
     mobileToolsTrigger.addEventListener('click', (e) => {
       e.preventDefault();
-      const isOpen = mobileToolsContent.classList.contains('open');
+      e.stopPropagation();
       
-      mobileToolsContent.classList.toggle('open', !isOpen);
+      const isOpen = mobileToolsContent.style.display === 'block';
+      
+      mobileToolsContent.style.display = isOpen ? 'none' : 'block';
       mobileToolsTrigger.classList.toggle('open', !isOpen);
     });
   }
@@ -98,13 +100,11 @@ export function initNavigation() {
           const navHeight = nav.offsetHeight;
           const offset = navHeight + 40;
           
-          // Check if Locomotive Scroll is available
+          // Use Locomotive Scroll (ScrollSmoother) scrollTo
           if (window.locomotiveScroll) {
-            // Use Locomotive's scrollTo method
             window.locomotiveScroll.scrollTo(targetElement, {
               offset: -offset,
-              duration: 1000,
-              easing: [0.25, 0.0, 0.35, 1.0]
+              duration: 1000
             });
           } else {
             // Fallback to native smooth scroll
@@ -159,9 +159,7 @@ export function initNavigation() {
 
   function handleScroll() {
     // Get scroll position from Locomotive if available, otherwise use window
-    const scrollTop = window.locomotiveScroll 
-      ? window.locomotiveScroll.scroll.instance.scroll.y 
-      : window.pageYOffset || document.documentElement.scrollTop;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     // Add/remove scrolled class for visual feedback
     if (scrollTop > 50) {

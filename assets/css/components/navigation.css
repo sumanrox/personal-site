@@ -228,10 +228,7 @@
 .mobile-tools-trigger svg {
   display: inline-block;
   vertical-align: middle;
-}
-
-.mobile-tools-content.open {
-  display: block;
+  transition: transform 0.2s ease;
 }
 
 .mobile-tools-trigger.open i,

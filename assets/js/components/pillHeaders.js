@@ -27,10 +27,8 @@ export class PillHeadersController {
       }
     });
 
-    // Check for pills currently in viewport and animate them
-    setTimeout(() => {
-      this.checkVisiblePills();
-    }, 500); // Wait for DOM and layout to stabilize
+    // Don't check visible pills on initialization - let ScrollTrigger handle it
+    console.log('🏷️ Pill headers configured with ScrollTrigger');
   }
 
   createPillData(containerId) {
@@ -71,7 +69,7 @@ export class PillHeadersController {
 
     const pillHeader = pillData.container.querySelector('.pill-section-header');
 
-    // Step 0: Diagonal fill animation of the polygon
+    // Step 0: Diagonal fill animation of the polygon - smoother easing
     pillData.timeline.fromTo(pillHeader,
       {
         opacity: 0,
@@ -80,17 +78,17 @@ export class PillHeadersController {
       {
         opacity: 1,
         clipPath: 'polygon(0 35%, 10.7% 0, 100% 0, 100% 65%, 89.3% 100%, 0% 100%)',
-        duration: 0.4,
-        ease: "power2.out"
+        duration: 0.35,
+        ease: "power3.out"
       }
     );
 
-    // Step 1: Fade in triangle and open bracket (faster)
+    // Step 1: Fade in triangle and open bracket - smoother
     pillData.timeline.to([pillData.triangle, pillData.openBracket], {
       opacity: 1,
-      duration: 0.2,
+      duration: 0.18,
       stagger: 0.06,
-      ease: "power2.out"
+      ease: "power3.out"
     });
 
     // Step 2: Close bracket slides from left to right, revealing text
@@ -102,18 +100,18 @@ export class PillHeadersController {
       opacity: 1
     });
 
-    // Animate close bracket sliding to final position (faster)
+    // Animate close bracket sliding to final position - smoother ease
     pillData.timeline.to(pillData.closeBracket, {
       x: 0,
-      duration: 0.35,
-      ease: "power2.inOut"
+      duration: 0.3,
+      ease: "power3.inOut"
     });
 
-    // Step 3: Text appears with blinking animation during bracket slide (faster)
+    // Step 3: Text appears with blinking animation during bracket slide
     pillData.timeline.to(pillData.text, {
       opacity: 1,
       duration: 0.06,
-      repeat: 4,
+      repeat: 3,
       yoyo: true,
       ease: "power2.inOut"
     }, "-=0.2");
@@ -183,35 +181,40 @@ export class PillHeadersController {
   setupScrollTrigger(pillData) {
     const section = pillData.container.closest('section') || pillData.container.closest('footer');
 
-    // Special handling for footer which is outside the scroll container
-    if (pillData.sectionName === 'footer') {
-      // Use regular window scroll for footer
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !pillData.animated) {
-            this.animatePill(pillData);
-          }
-        });
-      }, {
-        threshold: 0.2
-      });
-
-      observer.observe(section);
+    if (!section) {
+      console.warn('No section found for pill:', pillData.sectionName);
       return;
     }
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top 80%",
-      end: "bottom 20%",
-      scroller: document.querySelector('[data-scroll-container]'),
-      onEnter: () => {
-        this.animatePill(pillData);
-      },
-      onEnterBack: () => {
-        this.animatePill(pillData);
-      }
+    // Reset pill to initial state
+    const pillHeader = pillData.container.querySelector('.pill-section-header');
+    if (pillHeader) {
+      gsap.set(pillHeader, {
+        opacity: 0,
+        clipPath: 'polygon(0 35%, 0 0, 0 0, 0 65%, 0 100%, 0 100%)'
+      });
+    }
+    gsap.set([pillData.triangle, pillData.openBracket, pillData.closeBracket, pillData.text], {
+      opacity: 0,
+      x: 0
     });
+
+    // Use IntersectionObserver for all pills (works with native scroll)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !pillData.animated && !pillData.isAnimating) {
+          this.animatePill(pillData);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -20% 0px'
+    });
+
+    observer.observe(section);
+    
+    // Store observer for cleanup if needed
+    pillData.observer = observer;
   }
 
   // Method to manually trigger all animations (useful for testing)

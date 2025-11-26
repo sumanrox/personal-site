@@ -75,6 +75,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" crossorigin="anonymous"
     referrerpolicy="no-referrer" defer></script>
+  <!-- ScrollSmoother removed - causing issues -->
 
   <!-- SplitType for text splitting -->
   <script src="https://unpkg.com/split-type" defer></script>
@@ -84,15 +85,6 @@
 
   <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <!-- Locomotive Scroll for smooth scrolling -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
-
-  <!-- Three.js for 3D animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-    integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
   <!-- Notyf - Toast Notifications -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
@@ -201,17 +193,11 @@
   <!-- Navigation Component - Outside Locomotive container for true fixed positioning -->
   <div id="nav-placeholder"></div>
 
-  <!-- Locomotive Scroll Container -->
-  <div data-scroll-container>
+  <!-- Content wrapper -->
+  <main id="main-content" class="relative z-10" data-scroll-container>
 
-    <!-- Spacer for hero parallax effect -->
-    <div class="h-screen" aria-hidden="true"></div>
-
-    <!-- Content wrapper -->
-    <main id="main-content" class="relative z-10">
-
-      <!-- Hero Component -->
-      <div id="hero-placeholder"></div>
+    <!-- Hero Component -->
+    <div id="hero-placeholder"></div>
 
 
       <!-- Sections Wrapper with Gradient Background -->
@@ -245,8 +231,6 @@
       <div id="footer-placeholder"></div>
 
     </main> <!-- Close main content -->
-
-  </div> <!-- Close Locomotive Scroll Container -->
 
   <!-- Back to Top Button - MUST BE OUTSIDE SCROLL CONTAINER -->
   <div id="back-to-top" aria-label="Back to top">
