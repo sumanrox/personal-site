@@ -1,193 +1,205 @@
-<!-- Experience Section - Masonry Grid with Original Design -->
-<section id="experience" class="px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200 py-10">
-  <div class="max-w-7xl w-full mx-auto relative z-10">
-    <!-- Section header with pill -->
-    <div class="mb-10">
-      <div id="experience-pill-container" class="mb-4">
-        <div class="pill-section-header" data-text="EXPERIENCE">
-          <!-- Pill content -->
-          <div class="pill-content">
-            <span id="experience-triangle" class="pill-element triangle">▶</span>
-            <span id="experience-open-bracket" class="pill-element bracket">[</span>
-            <span id="experience-pill-text" class="pill-element text">EXPERIENCE</span>
-            <span id="experience-close-bracket" class="pill-element bracket">]</span>
+<!-- Experience Section - Minimal Brutalist -->
+<section id="experience" class="relative w-full py-24 px-6 md:px-12 lg:px-24 overflow-hidden">
+  <div class="relative max-w-7xl w-full mx-auto">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <div>
+        <div id="experience-pill-container" class="mb-6">
+          <div class="pill-section-header" data-text="EXPERIENCE">
+            <div class="pill-content">
+              <span id="experience-triangle" class="pill-element triangle">▶</span>
+              <span id="experience-open-bracket" class="pill-element bracket">[</span>
+              <span id="experience-pill-text" class="pill-element text">EXPERIENCE</span>
+              <span id="experience-close-bracket" class="pill-element bracket">]</span>
+            </div>
           </div>
         </div>
+        <h2 class="text-5xl md:text-7xl font-bold tracking-tighter text-black leading-[0.9] font-manrope">
+          CAREER<br>TRAJECTORY
+        </h2>
       </div>
+      <p class="text-lg text-gray-500 max-w-md font-mono text-sm leading-relaxed text-right md:text-right">
+        // ELITE CONSULTING<br>
+        // RED TEAM OPERATIONS<br>
+        // SECURITY RESEARCH
+      </p>
     </div>
 
-    <!-- Masonry Grid Layout -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Current Role - Hero Card with gradient background -->
-      <div class="lg:col-span-2 bg-black text-white p-10 relative overflow-hidden">
+    <!-- Experience Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 no-auto-anim">
 
-        <div class="relative z-10">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-            <span class="text-sm font-bold tracking-wider">CURRENT ROLE</span>
-          </div>
-
-          <h3 class="text-4xl font-bold mb-4 leading-tight relative pb-5">
-            Independent Security Researcher
-            <div id="experience-rainbow-underline"
-              class="rainbow-underline absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-[length:200%_100%] animate-rainbow">
-            </div>
-          </h3>
-          <p class="text-gray-300 mb-8 leading-relaxed text-lg">
-            Full-time vulnerability research focusing on critical security flaws in major platforms.
-            Achieved top rankings in bug bounty programs with significant financial rewards.
-          </p>
-
-          <!-- Stats Grid -->
-          <div class="grid grid-cols-3 gap-6 mb-8">
-            <div class="text-center">
-              <div class="text-3xl font-bold">12+</div>
-              <div class="text-sm text-gray-400">CVEs Discovered</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold">$50K+</div>
-              <div class="text-sm text-gray-400">Bug Bounties</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl font-bold">Top 1%</div>
-              <div class="text-sm text-gray-400">HackerOne Rank</div>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <div class="text-sm text-gray-400">2023 - Present • 2+ Years</div>
-            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Previous Role 1 -->
+      <!-- Card 1 - Current Role (Featured) -->
       <div
-        class="bg-white border border-gray-200 p-10 hover:shadow-xl hover:border-black transition-all duration-300 hover:-translate-y-1">
-        <div class="flex items-center justify-between mb-4">
-          <div class="text-xs text-gray-500 uppercase tracking-wider font-semibold">2021 - 2023</div>
-          <i data-lucide="briefcase" class="w-5 h-5 text-gray-400"></i>
-        </div>
+        class="group relative bg-black text-white border border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)] md:col-span-2">
+        <div class="p-8 md:p-10 h-full flex flex-col md:flex-row gap-8 md:gap-12">
 
-        <h3 class="text-2xl font-bold text-black mb-3 leading-tight" style="font-family: 'Funnel Display', sans-serif;">
-          Senior Penetration Tester
-        </h3>
-        <p class="text-gray-600 font-semibold mb-4">SecureTech Solutions</p>
-        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-          Led comprehensive security assessments for Fortune 500 companies. Specialized in web applications, network
-          infrastructure, and cloud security testing.
-        </p>
+          <!-- Left Column: Role Info -->
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-2 h-2 bg-green-400"></div>
+              <span class="text-xs font-mono font-bold tracking-widest uppercase text-green-400">Current Role</span>
+            </div>
 
-        <div class="space-y-3">
-          <div class="flex items-start gap-3 text-sm">
-            <i data-lucide="check-circle" class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5"></i>
-            <span>50+ Enterprise Clients</span>
+            <h3 class="text-3xl md:text-4xl font-bold leading-none mb-4 font-manrope relative inline-block">
+              Independent Security Researcher
+              <div
+                class="rainbow-underline absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-[length:200%_100%] animate-rainbow">
+              </div>
+            </h3>
+
+            <p class="text-gray-400 leading-relaxed mb-8 text-lg">
+              Full-time vulnerability research focusing on critical security flaws in major platforms.
+              Achieved top rankings in bug bounty programs with significant financial rewards.
+            </p>
+
+            <div class="flex items-center gap-4 text-sm font-mono text-gray-500">
+              <span>2023 - PRESENT</span>
+              <span>•</span>
+              <span>2+ YEARS</span>
+            </div>
           </div>
-          <div class="flex items-start gap-3 text-sm">
-            <i data-lucide="check-circle" class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5"></i>
-            <span>Red Team Operations</span>
-          </div>
-          <div class="flex items-start gap-3 text-sm">
-            <i data-lucide="check-circle" class="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5"></i>
-            <span>Cloud Security Specialist</span>
+
+          <!-- Right Column: Stats -->
+          <div
+            class="flex-shrink-0 w-full md:w-auto flex flex-row md:flex-col gap-8 md:gap-4 border-t md:border-t-0 md:border-l border-white/20 pt-8 md:pt-0 md:pl-12 justify-between md:justify-center">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">CVEs</div>
+              <div class="font-mono font-bold text-2xl md:text-3xl">12+</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Bounties</div>
+              <div class="font-mono font-bold text-2xl md:text-3xl text-green-400">$50K+</div>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Rank</div>
+              <div class="font-mono font-bold text-2xl md:text-3xl">Top 1%</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Previous Role 2 -->
+      <!-- Card 2 - Previous Role -->
       <div
-        class="bg-white border border-gray-200 p-10 hover:shadow-xl hover:border-black transition-all duration-300 hover:-translate-y-1">
-        <div class="flex items-center justify-between mb-4">
-          <div class="text-xs text-gray-500 uppercase tracking-wider font-semibold">2018 - 2021</div>
-          <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
-        </div>
+        class="group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div class="p-8 h-full flex flex-col">
+          <div class="flex justify-between items-start mb-8">
+            <div class="flex flex-col gap-2">
+              <span
+                class="inline-block bg-black text-white text-xs font-mono font-bold px-2 py-1 uppercase tracking-wider">
+                SENIOR
+              </span>
+              <span class="text-xs font-mono text-gray-400">SECURETECH</span>
+            </div>
+            <span class="font-mono text-sm text-gray-400">2021 - 2023</span>
+          </div>
 
-        <h3 class="text-2xl font-bold text-black mb-3 leading-tight" style="font-family: 'Funnel Display', sans-serif;">
-          Security Analyst
-        </h3>
-        <p class="text-gray-600 font-semibold mb-4">CyberGuard Inc.</p>
-        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-          Foundation role building cybersecurity expertise through incident response, vulnerability assessments, and
-          security monitoring.
-        </p>
+          <div class="mb-auto">
+            <h3
+              class="text-2xl font-bold leading-none mb-2 font-manrope group-hover:underline decoration-2 underline-offset-4">
+              Senior Penetration Tester
+            </h3>
+            <p class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-wider">SecureTech Solutions</p>
+            <p class="text-gray-500 leading-relaxed mb-6">
+              Led comprehensive security assessments for Fortune 500 companies. Specialized in web applications, network
+              infrastructure, and cloud security testing.
+            </p>
+          </div>
 
-        <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1.5 bg-gray-100 text-xs font-semibold uppercase tracking-wider">CISSP</span>
-          <span class="px-3 py-1.5 bg-gray-100 text-xs font-semibold uppercase tracking-wider">CEH</span>
-          <span class="px-3 py-1.5 bg-gray-100 text-xs font-semibold uppercase tracking-wider">Python</span>
+          <div class="border-t border-black/10 pt-6">
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm font-mono text-gray-600">
+                <span class="text-green-600">✓</span> 50+ Enterprise Clients
+              </div>
+              <div class="flex items-center gap-2 text-sm font-mono text-gray-600">
+                <span class="text-green-600">✓</span> Red Team Operations
+              </div>
+              <div class="flex items-center gap-2 text-sm font-mono text-gray-600">
+                <span class="text-green-600">✓</span> Cloud Security Specialist
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Speaking & Community - Feature Card -->
+      <!-- Card 3 - Previous Role -->
       <div
-        class="lg:col-span-2 bg-white border border-gray-200 p-10 hover:shadow-xl hover:border-black transition-all duration-300">
-        <div class="flex items-center gap-3 mb-8">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-          </svg>
-          <h3 class="text-xl font-bold text-black" style="font-family: 'Funnel Display', sans-serif;">Speaking &
-            Community Involvement</h3>
-        </div>
+        class="group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div class="p-8 h-full flex flex-col">
+          <div class="flex justify-between items-start mb-8">
+            <div class="flex flex-col gap-2">
+              <span
+                class="inline-block bg-gray-200 text-black text-xs font-mono font-bold px-2 py-1 uppercase tracking-wider">
+                ANALYST
+              </span>
+              <span class="text-xs font-mono text-gray-400">CYBERGUARD</span>
+            </div>
+            <span class="font-mono text-sm text-gray-400">2018 - 2021</span>
+          </div>
 
-        <div class="grid md:grid-cols-3 gap-8 text-center">
-          <div class="group">
-            <div class="flex justify-center mb-4">
-              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-              </svg>
-            </div>
-            <div class="font-bold text-black text-lg mb-2">DEF CON Speaker</div>
-            <div class="text-sm text-gray-600">"JWT Implementation Vulnerabilities"</div>
+          <div class="mb-auto">
+            <h3
+              class="text-2xl font-bold leading-none mb-2 font-manrope group-hover:underline decoration-2 underline-offset-4">
+              Security Analyst
+            </h3>
+            <p class="text-sm font-bold text-gray-400 mb-4 uppercase tracking-wider">CyberGuard Inc.</p>
+            <p class="text-gray-500 leading-relaxed mb-6">
+              Foundation role building cybersecurity expertise through incident response, vulnerability assessments, and
+              security monitoring.
+            </p>
           </div>
-          <div class="group">
-            <div class="flex justify-center mb-4">
-              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
+
+          <div class="border-t border-black/10 pt-6">
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-2 py-1 bg-gray-100 text-xs font-mono font-bold uppercase tracking-wider border border-gray-200">CISSP</span>
+              <span
+                class="px-2 py-1 bg-gray-100 text-xs font-mono font-bold uppercase tracking-wider border border-gray-200">CEH</span>
+              <span
+                class="px-2 py-1 bg-gray-100 text-xs font-mono font-bold uppercase tracking-wider border border-gray-200">Python</span>
             </div>
-            <div class="font-bold text-black text-lg mb-2">BSides Regular</div>
-            <div class="text-sm text-gray-600">Austin, Dallas, Houston</div>
-          </div>
-          <div class="group">
-            <div class="flex justify-center mb-4">
-              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-              </svg>
-            </div>
-            <div class="font-bold text-black text-lg mb-2">CTF Competitor</div>
-            <div class="text-sm text-gray-600">Black Hat, Local Events</div>
           </div>
         </div>
       </div>
+
+      <!-- Card 4 - Community (Full Width) -->
+      <div
+        class="group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:col-span-2">
+        <div class="p-8 md:p-10">
+          <div class="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between mb-8">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-black text-white flex items-center justify-center">
+                <i data-lucide="mic" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold leading-none font-manrope">Speaking & Community</h3>
+                <p class="text-sm text-gray-500 font-mono mt-1">GIVING BACK TO THE COMMUNITY</p>
+              </div>
+            </div>
+            <a href="#"
+              class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider group-hover:text-black transition-colors">
+              View All Talks <i data-lucide="arrow-right"
+                class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-black/10">
+            <div class="group/item">
+              <div class="font-bold text-black text-lg mb-1 font-manrope">DEF CON Speaker</div>
+              <div class="text-sm text-gray-500 font-mono">"JWT Implementation Vulnerabilities"</div>
+            </div>
+            <div class="group/item">
+              <div class="font-bold text-black text-lg mb-1 font-manrope">BSides Regular</div>
+              <div class="text-sm text-gray-500 font-mono">Austin, Dallas, Houston</div>
+            </div>
+            <div class="group/item">
+              <div class="font-bold text-black text-lg mb-1 font-manrope">CTF Competitor</div>
+              <div class="text-sm text-gray-500 font-mono">Black Hat, Local Events</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes rainbow {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .animate-rainbow {
-    animation: rainbow 3s ease-in-out infinite;
-  }
-</style>

@@ -1,11 +1,12 @@
-<!-- FAQ Section - Minimalist Brutalist Style -->
-<section id="faq" class="relative w-full pt-6 pb-10 md:pt-8 md:pb-12 px-6 md:px-12 lg:px-16 xl:px-24 z-10">
+<!-- FAQ Section - Minimal Brutalist -->
+<section id="faq" class="relative w-full py-24 px-6 md:px-12 lg:px-24 overflow-hidden">
   <div class="max-w-7xl w-full mx-auto">
-    
-    <!-- Section Header -->
-    <div class="mb-10 md:mb-14">
+
+    <!-- Header -->
+    <div class="mb-20">
       <div id="faq-pill-container" class="mb-6">
         <div class="pill-section-header" data-text="FAQ">
+          <!-- Pill content -->
           <div class="pill-content">
             <span id="faq-triangle" class="pill-element triangle">▶</span>
             <span id="faq-open-bracket" class="pill-element bracket">[</span>
@@ -14,74 +15,119 @@
           </div>
         </div>
       </div>
-      <h2 class="text-5xl md:text-6xl font-bold leading-[0.9] tracking-tighter text-black mb-4">
-        Frequently Asked<br/>Questions
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tighter text-black leading-[0.9] font-manrope">
+        FREQUENTLY<br>ASKED
       </h2>
-      <p class="text-base text-gray-600 max-w-xl leading-relaxed">
-        Everything you need to know about my security services
-      </p>
     </div>
 
-    <!-- FAQ Items - Brutalist Style -->
-    <div class="space-y-4">
-      
-      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
-        <div class="flex items-center justify-between">
-          <h3 class="text-2xl font-bold pr-4">What services do you offer?</h3>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
-        </div>
-        <div class="faq-answer" style="display: none; padding-top: 1rem;">
-          <p class="text-lg leading-relaxed opacity-80">I specialize in penetration testing, vulnerability assessments, bug bounty hunting, and security audits. I work with web applications, APIs, cloud infrastructure, and mobile applications.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
-        <div class="flex items-center justify-between">
-          <h3 class="text-2xl font-bold pr-4">How do I engage your services?</h3>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
-        </div>
-        <div class="faq-answer" style="display: none; padding-top: 1rem;">
-          <p class="text-lg leading-relaxed opacity-80">Contact me via the form below or email directly. We'll schedule a consultation to discuss your security needs, scope, timeline, and deliverables. All engagements include a detailed report with findings and remediation steps.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
-        <div class="flex items-center justify-between">
-          <h3 class="text-2xl font-bold pr-4">What is your typical turnaround time?</h3>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
-        </div>
-        <div class="faq-answer" style="display: none; padding-top: 1rem;">
-          <p class="text-lg leading-relaxed opacity-80">Project timelines vary based on scope. A typical web application assessment takes 1-2 weeks. Smaller bug bounty-style tests can be completed within days. Rush projects can be accommodated with advance notice.</p>
-        </div>
-      </div>
-      
-      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
-        <div class="flex items-center justify-between">
-          <h3 class="text-2xl font-bold pr-4">Do you sign NDAs?</h3>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
-        </div>
-        <div class="faq-answer" style="display: none; padding-top: 1rem;">
-          <p class="text-lg leading-relaxed opacity-80">Yes, absolutely. All client information and findings are kept strictly confidential. I'm happy to sign NDAs and work agreements before any engagement begins.</p>
+    <!-- FAQ Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 no-auto-anim">
+
+      <!-- FAQ Item 1 -->
+      <div
+        class="faq-card group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+        data-faq-id="faq-1"
+        onclick="event.stopPropagation(); toggleFAQ(this);">
+        <div class="p-8">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-bold font-manrope pr-4">What services do you offer?</h3>
+            <i data-lucide="plus"
+              class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:rotate-90"></i>
+          </div>
+          <div class="faq-answer hidden pt-4 text-gray-700 leading-relaxed font-manrope">
+            <p>I specialize in penetration testing, vulnerability assessments, bug bounty hunting, and security audits.
+              I work with web applications, APIs, cloud infrastructure, and mobile applications.</p>
+          </div>
         </div>
       </div>
 
-      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
-        <div class="flex items-center justify-between">
-          <h3 class="text-2xl font-bold pr-4">What information will I receive in the final report?</h3>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
-        </div>
-        <div class="faq-answer" style="display: none; padding-top: 1rem;">
-          <p class="text-lg leading-relaxed opacity-80">You'll receive a comprehensive report including an executive summary, detailed findings with CVSS scores, proof-of-concept exploits, risk assessments, and actionable remediation recommendations. All findings are prioritized by severity and business impact.</p>
+      <!-- FAQ Item 2 -->
+      <div
+        class="faq-card group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+        data-faq-id="faq-2"
+        onclick="event.stopPropagation(); toggleFAQ(this);">
+        <div class="p-8">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-bold font-manrope pr-4">How do I engage your services?</h3>
+            <i data-lucide="plus"
+              class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:rotate-90"></i>
+          </div>
+          <div class="faq-answer hidden pt-4 text-gray-700 leading-relaxed font-manrope">
+            <p>Contact me via the form below or email directly. We'll schedule a consultation to discuss your security
+              needs, scope, timeline, and deliverables.</p>
+          </div>
         </div>
       </div>
 
-      <div class="faq-item p-6 bg-white border-2 border-black cursor-pointer" onclick="toggleFAQ(this)">
-        <div class="flex items-center justify-between">
-          <h3 class="text-2xl font-bold pr-4">Do you provide remediation support?</h3>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 flex-shrink-0"></i>
+      <!-- FAQ Item 3 -->
+      <div
+        class="faq-card group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+        data-faq-id="faq-3"
+        onclick="event.stopPropagation(); toggleFAQ(this);">
+        <div class="p-8">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-bold font-manrope pr-4">What is your turnaround time?</h3>
+            <i data-lucide="plus"
+              class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:rotate-90"></i>
+          </div>
+          <div class="faq-answer hidden pt-4 text-gray-700 leading-relaxed font-manrope">
+            <p>Project timelines vary based on scope. A typical web application assessment takes 1-2 weeks. Rush
+              projects can be accommodated with advance notice.</p>
+          </div>
         </div>
-        <div class="faq-answer" style="display: none; padding-top: 1rem;">
-          <p class="text-lg leading-relaxed opacity-80">Yes! I provide technical guidance, code reviews for fixes, and retesting services to verify vulnerabilities have been properly addressed. Extended support packages are also available for ongoing security consultation.</p>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div
+        class="faq-card group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+        data-faq-id="faq-4"
+        onclick="event.stopPropagation(); toggleFAQ(this);">
+        <div class="p-8">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-bold font-manrope pr-4">Do you sign NDAs?</h3>
+            <i data-lucide="plus"
+              class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:rotate-90"></i>
+          </div>
+          <div class="faq-answer hidden pt-4 text-gray-700 leading-relaxed font-manrope">
+            <p>Yes, absolutely. All client information and findings are kept strictly confidential. I'm happy to sign
+              NDAs and work agreements before any engagement begins.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div
+        class="faq-card group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+        data-faq-id="faq-5"
+        onclick="event.stopPropagation(); toggleFAQ(this);">
+        <div class="p-8">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-bold font-manrope pr-4">What's in the final report?</h3>
+            <i data-lucide="plus"
+              class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:rotate-90"></i>
+          </div>
+          <div class="faq-answer hidden pt-4 text-gray-700 leading-relaxed font-manrope">
+            <p>You'll receive a comprehensive report including an executive summary, detailed findings with CVSS scores,
+              proof-of-concept exploits, and actionable remediation recommendations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 6 -->
+      <div
+        class="faq-card group relative bg-white border border-black/10 hover:border-black transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
+        data-faq-id="faq-6"
+        onclick="event.stopPropagation(); toggleFAQ(this);">
+        <div class="p-8">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-bold font-manrope pr-4">Do you provide remediation support?</h3>
+            <i data-lucide="plus"
+              class="faq-icon w-6 h-6 flex-shrink-0 transition-transform duration-300 group-hover:rotate-90"></i>
+          </div>
+          <div class="faq-answer hidden pt-4 text-gray-700 leading-relaxed font-manrope">
+            <p>Yes! I provide technical guidance, code reviews for fixes, and retesting services to verify
+              vulnerabilities have been properly addressed.</p>
+          </div>
         </div>
       </div>
 

@@ -1,135 +1,97 @@
-<!-- Contact Section - Magazine Editorial -->
-<section id="contact" class="relative w-full py-20 px-6 md:px-12">
-  <div class="max-w-7xl mx-auto">
+<!-- Contact Section - Minimal Brutalist -->
+<section id="contact" class="relative w-full py-24 px-6 md:px-12 lg:px-24 overflow-hidden border-b border-black/10">
+  <div class="max-w-7xl w-full mx-auto">
 
-    <!-- Grid Layout -->
-    <div class="grid lg:grid-cols-12 gap-20">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-24">
 
-      <!-- Left Column: Title & Info -->
-      <div class="lg:col-span-5 space-y-12">
-        <div>
-          <div class="mb-12">
-            <div id="contact-pill-container" class="mb-4">
-              <div class="pill-section-header" data-text="CONTACT">
-                <div class="pill-content">
-                  <span id="contact-triangle" class="pill-element triangle">▶</span>
-                  <span id="contact-open-bracket" class="pill-element bracket">[</span>
-                  <span id="contact-pill-text" class="pill-element text">CONTACT</span>
-                  <span id="contact-close-bracket" class="pill-element bracket">]</span>
-                </div>
+      <!-- Left Column: Info -->
+      <div class="lg:col-span-5">
+        <div class="mb-12">
+          <div id="contact-pill-container" class="mb-6">
+            <div class="pill-section-header" data-text="CONTACT">
+              <div class="pill-content">
+                <span id="contact-triangle" class="pill-element triangle">▶</span>
+                <span id="contact-open-bracket" class="pill-element bracket">[</span>
+                <span id="contact-pill-text" class="pill-element text">CONTACT</span>
+                <span id="contact-close-bracket" class="pill-element bracket">]</span>
               </div>
             </div>
           </div>
-          <h2 class="contact-heading text-7xl md:text-7xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-8">
-            Let's<br>
-            Work<br>
-            Together
+          <h2 class="text-5xl md:text-7xl font-bold tracking-tighter text-black leading-[0.9] font-manrope mb-8">
+            LET'S WORK<br>TOGETHER
           </h2>
-          <div class="border-l-4 border-blue-600 pl-6 space-y-4">
-            <p class="text-xl leading-relaxed text-gray-700">
-              I specialize in comprehensive security assessments and penetration testing for enterprise applications.
-            </p>
-            <div class="flex items-center gap-3 text-sm">
-              <div class="w-2 h-2 bg-green-500 animate-pulse"></div>
-              <span class="text-gray-600">Available for new projects</span>
-            </div>
+          <p class="text-lg text-gray-500 font-manrope leading-relaxed mb-8">
+            Specializing in comprehensive security assessments and penetration testing for enterprise applications.
+          </p>
+
+          <div class="flex items-center gap-3 mb-12">
+            <div class="w-2 h-2 bg-green-500 animate-pulse"></div>
+            <span class="text-sm font-mono font-bold uppercase tracking-wider text-green-600">Available for new
+              projects</span>
           </div>
-        </div>
-        
-        <!-- Contact Methods -->
-        <div class="space-y-6">
-          <div class="flex items-start gap-4 group">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-              <i data-lucide="mail" class="w-6 h-6 text-white"></i>
-            </div>
-            <div>
-              <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Email</p>
-              <a href="mailto:security@sumanroy.dev" class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition">
+
+          <div class="space-y-8">
+            <div class="group">
+              <p class="text-xs font-mono font-bold text-gray-400 uppercase tracking-widest mb-2">EMAIL</p>
+              <a href="mailto:security@sumanroy.dev"
+                class="text-xl md:text-2xl font-bold font-manrope text-black hover:underline decoration-2 underline-offset-4">
                 security@sumanroy.dev
               </a>
-              <p class="text-sm text-gray-500 mt-1">Response within 24 hours</p>
             </div>
-          </div>
-          
-          <div class="flex items-start gap-4 group">
-            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-              <i data-lucide="calendar" class="w-6 h-6 text-white"></i>
-            </div>
-            <div>
-              <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Schedule</p>
-              <button onclick="openCalendly()" class="text-lg font-semibold text-gray-900 hover:text-green-600 transition text-left">
+
+            <div class="group">
+              <p class="text-xs font-mono font-bold text-gray-400 uppercase tracking-widest mb-2">SCHEDULE</p>
+              <button onclick="openCalendly()"
+                class="text-xl md:text-2xl font-bold font-manrope text-black hover:underline decoration-2 underline-offset-4 text-left">
                 Book a 30-min consultation
               </button>
-              <p class="text-sm text-gray-500 mt-1">Free initial assessment</p>
             </div>
-          </div>
-          
-          <div class="flex items-start gap-4 group">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-              <i data-lucide="clock" class="w-6 h-6 text-white"></i>
+
+            <div class="group">
+              <p class="text-xs font-mono font-bold text-gray-400 uppercase tracking-widest mb-2">SOCIAL</p>
+              <div class="flex gap-4">
+                <a href="https://github.com/sumanroy" target="_blank"
+                  class="w-12 h-12 border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://linkedin.com/in/sumanroy-security" target="_blank"
+                  class="w-12 h-12 border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="https://twitter.com/sumanroy_sec" target="_blank"
+                  class="w-12 h-12 border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                  <i data-lucide="twitter" class="w-5 h-5"></i>
+                </a>
+              </div>
             </div>
-            <div>
-              <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Timezone</p>
-              <p class="text-lg font-semibold text-gray-900">IST (GMT+5:30)</p>
-              <p class="text-sm text-gray-500 mt-1">Available worldwide</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Social Links -->
-        <div>
-          <p class="text-xs text-gray-500 uppercase tracking-widest mb-4">Follow Along</p>
-          <div class="flex gap-4">
-            <a href="https://github.com/sumanroy" target="_blank" class="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all">
-              <i data-lucide="github" class="w-5 h-5"></i>
-            </a>
-            <a href="https://linkedin.com/in/sumanroy-security" target="_blank" class="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:border-blue-600 hover:bg-blue-600 hover:text-white transition-all">
-              <i data-lucide="linkedin" class="w-5 h-5"></i>
-            </a>
-            <a href="https://twitter.com/sumanroy_sec" target="_blank" class="w-12 h-12 border-2 border-gray-300 flex items-center justify-center hover:border-blue-400 hover:bg-blue-400 hover:text-white transition-all">
-              <i data-lucide="twitter" class="w-5 h-5"></i>
-            </a>
           </div>
         </div>
       </div>
 
       <!-- Right Column: Form -->
       <div class="lg:col-span-7">
-        <div class="bg-white p-8 md:p-12 border-4 border-black" style="box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 1);">
-          <div class="flex items-center justify-between mb-8">
-            <h3 class="text-3xl font-bold text-gray-900">Send a Message</h3>
-            <div class="text-sm text-gray-500">
-              <span class="text-red-500">*</span> Required
-            </div>
-          </div>
-          
-          <form id="contact-form" class="space-y-8" method="POST" action="#">
-            <div class="space-y-6">
-              <div class="relative">
-                <label class="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                  <span class="text-red-500">*</span> Full Name
-                </label>
-                <input type="text" id="contact-name" name="name" required class="contact-input-brutalist w-full text-lg px-4 py-3 border-3 border-black bg-white transition-all" placeholder="John Doe">
+        <div class="bg-white p-8 md:p-12 border border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
+          <form id="contact-form" class="space-y-6" method="POST" action="#">
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Name</label>
+                <input type="text" name="name" required
+                  class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-gray-400"
+                  placeholder="John Doe">
               </div>
-              
-              <div class="relative">
-                <label class="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                  <span class="text-red-500">*</span> Email Address
-                </label>
-                <input type="email" id="contact-email" name="email" required class="contact-input-brutalist w-full text-lg px-4 py-3 border-3 border-black bg-white transition-all" placeholder="john@company.com">
-              </div>
-              
-              <div class="relative">
-                <label class="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">Company Name</label>
-                <input type="text" id="contact-company" name="company" class="contact-input-brutalist w-full text-lg px-4 py-3 border-3 border-black bg-white transition-all" placeholder="Your Company">
+              <div class="space-y-2">
+                <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Email</label>
+                <input type="email" name="email" required
+                  class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-gray-400"
+                  placeholder="john@example.com">
               </div>
             </div>
-            
-            <div class="relative">
-              <label class="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                <span class="text-red-500">*</span> Project Type
-              </label>
-              <select required class="contact-input-brutalist w-full text-lg px-4 py-3 border-3 border-black bg-white transition-all">
+
+            <div class="space-y-2">
+              <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Project Type</label>
+              <select required
+                class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all appearance-none cursor-pointer">
                 <option value="">Select a service...</option>
                 <option>Penetration Testing</option>
                 <option>Security Audit</option>
@@ -138,46 +100,21 @@
                 <option>Other</option>
               </select>
             </div>
-            
-            <div class="relative">
-              <label class="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">Budget Range</label>
-              <select class="contact-input-brutalist w-full text-lg px-4 py-3 border-3 border-black bg-white transition-all">
-                <option value="">Select budget...</option>
-                <option>$5k - $10k</option>
-                <option>$10k - $25k</option>
-                <option>$25k - $50k</option>
-                <option>$50k+</option>
-              </select>
+
+            <div class="space-y-2">
+              <label class="text-xs font-mono font-bold uppercase tracking-wider text-black">Message</label>
+              <textarea name="message" rows="5" required
+                class="w-full bg-white border-2 border-black p-4 font-manrope focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all placeholder:text-gray-400 resize-none"
+                placeholder="Tell me about your project..."></textarea>
             </div>
-            
-            <div class="relative">
-              <label class="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-                <span class="text-red-500">*</span> Project Details
-              </label>
-              <textarea id="contact-message" name="message" rows="6" required class="contact-input-brutalist w-full text-lg px-4 py-3 border-3 border-black bg-white transition-all resize-none" placeholder="Tell me about your security requirements, timeline, and any specific concerns..."></textarea>
-              <div class="absolute bottom-4 right-4 text-sm font-bold text-gray-400">
-                <span id="charCount">0</span>/500
-              </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4">
-              <button type="submit" id="contact-submit-btn" class="flex-1 bg-black text-white font-bold text-lg px-8 py-4 border-3 border-black transition-all hover:bg-white hover:text-black uppercase tracking-wide" style="box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.3);">
-                <span id="submit-text">Send Message</span>
-                <i data-lucide="send" class="w-5 h-5 inline ml-2"></i>
-              </button>
-              <button type="button" onclick="openCalendly()" class="sm:w-auto bg-white border-3 border-black text-black font-bold text-lg px-8 py-4 transition-all hover:bg-black hover:text-white uppercase tracking-wide" style="box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.3);">
-                <i data-lucide="calendar" class="w-5 h-5 inline mr-2"></i>
-                Schedule
-              </button>
-            </div>
+
+            <button type="submit"
+              class="w-full bg-black text-white font-bold text-lg py-4 border-2 border-black hover:bg-white hover:text-black transition-all hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] uppercase tracking-wider flex items-center justify-center gap-2 group">
+              Send Message
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+
           </form>
-          
-          <div class="mt-8 pt-8 border-t-3 border-black">
-            <div class="flex items-start gap-3 text-sm text-gray-900 font-semibold">
-              <i data-lucide="shield-check" class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"></i>
-              <p>Your information is secure and will never be shared. I typically respond within 24 hours.</p>
-            </div>
-          </div>
         </div>
       </div>
 
