@@ -174,7 +174,7 @@
   0% {
     width: 1px;
   }
-  20% {
+  15% {
     width: 1px;
   }
   100% {
@@ -183,7 +183,7 @@
 }
 
 .footer-cta-box.animate {
-  animation: footerCtaExpand 2.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: footerCtaExpand 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   padding: 1rem 0.5rem;
 }
 
@@ -245,11 +245,11 @@
 
 /* Text Reveal Animation */
 @keyframes footerCtaTextReveal {
-  0%, 20% {
+  0%, 15% {
     opacity: 0;
     clip-path: inset(0 50% 0 50%);
   }
-  30% {
+  25% {
     opacity: 1;
   }
   100% {
@@ -259,5 +259,5 @@
 }
 
 .footer-cta-text.animate {
-  animation: footerCtaTextReveal 2.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: footerCtaTextReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
