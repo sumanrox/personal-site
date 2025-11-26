@@ -4,6 +4,7 @@
  */
 
 import { initializeContent } from './config.js';
+import { initNavigation } from './components/navigation.js';
 import { initLocomotiveScroll } from './components/locomotiveScroll.js';
 import { initScrollProgress } from './components/scrollProgress.js';
 import { initTextHighlight } from './components/textHighlight.js';
@@ -46,6 +47,7 @@ import './components/heroThree.js';
     // Wait a bit for Locomotive to fully initialize before starting other components
     setTimeout(() => {
       // Initialize all components after Locomotive is ready
+      initNavigation();
       initScrollProgress();
       initTextHighlight();
       initLinkAnimations();

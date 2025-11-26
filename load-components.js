@@ -41,6 +41,7 @@ async function loadComponent(placeholder, componentPath) {
 
 async function loadAllComponents() {
   const components = [
+    { placeholder: '#nav-placeholder', path: 'components/navigation.html' },
     { placeholder: '#hero-placeholder', path: 'components/hero.html' },
     { placeholder: '#about-placeholder', path: 'components/about.html' },
     { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },
