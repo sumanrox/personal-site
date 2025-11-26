@@ -2,24 +2,30 @@
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
   position: relative;
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* Noise Texture Overlay - Film Grain Effect */
@@ -31,23 +37,54 @@ body::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 100;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   animation: grain 8s steps(10) infinite;
 }
 
 @keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 25%); }
-  90% { transform: translate(-10%, 10%); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 25%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
 }
 
 /* Hero text container - ensure visibility */
@@ -62,13 +99,15 @@ body::before {
 /* Character span styling for the animated text - SplitType creates .char class */
 .char {
   display: inline-block;
-  color: #d4d4d4; /* default gray */
+  color: #d4d4d4;
+  /* default gray */
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: color;
 }
 
 .char.active {
-  color: #000000; /* black when activated */
+  color: #000000;
+  /* black when activated */
 }
 
 /* Preserve word spacing - CRITICAL: Keep words together */
@@ -111,6 +150,7 @@ body::before {
 
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
+
   /* Ensure proper spacing on mobile */
   section {
     padding-top: 4rem !important;
@@ -143,7 +183,7 @@ body::before {
   }
 
   /* Fix project card spacing */
-  .space-y-32 > * + * {
+  .space-y-32>*+* {
     margin-top: 4rem !important;
   }
 
@@ -157,6 +197,7 @@ body::before {
 
 /* Tablet adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
+
   #hero-text-1,
   #hero-text-2 {
     font-size: clamp(4rem, 8vw, 6rem) !important;
@@ -176,6 +217,7 @@ body::before {
 
 /* Ensure smooth animations on all devices */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -190,23 +232,18 @@ section {
   border-color: #e5e7eb;
 }
 
-/* Remove any stray rounded corners */
-* {
-  border-radius: 0 !important;
-}
-
-/* Explicitly remove rounded corners from all interactive elements */
-a, button, input, select, textarea, nav a, nav button {
-  border-radius: 0 !important;
-}
-
 /* Ensure consistent spacing */
 .max-w-7xl {
   max-width: 80rem;
 }
 
 /* Typography consistency */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   word-break: keep-all;
@@ -311,7 +348,7 @@ html {
 }
 
 /* F-pattern visual guides */
-.grid.md\:grid-cols-12 > div:first-child {
+.grid.md\:grid-cols-12>div:first-child {
   /* Left column for labels */
   color: #000;
 }
@@ -335,7 +372,8 @@ footer nav {
 }
 
 footer a {
-  color: #d1d5db !important; /* gray-300 */
+  color: #d1d5db !important;
+  /* gray-300 */
 }
 
 footer a:hover {
@@ -368,8 +406,8 @@ footer .bg-green-500 {
 
 /* Loading Screen - Decryption Effect */
 #loading-screen {
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   background: #000000;
   transform: scale(1);
 }
@@ -392,8 +430,15 @@ footer .bg-green-500 {
 }
 
 @keyframes contentFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .decrypt-text {
@@ -401,19 +446,20 @@ footer .bg-green-500 {
   letter-spacing: 0.15em;
   position: relative;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
-               0 0 40px rgba(255, 255, 255, 0.2);
+    0 0 40px rgba(255, 255, 255, 0.2);
   animation: textGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes textGlow {
-  0% { 
+  0% {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
-                 0 0 40px rgba(255, 255, 255, 0.2);
+      0 0 40px rgba(255, 255, 255, 0.2);
   }
-  100% { 
+
+  100% {
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.5),
-                 0 0 60px rgba(255, 255, 255, 0.3),
-                 0 0 80px rgba(255, 255, 255, 0.1);
+      0 0 60px rgba(255, 255, 255, 0.3),
+      0 0 80px rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -429,12 +475,21 @@ footer .bg-green-500 {
 }
 
 @keyframes dotPulse {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Timeline Styles - Studio Grade */
@@ -464,10 +519,13 @@ footer .bg-green-500 {
 }
 
 @keyframes timelinePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.5;
   }
+
   50% {
     transform: scale(1.8);
     opacity: 0;
@@ -505,10 +563,13 @@ footer .bg-green-500 {
 }
 
 @keyframes scrollBounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }
+
   50% {
     transform: translateX(-50%) translateY(10px);
     opacity: 0.6;
@@ -531,7 +592,7 @@ footer .bg-green-500 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -555,4 +616,3 @@ footer .bg-green-500 {
   opacity: 1;
   transform: translateY(0);
 }
-

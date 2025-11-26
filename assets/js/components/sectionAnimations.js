@@ -39,7 +39,7 @@ export function initSectionAnimations() {
           trigger: section,
           start: 'top 90%',
           end: 'top 20%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
           fastScrollEnd: true,
           preventOverlaps: true
         }

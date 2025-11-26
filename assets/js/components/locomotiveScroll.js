@@ -23,23 +23,21 @@ export function initLocomotiveScroll() {
   const isMobile = window.innerWidth <= 768;
   const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
 
-  // Disable smooth scroll on mobile for better performance
-  const shouldUseSmooth = !isMobile;
-
   // Initialize Locomotive Scroll
   const locoScroll = new LocomotiveScroll({
     el: scrollContainer,
-    smooth: shouldUseSmooth,
+    smooth: true, // Enable smooth scroll on all devices
     smartphone: {
-      smooth: false, // Disable smooth scroll on mobile for native performance
+      smooth: true, // Enable smooth scroll on mobile
+      lerp: 0.15, // Responsive smooth scrolling on mobile
       breakpoint: 768
     },
     tablet: {
       smooth: true,
-      lerp: 0.2, // Faster response on tablet
+      lerp: 0.15, // Faster response on tablet
       multiplier: 1.1
     },
-    // Multiplier for scroll speed on desktop
+    // Multiplier for scroll speed
     multiplier: isMobile ? 1.0 : (isTablet ? 1.1 : 1.0),
     // Class to add when scrolling
     class: 'is-inview',
@@ -48,8 +46,8 @@ export function initLocomotiveScroll() {
     // Mobile orientation
     getDirection: true,
     getSpeed: true,
-    // Enable native scrollbar
-    lerp: isMobile ? 1 : (isTablet ? 0.2 : 0.1), // Instant on mobile, faster on tablet
+    // Smooth scrolling easing
+    lerp: isMobile ? 0.15 : (isTablet ? 0.15 : 0.1), // Smooth on all devices
     reloadOnContextChange: false, // Disable to improve performance
     touchMultiplier: 2.5, // Increase touch sensitivity
     firefoxMultiplier: 50 // Better Firefox performance

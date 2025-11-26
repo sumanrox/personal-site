@@ -80,7 +80,7 @@ export class PillHeadersController {
       {
         opacity: 1,
         clipPath: 'polygon(0 35%, 10.7% 0, 100% 0, 100% 65%, 89.3% 100%, 0% 100%)',
-        duration: 0.3,
+        duration: 0.4,
         ease: "power2.out"
       }
     );
@@ -88,8 +88,8 @@ export class PillHeadersController {
     // Step 1: Fade in triangle and open bracket (faster)
     pillData.timeline.to([pillData.triangle, pillData.openBracket], {
       opacity: 1,
-      duration: 0.15,
-      stagger: 0.05,
+      duration: 0.2,
+      stagger: 0.06,
       ease: "power2.out"
     });
 
@@ -105,18 +105,18 @@ export class PillHeadersController {
     // Animate close bracket sliding to final position (faster)
     pillData.timeline.to(pillData.closeBracket, {
       x: 0,
-      duration: 0.25,
+      duration: 0.35,
       ease: "power2.inOut"
     });
 
     // Step 3: Text appears with blinking animation during bracket slide (faster)
     pillData.timeline.to(pillData.text, {
       opacity: 1,
-      duration: 0.04,
+      duration: 0.06,
       repeat: 4,
       yoyo: true,
       ease: "power2.inOut"
-    }, "-=0.15");
+    }, "-=0.2");
 
     // Step 4: Ensure text stays visible
     pillData.timeline.set(pillData.text, {
@@ -208,14 +208,8 @@ export class PillHeadersController {
       onEnter: () => {
         this.animatePill(pillData);
       },
-      onLeave: () => {
-        this.resetPill(pillData);
-      },
       onEnterBack: () => {
         this.animatePill(pillData);
-      },
-      onLeaveBack: () => {
-        this.resetPill(pillData);
       }
     });
   }
@@ -240,10 +234,18 @@ export class PillHeadersController {
 }
 
 // Auto-initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  // Wait a bit for other components to load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for other components to load
+    setTimeout(() => {
+      window.pillHeaders = new PillHeadersController();
+      console.log('🏷️ Pill headers initialized');
+    }, 100);
+  });
+} else {
+  // DOM already loaded
   setTimeout(() => {
     window.pillHeaders = new PillHeadersController();
     console.log('🏷️ Pill headers initialized');
   }, 100);
-});
+}

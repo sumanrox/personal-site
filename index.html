@@ -99,17 +99,17 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js" defer></script>
 
   <!-- Modular CSS -->
-    <link rel="stylesheet" href="assets/css/main-modular.css?v=24" />  <!-- Global FAQ Toggle Function -->
+  <link rel="stylesheet" href="assets/css/main-modular.css?v=24" /> <!-- Global FAQ Toggle Function -->
   <script>
     // FAQ Toggle Function - Must be global and available before components load
-    window.toggleFAQ = function(clickedElement) {
+    window.toggleFAQ = function (clickedElement) {
       // Bring clicked card to front
       clickedElement.style.position = 'relative';
       clickedElement.style.zIndex = '10';
-      
+
       // Use specific selectors within this exact card only
       const answer = clickedElement.querySelector(':scope > .p-8 > .faq-answer');
-      
+
       // Icon could be <i> or SVG after Lucide renders - use :scope to limit to this card only
       let icon = clickedElement.querySelector(':scope > .p-8 > div > .faq-icon');
       if (!icon) {
@@ -120,17 +120,17 @@
         // Fallback to any SVG in the header
         icon = clickedElement.querySelector(':scope > .p-8 > div > svg');
       }
-      
+
       // Safety check
       if (!answer || !icon) {
-        console.warn('FAQ elements not found in clicked card:', { 
-          answer: !!answer, 
+        console.warn('FAQ elements not found in clicked card:', {
+          answer: !!answer,
           icon: !!icon,
           cardId: clickedElement.getAttribute('data-faq-id')
         });
         return;
       }
-      
+
       const isCurrentlyOpen = !answer.classList.contains('hidden');
 
       // Close all other FAQ cards and reset their z-index
@@ -142,7 +142,7 @@
           if (!cardIcon) {
             cardIcon = card.querySelector(':scope > .p-8 > div > svg');
           }
-          
+
           if (cardAnswer && cardIcon) {
             cardAnswer.classList.add('hidden');
             cardIcon.classList.remove('rotate-45');
@@ -198,11 +198,11 @@
   <!-- Film grain overlay -->
   <div class="film-grain" aria-hidden="true"></div>
 
+  <!-- Navigation Component - Outside Locomotive container for true fixed positioning -->
+  <div id="nav-placeholder"></div>
+
   <!-- Locomotive Scroll Container -->
   <div data-scroll-container>
-
-    <!-- Navigation Component - Fixed, outside Locomotive control -->
-    <div id="nav-placeholder" data-scroll-sticky data-scroll-target="#main-content"></div>
 
     <!-- Spacer for hero parallax effect -->
     <div class="h-screen" aria-hidden="true"></div>

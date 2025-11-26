@@ -10,6 +10,20 @@
     transform: translateY(-2px);
 }
 
+/* Add rounded corners to cards */
+.group {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Badges with rounded corners */
+.group span[class*="bg-red-"],
+.group span[class*="bg-orange-"],
+.group span[class*="bg-purple-"],
+.group span[class*="bg-white"] {
+    border-radius: 4px;
+}
+
 /* Typography Refinements */
 .font-mono {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
