@@ -45,6 +45,7 @@ async function loadAllComponents() {
     { placeholder: '#hero-placeholder', path: 'components/hero.html' },
     { placeholder: '#about-placeholder', path: 'components/about.html' },
     { placeholder: '#logo-carousel-placeholder', path: 'components/logo-carousel.html' },
+    { placeholder: '#services-placeholder', path: 'components/services.html' },
     { placeholder: '#experience-placeholder', path: 'components/experience.html' },
     { placeholder: '#work-placeholder', path: 'components/work.html' },
     { placeholder: '#projects-placeholder', path: 'components/projects.html' },

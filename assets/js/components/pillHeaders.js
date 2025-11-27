@@ -8,6 +8,7 @@ export class PillHeadersController {
   initializePills() {
     const pillContainers = [
       'about-pill-container',
+      'services-pill-container',
       'experience-pill-container',
       'projects-pill-container',
       'skills-pill-container',
@@ -204,6 +205,9 @@ export class PillHeadersController {
       entries.forEach(entry => {
         if (entry.isIntersecting && !pillData.animated && !pillData.isAnimating) {
           this.animatePill(pillData);
+        } else if (!entry.isIntersecting && pillData.animated) {
+          // Reset pill when it goes out of view
+          this.resetPill(pillData);
         }
       });
     }, {

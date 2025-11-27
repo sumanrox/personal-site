@@ -49,12 +49,25 @@ html.has-scroll-dragging {
 
 .has-scroll-smooth [data-scroll-container] {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content container */
+main,
+#main-content,
+[data-scroll-container] {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 body::-webkit-scrollbar {
