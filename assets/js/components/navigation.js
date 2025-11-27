@@ -15,6 +15,22 @@ export function initNavigation() {
     return;
   }
 
+  // Mobile Blog Dropdown
+  const mobileBlogTrigger = document.querySelector('.mobile-blog-trigger');
+  const mobileBlogContent = document.querySelector('.mobile-blog-content');
+
+  if (mobileBlogTrigger && mobileBlogContent) {
+    mobileBlogTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const isOpen = mobileBlogContent.style.display === 'block';
+      
+      mobileBlogContent.style.display = isOpen ? 'none' : 'block';
+      mobileBlogTrigger.classList.toggle('open', !isOpen);
+    });
+  }
+
   // Mobile Tools Dropdown
   const mobileToolsTrigger = document.querySelector('.mobile-tools-trigger');
   const mobileToolsContent = document.querySelector('.mobile-tools-content');
@@ -130,7 +146,7 @@ export function initNavigation() {
       });
     } else {
       // Auto-detect based on scroll position
-      const sections = ['hero-section', 'about', 'experience', 'work', 'projects', 'testimonials', 'faq', 'contact'];
+      const sections = ['hero-section', 'about', 'services', 'experience', 'work', 'projects', 'testimonials', 'faq', 'contact'];
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       let currentSection = '';

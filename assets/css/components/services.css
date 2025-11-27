@@ -319,3 +319,46 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* 3D Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) translateX(-5px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-25px) translateX(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) translateX(5px) rotate(-2deg);
+  }
+}
+
+.animate-float-delay-0 {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.animate-float-delay-2 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1.6s;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}

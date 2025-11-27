@@ -29,6 +29,26 @@
       <a href="#faq"
         class="nav-link px-3 py-1.5 text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-xs font-bold">FAQ</a>
 
+      <!-- Blog Dropdown -->
+      <div class="nav-dropdown relative">
+        <button
+          class="nav-link nav-dropdown-trigger px-3 py-1.5 text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-xs font-bold flex items-center gap-1">
+          Blog
+          <i data-lucide="chevron-down" class="w-3 h-3 transition-transform duration-200"></i>
+        </button>
+        <div
+          class="nav-dropdown-menu absolute top-full left-0 mt-4 bg-black rounded-xl border border-white/10 shadow-2xl opacity-0 scale-95 pointer-events-none transition-all duration-200 min-w-[140px]">
+          <div class="py-1.5 px-1.5">
+            <a href="/blog/security"
+              class="dropdown-item block px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 text-xs font-bold">Security</a>
+            <a href="/blog/tutorials"
+              class="dropdown-item block px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 text-xs font-bold">Tutorials</a>
+            <a href="/blog/research"
+              class="dropdown-item block px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 text-xs font-bold">Research</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Tools Dropdown -->
       <div class="nav-dropdown relative">
         <button
@@ -84,6 +104,23 @@
         class="mobile-nav-link block px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-sm font-bold">Testimonials</a>
       <a href="#faq"
         class="mobile-nav-link block px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-sm font-bold">FAQ</a>
+
+      <!-- Blog Submenu -->
+      <div class="mobile-blog-submenu">
+        <button
+          class="mobile-blog-trigger w-full flex items-center justify-between px-6 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-sm font-bold">
+          <span>Blog</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+        </button>
+        <div class="mobile-blog-content pl-4 space-y-1 mt-1" style="display: none;">
+          <a href="/blog/security"
+            class="mobile-nav-link block px-6 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-xs font-bold">Security</a>
+          <a href="/blog/tutorials"
+            class="mobile-nav-link block px-6 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-xs font-bold">Tutorials</a>
+          <a href="/blog/research"
+            class="mobile-nav-link block px-6 py-2 text-white/60 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 text-xs font-bold">Research</a>
+        </div>
+      </div>
 
       <!-- Tools Submenu -->
       <div class="mobile-tools-submenu">
